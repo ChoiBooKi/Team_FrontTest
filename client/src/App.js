@@ -1,6 +1,8 @@
 import "./App.css";
 import Auth from "./Auth";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Profile from "./Profile";
+import ExtraInformation from "./components/ExtraInformation"
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
       <Routes>
         <Route path="/oauth/kakao/callback" element={<Authcheck />} />
         <Route path="/" element={<KakaoLogin />} />
+        <Route path="/profile" element={<Pro />} />
+        <Route path="/extrainfo" element={<ExtraInformation />} />
       </Routes>
     </div>
     </Router>
@@ -26,4 +30,8 @@ function KakaoLogin() {
 
 function Authcheck() {
   return Auth()
+}
+
+function Pro() {
+  return Profile()
 }
