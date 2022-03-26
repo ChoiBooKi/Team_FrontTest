@@ -69,7 +69,14 @@ function ExtraInformation(props) {
         agreeMarketing: marketingCheck 
       }
       axios.post('/api/extraInfo', body)
-      .then(res => console.log(res.data))
+      .then(res => {
+        //console.log(res.data)
+        if(res.data.success){
+          navigate('/profile')
+          console.log(res.data)
+        }
+        }
+      )
       .catch(err => console.log(err))
     }
   }

@@ -28,7 +28,9 @@ app.post('/api/extraInfo', (req, res) => {
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err})
     return res.status(200).json({
-      success: true
+      success: true,
+      nickName: user.nickName,
+      agreeMarketing:user.agreeMarketing
     })
   })
 })
