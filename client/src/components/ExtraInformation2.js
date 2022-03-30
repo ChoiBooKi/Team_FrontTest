@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import qs from "qs";
 import { useNavigate } from "react-router-dom";
+import * as Google from "./Google"
 
-function Extra2(props) {
+function ExtraInformation2(props) {
   const navigate = useNavigate()
   const [NickName, setNickName] = useState("")
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-  
+
   const onNickNameHandler = (event) => {
     setNickName(event.currentTarget.value)
   }
@@ -63,29 +63,25 @@ function Extra2(props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if(ageCheck===true && useCheck===true){
-      // let body = {
-      //   nickName: NickName,
-      //   agreeMarketing: marketingCheck,
-      //   token: token
-      // }
 
-      // axios.post('/api/kakao_extraInfo', body) //토큰, 추가 정보 전송
-      // .then(res => {
-      //   if(res.data.success){
-      //     navigate('/')
-      //     console.log(res.data)
-      //   }
-      // })
-      // .catch(err => console.log(err))
-      // } else {
-      //   alert("필수 동의사항을 체크해 주십시오.")
-      // }
-      console.log('good')
+    if(ageCheck===true && useCheck===true){ //필수동의사항 체크
+      //Google.onSuccess()
+
+      let body = {
+        nickName: NickName,
+        agreeMarketing: marketingCheck
+      }
+      axios.post('/api/extraInfo', body) //토큰, 추가 정보 전송
+      .then(res => {
+        if(res.data.success){
+          navigate('/')
+          console.log(res.data)
+        }
+      })
+      .catch(err => console.log(err))
     } else {
-      alert("필수 동의사항을 체크해 주십시오.")
+      alert("필수 사항을 체크하여 주십시오.")
     }
-
   }
 
   return (
@@ -128,4 +124,4 @@ function Extra2(props) {
   )
 }
 
-export default Extra2
+export default ExtraInformation2

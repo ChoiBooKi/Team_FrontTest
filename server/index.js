@@ -21,7 +21,21 @@ app.get('/', (req, res) => {
   res.send('Hello World! BooKi')
 })
 
-app.post('/api/kakao_extraInfo', (req, res) => {
+app.post('/api/token', (req, res) => {
+  //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
+  const user = new User(req.body)
+
+  user.save((err, userInfo) => {
+    if (err) return res.json({ success: false, err})
+    return res.status(200).json({
+      success: true,
+      token: user.token,
+      registrationId: user.registrationId
+    })
+  })
+})
+
+app.post('/api/extraInfo', (req, res) => {
   //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
   const user = new User(req.body)
 
@@ -30,8 +44,7 @@ app.post('/api/kakao_extraInfo', (req, res) => {
     return res.status(200).json({
       success: true,
       nickName: user.nickName,
-      agreeMarketing:user.agreeMarketing,
-      token: user.token
+      agreeMarketing:user.agreeMarketing
     })
   })
 })

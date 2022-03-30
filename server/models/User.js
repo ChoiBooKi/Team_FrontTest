@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema({
     token: {
         type: String,
         maxlength: 1000
+    },
+    registrationId: {
+        type: String,
+        maxlength: 5000
     }
 })
 
