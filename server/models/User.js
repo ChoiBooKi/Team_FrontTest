@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
     },
     agreeMarketing: {
         type: Boolean
+    },
+    token: {
+        type: String,
+        maxlength: 1000
     }
 })
 
