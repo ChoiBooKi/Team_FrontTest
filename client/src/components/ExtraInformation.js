@@ -1,75 +1,23 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
-import * as ktoken from "./ktoken"
 
 function ExtraInformation(props) {
   const navigate = useNavigate()
-  const [NickName, setNickName] = useState("")
-  const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
-  const [useCheck, setUseCheck] = useState(false);
-  const [marketingCheck, setMarketingCheck] = useState(false);
+  const [TeamName, setTeamName] = useState("")
+  //const [Region, setRegion] = useState("")
 
-  const onNickNameHandler = (event) => {
-    setNickName(event.currentTarget.value)
+  const onTeamNameHandler = (event) => {
+    setTeamName(event.currentTarget.value)
   }
-
-  const allBtnEvent =()=>{
-    if(allCheck === false) {
-      setAllCheck(true);
-      setAgeCheck(true);
-      setUseCheck(true);
-      setMarketingCheck(true);
-    }else {
-      setAllCheck(false);
-      setAgeCheck(false);
-      setUseCheck(false);
-      setMarketingCheck(false);
-    } 
-  };
-  
-  const ageBtnEvent =()=>{
-    if(ageCheck === false) {
-      setAgeCheck(true)
-    }else {
-      setAgeCheck(false)
-    }
-  };
-  
-  const useBtnEvent =()=>{
-    if(useCheck === false) {
-      setUseCheck(true)
-    }else {
-      setUseCheck(false)
-    }
-  };
-  
-  const marketingBtnEvent =()=>{
-    if(marketingCheck === false) {
-      setMarketingCheck(true)
-    }else {
-      setMarketingCheck(false)
-    }
-  };
-
-  useEffect(()=>{
-    if(ageCheck===true && useCheck===true && marketingCheck===true){
-      setAllCheck(true)
-    } else {
-      setAllCheck(false)
-    }
-  }, [ageCheck,useCheck, marketingCheck])
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    if(ageCheck===true && useCheck===true){ //필수동의사항 체크
-      ktoken.ktoken()
-
+    if(TeamName){ //필수동의사항 체크
+      //Google.onSuccess()
       let body = {
-        nickName: NickName,
-        agreeMarketing: marketingCheck
+        nickName: TeamName
       }
       axios.post('/api/extraInfo', body) //토큰, 추가 정보 전송
       .then(res => {
@@ -80,7 +28,7 @@ function ExtraInformation(props) {
       })
       .catch(err => console.log(err))
     } else {
-      alert("필수 사항을 체크하여 주십시오.")
+      alert("필수 사항을 작성하여 주십시오.")
     }
   }
 
@@ -92,28 +40,20 @@ function ExtraInformation(props) {
       <form style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={onSubmitHandler}>
         <label>닉네임</label>
-        <input type="text" value={NickName} onChange={onNickNameHandler} />
-
-        <div>
-        		<input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
-        		<label>전체동의</label>
-        </div>
-
-        <div>
-        		<input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
-        		<label>만 14세 이상입니다 <span >(필수)</span></label>
-        </div>
-
-        <div>
-        		<input type="checkbox" id="check2" checked={useCheck}  onChange={useBtnEvent}/>
-        		<label>이용약관 <span >(필수)</span></label>
-        </div>
+        <input type="text" value={TeamName} onChange={onTeamNameHandler} />
+        <button>중복확인</button>
+        <label>팀 로고</label>
+        <input type="file"/>
+        <label>팀 소개 글</label>
+        <textarea rows="6" placeholder='팀 소개를 작성하여 주십시오.'></textarea>
         
-        <div>
-        		<input type="checkbox" id="check3" checked={marketingCheck}  onChange={marketingBtnEvent}/>
-        		<label>마케팅 동의 <span >(선택)</span></label>
-        </div>
-
+        <select name="지역" multiple>
+          <option>서울</option>
+          <option>경기도</option>
+          <option>전라도</option>
+          <option>경상도</option>
+          <option>제주도</option>
+        </select>
         <br />
         <button type="submit">
           Register
