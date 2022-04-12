@@ -30,7 +30,7 @@ function ExtraInformation(props) {
     } else {
       alert("필수 사항을 작성하여 주십시오.")
     }
-  } 
+  }
 
   return (
     <div style={{
