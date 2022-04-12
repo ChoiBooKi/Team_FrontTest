@@ -34,9 +34,9 @@ function TeamExtraInformation(props) {
       }
       formdata.append("image", Images)// 이미지 폼 데이터에 담기
       formdata.append("body", JSON.stringify(body))// 바디 폼 데이터에 담기
-      for (let value of formdata.values()) {
-        console.log(value);
-      }
+      // for (let value of formdata.values()) { 데이터 제대로 들어갔는지 확인
+      //   console.log(value);
+      // }
       axios.post('/api/extraInfo', formdata) //추가 정보 전송
       .then(res => {
         if(res.data.success){
