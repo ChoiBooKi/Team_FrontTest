@@ -56,7 +56,7 @@ function TeamExtraInformation(props) {
     event.preventDefault()
     if (TeamName) {
       Search = 1 // 중복 조회 확인
-      axios.get('/api/search', {
+      axios.get('/api/searchTeamName', {
           params: {
             Teamname: TeamName
           }
