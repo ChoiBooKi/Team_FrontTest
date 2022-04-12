@@ -67,7 +67,7 @@ app.post('/api/extraInfo', (req, res) => {
     return res.status(200).json({
       success: true,
       nickName: user.nickName,
-      agreeMarketing:user.agreeMarketing
+      image: req.body.image
     })
   })
 })

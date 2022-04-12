@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 function ExtraInformation(props) {
@@ -30,15 +30,14 @@ function ExtraInformation(props) {
     } else {
       alert("필수 사항을 작성하여 주십시오.")
     }
-  }
+  } 
 
   return (
     <div style={{
       display: 'flex', justifyContent: 'center', alignItems: 'center',
       width: '100%', height: '100vh'
     }}>
-      <form style={{ display: 'flex', flexDirection: 'column' }}
-        onSubmit={onSubmitHandler}>
+      <form style={{ display: 'flex', flexDirection: 'column' }}>
         <label>닉네임</label>
         <input type="text" value={TeamName} onChange={onTeamNameHandler} />
         <button>중복확인</button>
@@ -55,7 +54,7 @@ function ExtraInformation(props) {
           <option>제주도</option>
         </select>
         <br />
-        <button type="submit">
+        <button type="submit" onClick={onSubmitHandler}>
           Register
         </button>
       </form>
