@@ -6,10 +6,11 @@ function TeamExtraInformation(props) {
   const navigate = useNavigate()
   const regionList = [" ", "서울", "경기", "전라", "경상"]
   const positionList = ["  ", "공격수", "미드필더", "수비수", "공격수"]
+  const proList = [" ", "네", "아니오"]
   const [NickName, setNickName] = useState("")
   const [Region, setRegion] = useState("")
   const [Position, setPosition] = useState("")
-  const [Pro, setPro] = useState(false)
+  const [Pro, setPro] = useState("")
 
   let Search = 0
 
@@ -17,17 +18,18 @@ function TeamExtraInformation(props) {
 
   const onPositionHandler = (e) => { setPosition(e.target.value) }
 
-  const onProHandler = (e) => { setPro(e.target.checked);}
+  const onProHandler = (e) => { setPro(e.target.value) }
 
   const onNickNameHandler = (e) => { setNickName(e.currentTarget.value) }
 
   const onSubmitHandler = (e) => {  // 다음 버튼
     e.preventDefault()  
-    if(Search && Region){ //필수동의사항 체크
+    if(Search && Region && Pro){ //필수동의사항 체크
       let body = {
         NickName: NickName,
         Region: Region,
-        Position: Position
+        Position: Position,
+        //isLeader: Leader
       }
       axios.post('/api/extraInfo', body) //추가 정보 전송
       .then(res => {
@@ -96,8 +98,13 @@ function TeamExtraInformation(props) {
         </select>
         
         <label>선출 유무</label>
-        <input type="checkbox" checked={Pro} onChange={onProHandler}/>
-        <br />
+        <select onChange={onProHandler} value={Pro}>
+          {proList.map((item, id) => (
+            <option value={item} key={id}>
+              {item}
+            </option>
+          ))}
+        </select>
 
         <button onClick={onSubmitHandler}>회원 가입</button>
       </form>
