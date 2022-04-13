@@ -81,7 +81,7 @@ function TeamExtraInformation(props) {
       width: '100%', height: '100vh'
     }}>
       <form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>팀명</label>
+        <label>팀명(필수)</label>
         <input type="text" value={TeamName} onChange={onTeamNameHandler} />
         <button onClick={onCheckHandler}>중복확인</button>
         <label>팀 로고</label>
@@ -89,6 +89,7 @@ function TeamExtraInformation(props) {
         <label>팀 소개 글</label>
         <textarea rows="6" onChange={onContentChange} value={Content} placeholder='팀 소개를 작성하여 주십시오.'></textarea>
         
+        <label>활동 지역(필수)</label>
         <select onChange={SelectHandler} value={Selected}>
           {selectList.map((item) => (
             <option value={item} key={item}>

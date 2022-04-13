@@ -97,7 +97,7 @@ function TeamExtraInformation(props) {
           ))}
         </select>
         
-        <label>선출 유무</label>
+        <label>선출 유무(필수)</label>
         <select onChange={onProHandler} value={Pro}>
           {proList.map((item, id) => (
             <option value={item} key={id}>

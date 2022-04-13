@@ -41,7 +41,7 @@ app.get('/api/login/oauth2/google', (req, res) => {
 
   //res.send(token)
   return res.status(200).json({
-    success: true,
+    notUser: true,
     Authorization: token
   })
 })
@@ -51,8 +51,7 @@ app.get('/api/login/oauth2/kakao', (req, res) => {
   let token = req.query
 
   //res.send(token)
-  return res.status(200)
-  .json({
+  return res.status(200).json({
     notUser: true,
     Authorization: token
   })
