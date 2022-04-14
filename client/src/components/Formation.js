@@ -26,6 +26,7 @@ function Formation () {
         defaultPosition={{x: 0, y: 0}}
         onDrag={(e, data) => trackPos(data)}
         bounds = {{top: 0, left: -280, right: 280, bottom: 840}}
+        //bounds = {".formation"}
       >
         <div className="move">
           <div>1</div>

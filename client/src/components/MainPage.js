@@ -10,6 +10,7 @@ function MainPage() {
     <div>
       <a href={KAKAO_AUTH_URL}>Kakao Login</a>
       <Google/>
+      <a href="http://localhost:3000/move">move</a>
     </div>
   )
 }
