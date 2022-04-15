@@ -28,10 +28,10 @@ function TeamExtraInformation(props) {
       let body = {
         NickName: NickName,
         Region: Region,
-        Position: Position,
+        Position: Position
         //isLeader: Leader
       }
-      axios.post('/api/extraInfo', body) //추가 정보 전송
+      axios.post('/api/user/extraInfo', body) //추가 정보 전송
       .then(res => {
         if(res.data.success){
           navigate('/')

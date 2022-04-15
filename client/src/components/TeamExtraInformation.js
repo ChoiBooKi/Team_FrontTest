@@ -25,7 +25,7 @@ function TeamExtraInformation(props) {
   }
 
   const onSubmitHandler = (e) => {  // 다음 버튼
-    e.preventDefault()  
+    e.preventDefault()
     if(Search && Selected){ //필수동의사항 체크
       let body = {
         NickName: TeamName,
@@ -37,7 +37,7 @@ function TeamExtraInformation(props) {
       // for (let value of formdata.values()) { 데이터 제대로 들어갔는지 확인
       //   console.log(value);
       // }
-      axios.post('/api/extraInfo', formdata) //추가 정보 전송
+      axios.post('/api/team/create', formdata) //추가 정보 전송
       .then(res => {
         if(res.data.success){
           navigate('/extrainfo')
