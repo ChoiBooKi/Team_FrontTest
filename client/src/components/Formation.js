@@ -1,6 +1,7 @@
-import React, { useState, useEffect }  from 'react';
-import "./Formation.css"
+import React, { useState }  from 'react';
+import "./Formation.css";
 import Draggable from 'react-draggable';
+import axios from 'axios';
 
 function Formation () {
   const [Status, SetStatus] = useState(true)
@@ -8,6 +9,21 @@ function Formation () {
   const onStatusHandler = () => {
     SetStatus(!Status)
   }
+  // 포지션 위치 값 보내는 방법
+  // const [Position1, SetPosition1] = useState({ x: 0, y: 0 });
+
+  // const trackPos = (data) => {
+  //   SetPosition1({ x: data.x, y: data.y }); 
+  // };
+
+  // let body = {
+  //   first: Position1
+  // }
+
+  // axios.post('/api/position', body)
+  // .then(res => {
+  //     console.log(res.data)
+  // })
 
   const [Content1, SetContent1] = useState("ST");
   const [Content2, SetContent2] = useState("ST");
@@ -342,6 +358,8 @@ function Formation () {
         defaultPosition={{x: 145, y: 80}}
         onDrag = {(e, data) => onDragHandler1(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+        // onStop={(e, data) => trackPos(data)}
+        // 포지션 위치 값 보내는 방법
       >
         <div className="move">
           <div>{Content1}</div>
