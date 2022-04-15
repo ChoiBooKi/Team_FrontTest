@@ -23,7 +23,7 @@ function Formation () {
   const onContentHandler1 = (props) => {
     SetContent1(props)
   }
-  const onStopHandler1 =(data) =>{
+  const onDragHandler1 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler1("ST")
     } else if(data.x<80 && data.y < 200){
@@ -54,7 +54,7 @@ function Formation () {
   const onContentHandler2 = (props) => {
     SetContent2(props)
   }
-  const onStopHandler2 =(data) =>{
+  const onDragHandler2 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler2("ST")
     } else if(data.x<80 && data.y < 200){
@@ -85,7 +85,7 @@ function Formation () {
   const onContentHandler3 = (props) => {
     SetContent3(props)
   }
-  const onStopHandler3 =(data) =>{
+  const onDragHandler3 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler3("ST")
     } else if(data.x<80 && data.y < 200){
@@ -116,7 +116,7 @@ function Formation () {
   const onContentHandler4 = (props) => {
     SetContent4(props)
   }
-  const onStopHandler4 =(data) =>{
+  const onDragHandler4 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler4("ST")
     } else if(data.x<80 && data.y < 200){
@@ -147,7 +147,7 @@ function Formation () {
   const onContentHandler5 = (props) => {
     SetContent5(props)
   }
-  const onStopHandler5 =(data) =>{
+  const onDragHandler5 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler5("ST")
     } else if(data.x<80 && data.y < 200){
@@ -178,7 +178,7 @@ function Formation () {
   const onContentHandler6 = (props) => {
     SetContent6(props)
   }
-  const onStopHandler6 =(data) =>{
+  const onDragHandler6 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler6("ST")
     } else if(data.x<80 && data.y < 200){
@@ -209,7 +209,7 @@ function Formation () {
   const onContentHandler7 = (props) => {
     SetContent7(props)
   }
-  const onStopHandler7 =(data) =>{
+  const onDragHandler7 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler7("ST")
     } else if(data.x<80 && data.y < 200){
@@ -240,7 +240,7 @@ function Formation () {
   const onContentHandler8 = (props) => {
     SetContent8(props)
   }
-  const onStopHandler8 =(data) =>{
+  const onDragHandler8 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler8("ST")
     } else if(data.x<80 && data.y < 200){
@@ -271,7 +271,7 @@ function Formation () {
   const onContentHandler9 = (props) => {
     SetContent9(props)
   }
-  const onStopHandler9 =(data) =>{
+  const onDragHandler9 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler9("ST")
     } else if(data.x<80 && data.y < 200){
@@ -302,7 +302,7 @@ function Formation () {
   const onContentHandler10 = (props) => {
     SetContent10(props)
   }
-  const onStopHandler10 =(data) =>{
+  const onDragHandler10 =(data) =>{
     if(data.x>80 && data.y < 120 && data.x <450){
       onContentHandler10("ST")
     } else if(data.x<80 && data.y < 200){
@@ -340,7 +340,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 145, y: 80}}
-        onDrag = {(e, data) => onStopHandler1(data)}
+        onDrag = {(e, data) => onDragHandler1(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -351,7 +351,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 380, y: 80}}
-        onDrag = {(e, data) => onStopHandler2(data)}
+        onDrag = {(e, data) => onDragHandler2(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -362,7 +362,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 25, y: 280}}
-        onDrag = {(e, data) => onStopHandler3(data)}
+        onDrag = {(e, data) => onDragHandler3(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -373,7 +373,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{ x: 160, y: 360 }}
-        onDrag = {(e, data) => onStopHandler4(data)}
+        onDrag = {(e, data) => onDragHandler4(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -384,7 +384,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 350, y: 360}}
-        onDrag = {(e, data) => onStopHandler5(data)}
+        onDrag = {(e, data) => onDragHandler5(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -395,7 +395,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 500, y: 280}}
-        onDrag = {(e, data) => onStopHandler6(data)}
+        onDrag = {(e, data) => onDragHandler6(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -406,7 +406,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 30, y: 580}}
-        onDrag = {(e, data) => onStopHandler7(data)}
+        onDrag = {(e, data) => onDragHandler7(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -417,7 +417,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 160, y: 660}}
-        onDrag = {(e, data) => onStopHandler8(data)}
+        onDrag = {(e, data) => onDragHandler8(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -428,7 +428,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 350, y: 660}}
-        onDrag = {(e, data) => onStopHandler9(data)}
+        onDrag = {(e, data) => onDragHandler9(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
@@ -439,7 +439,7 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 485, y: 580}}
-        onDrag = {(e, data) => onStopHandler10(data)}
+        onDrag = {(e, data) => onDragHandler10(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
