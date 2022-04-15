@@ -8,34 +8,46 @@ function Formation () {
   const onStatusHandler = () => {
     SetStatus(!Status)
   }
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const trackPos = (data) => {
-    setPosition({ x: data.x, y: data.y }); 
-  };
-
-
-  const [Content1, SetContent1] = useState("처음");
-  const [Content2, SetContent2] = useState("처음2");
-  const [Content3, SetContent3] = useState("처음3");
-  const [Content4, SetContent4] = useState("처음4");
-  const [Content5, SetContent5] = useState("처음5");
-  const [Content6, SetContent6] = useState("처음6");
-  const [Content7, SetContent7] = useState("처음7");
-  const [Content8, SetContent8] = useState("처음8");
-  const [Content9, SetContent9] = useState("처음9");
-  const [Content10, SetContent10] = useState("처음10");
-  const [Content11, SetContent11] = useState("처음11");
+  const [Content1, SetContent1] = useState("ST");
+  const [Content2, SetContent2] = useState("ST");
+  const [Content3, SetContent3] = useState("LM");
+  const [Content4, SetContent4] = useState("CM");
+  const [Content5, SetContent5] = useState("CM");
+  const [Content6, SetContent6] = useState("RM");
+  const [Content7, SetContent7] = useState("LB");
+  const [Content8, SetContent8] = useState("CB");
+  const [Content9, SetContent9] = useState("CB");
+  const [Content10, SetContent10] = useState("RB");
 
   const onContentHandler1 = (props) => {
     SetContent1(props)
   }
   const onStopHandler1 =(data) =>{
-    if(data.y >100){
-      onContentHandler1("SF")
-    }
-    if(data.y <100){
-      onContentHandler1("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler1("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler1("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler1("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler1("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler1("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler1("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler1("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler1("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler1("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler1("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler1("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler1("CB")
     }
   }
 
@@ -49,9 +61,24 @@ function Formation () {
       onContentHandler2("LW")
     } else if(data.x > 450 && data.y < 200){
       onContentHandler2("RW")
-    }
-    else {
-      onContentHandler2("else")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler2("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler2("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler2("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler2("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler2("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler2("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler2("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler2("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler2("CB")
     }
   }
 
@@ -59,11 +86,30 @@ function Formation () {
     SetContent3(props)
   }
   const onStopHandler3 =(data) =>{
-    if(data.y >100){
-      onContentHandler3("SF")
-    }
-    if(data.y <100){
-      onContentHandler3("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler3("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler3("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler3("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler3("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler3("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler3("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler3("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler3("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler3("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler3("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler3("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler3("CB")
     }
   }
 
@@ -71,11 +117,30 @@ function Formation () {
     SetContent4(props)
   }
   const onStopHandler4 =(data) =>{
-    if(data.y >100){
-      onContentHandler4("SF")
-    }
-    if(data.y <100){
-      onContentHandler4("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler4("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler4("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler4("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler4("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler4("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler4("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler4("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler4("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler4("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler4("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler4("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler4("CB")
     }
   }
 
@@ -83,11 +148,30 @@ function Formation () {
     SetContent5(props)
   }
   const onStopHandler5 =(data) =>{
-    if(data.y >100){
-      onContentHandler5("SF")
-    }
-    if(data.y <100){
-      onContentHandler5("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler5("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler5("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler5("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler5("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler5("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler5("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler5("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler5("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler5("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler5("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler5("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler5("CB")
     }
   }
 
@@ -95,11 +179,30 @@ function Formation () {
     SetContent6(props)
   }
   const onStopHandler6 =(data) =>{
-    if(data.y >100){
-      onContentHandler6("SF")
-    }
-    if(data.y <100){
-      onContentHandler6("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler6("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler6("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler6("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler6("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler6("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler6("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler6("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler6("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler6("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler6("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler6("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler6("CB")
     }
   }
 
@@ -107,11 +210,30 @@ function Formation () {
     SetContent7(props)
   }
   const onStopHandler7 =(data) =>{
-    if(data.y >100){
-      onContentHandler7("SF")
-    }
-    if(data.y <100){
-      onContentHandler7("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler7("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler7("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler7("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler7("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler7("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler7("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler7("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler7("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler7("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler7("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler7("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler7("CB")
     }
   }
 
@@ -119,11 +241,30 @@ function Formation () {
     SetContent8(props)
   }
   const onStopHandler8 =(data) =>{
-    if(data.y >100){
-      onContentHandler8("SF")
-    }
-    if(data.y <100){
-      onContentHandler8("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler8("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler8("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler8("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler8("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler8("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler8("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler8("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler8("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler8("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler8("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler8("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler8("CB")
     }
   }
 
@@ -131,11 +272,30 @@ function Formation () {
     SetContent9(props)
   }
   const onStopHandler9 =(data) =>{
-    if(data.y >100){
-      onContentHandler9("SF")
-    }
-    if(data.y <100){
-      onContentHandler9("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler9("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler9("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler9("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler9("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler9("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler9("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler9("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler9("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler9("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler9("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler9("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler9("CB")
     }
   }
 
@@ -143,26 +303,32 @@ function Formation () {
     SetContent10(props)
   }
   const onStopHandler10 =(data) =>{
-    if(data.y >100){
-      onContentHandler10("SF")
-    }
-    if(data.y <100){
-      onContentHandler10("처음")
+    if(data.x>80 && data.y < 120 && data.x <450){
+      onContentHandler10("ST")
+    } else if(data.x<80 && data.y < 200){
+      onContentHandler10("LW")
+    } else if(data.x > 450 && data.y < 200){
+      onContentHandler10("RW")
+    } else if(data.x>80 && data.y > 120 && data.y < 185 && data.x <450){
+      onContentHandler10("CF")
+    } else if(data.x>80 && data.y > 185 && data.y < 275 && data.x <450){
+      onContentHandler10("CAM")
+    } else if(data.x<80 && data.y > 200 && data.y < 440){
+      onContentHandler10("LM")
+    } else if(data.x > 450 && data.y > 200 && data.y < 440){
+      onContentHandler10("RM")
+    } else if(data.x>80 && data.y > 275 && data.y < 460 && data.x <450){
+      onContentHandler10("CM")
+    } else if(data.x<80 && data.y > 440){
+      onContentHandler10("LB")
+    } else if(data.x > 450 && data.y > 440){
+      onContentHandler10("RB")
+    } else if(data.x>80 && data.y > 460 && data.y < 560 && data.x <450){
+      onContentHandler10("CDM")
+    } else if(data.x>80 && data.y > 560 && data.x <450){
+      onContentHandler10("CB")
     }
   }
-
-  const onContentHandler11 = (props) => {
-    SetContent11(props)
-  }
-  const onStopHandler11 =(data) =>{
-    if(data.y >100){
-      onContentHandler11("SF")
-    }
-    if(data.y <100){
-      onContentHandler11("처음")
-    }
-  }
-
 
   return(
     <div className="formation">
@@ -174,14 +340,11 @@ function Formation () {
       <Draggable 
         disabled={Status} 
         defaultPosition={{x: 145, y: 80}}
-        onDrag = {(e, data) => trackPos(data)}
-        //onDrag = {(e, data) => onStopHandler1(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
+        onDrag = {(e, data) => onStopHandler1(data)}
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
           <div>{Content1}</div>
-          <div>x: {position.x.toFixed(0)}, y: {position.y.toFixed(0)}</div> 
-
         </div>
       </Draggable>
 
@@ -189,8 +352,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 380, y: 80}}
         onDrag = {(e, data) => onStopHandler2(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content2}</div>
         </div>
@@ -200,8 +363,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 25, y: 280}}
         onDrag = {(e, data) => onStopHandler3(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content3}</div>
         </div>
@@ -211,8 +374,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{ x: 160, y: 360 }}
         onDrag = {(e, data) => onStopHandler4(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content4}</div>
         </div>
@@ -222,8 +385,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 350, y: 360}}
         onDrag = {(e, data) => onStopHandler5(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content5}</div>
         </div>
@@ -233,8 +396,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 500, y: 280}}
         onDrag = {(e, data) => onStopHandler6(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content6}</div>
         </div>
@@ -244,8 +407,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 30, y: 580}}
         onDrag = {(e, data) => onStopHandler7(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content7}</div>
         </div>
@@ -255,8 +418,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 160, y: 660}}
         onDrag = {(e, data) => onStopHandler8(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content8}</div>
         </div>
@@ -266,8 +429,8 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 350, y: 660}}
         onDrag = {(e, data) => onStopHandler9(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content9}</div>
         </div>
@@ -277,25 +440,24 @@ function Formation () {
         disabled={Status} 
         defaultPosition={{x: 485, y: 580}}
         onDrag = {(e, data) => onStopHandler10(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+      >
         <div className="move">
           <div>{Content10}</div>
         </div>
       </Draggable>
 
       <Draggable 
-        disabled={Status} 
+        disabled={true} 
         defaultPosition={{x: 260, y: 790}}
-        onDrag = {(e, data) => onStopHandler11(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 815}}
-        >
-        <div className="move">
-          <div>{Content11}</div>
+      >
+        <div className="GK">
+          <div>GK</div>
         </div>
       </Draggable>
     </div>
   )
 }
+
 
 export default Formation
