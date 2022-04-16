@@ -9,6 +9,31 @@ function Formation () {
   const onStatusHandler = () => {
     SetStatus(!Status)
   }
+  
+  const readDB = () => {
+    if(Status){
+      console.log("read")
+      axios.get('/api/readUser') // res = axios 이런식으로 해서 res를 가지고 있어야됨 방법 찾아보자
+      .then(res => {
+        console.log(res.data)
+        // const name = res.data.UserName
+        // const x = res.data.x
+        // const y = res.data.y
+        // console.log(name,x,y)
+      })
+      console.log("포메이션 원에 위에서 받은 선수 데이터 넣어주기")
+    } else{
+      console.log("send")
+      let body = {
+        Status: Status,
+        first_Position: Content1 //첫번째 요소 포지션 
+      }
+      axios.post('/api/sendUser', body)
+      .then(res => {
+        console.log(res.data)
+      })
+    }
+  }
   // 포지션 위치 값 보내는 방법
   // const [Position1, SetPosition1] = useState({ x: 0, y: 0 });
 
@@ -349,7 +374,10 @@ function Formation () {
   return(
     <div className="formation">
 
-      <button onClick={onStatusHandler}>
+      <button onClick={ () => {
+        onStatusHandler()
+        readDB()
+      }}>
         {Status ? "편집" : "편집 완료"}
       </button>
 

@@ -135,6 +135,27 @@ app.get('/api/hello', (req, res) => {
 //   })
 // })
 
+app.get('/api/readUser', (req, res) => {
+  //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
+
+  //res.send(token)
+  return res.status(200).json({
+    UserName: "최부기",
+    x: null,
+    y: null
+  })
+})
+
+app.post('/api/sendUser', (req, res) => {
+  //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
+
+  //res.send(token)
+  return res.status(200).json({
+    Status: req.body.Status,
+    first: req.body.first_Position
+  })
+})
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}/`)
 })
