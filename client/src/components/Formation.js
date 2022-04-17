@@ -2,8 +2,42 @@ import React, { useState }  from 'react';
 import "./Formation.css";
 import Draggable from 'react-draggable';
 import axios from 'axios';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { Button } from '@mui/material';
+import { playersList } from './data';
 
 function Formation () {
+  const [playerList, setPlayerList] = useState(playersList);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    event.preventDefault();//브라우저 우클릭을 막아준다.
+  };
+  const handleClose = (props) => {
+    setAnchorEl();
+    const {id, name, already} = props
+    // setPlayerList(playerList.map((player) =>
+    // player.already === true ? {...player, already: !already}: player)
+    // ) 
+    setPlayerList(playerList.map((player) =>
+      player.id === id ? { ...player, already: !already} : player)
+    )
+
+    onNameHandler(name)
+    //onChange(props)
+    //axios.get 으로 받아온 데이터를 setPlayerList로 선수 리스트
+    //여기서 받은 프롭스로 변경된 데이터 업데이트
+    //axios.post할때 playerList 보내면됨
+  };
+  // const onChange = (props) => {
+  //   const {id, name, already} = props
+  //   setPlayerList(playerList.map((player) =>
+  //   player.id === id ? { ...player, already: !already} : player)
+  //   )
+  // }
+
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {
@@ -60,6 +94,12 @@ function Formation () {
   const [Content8, SetContent8] = useState("CB");
   const [Content9, SetContent9] = useState("CB");
   const [Content10, SetContent10] = useState("RB");
+
+  const [Name, SetName] = useState("")
+
+  const onNameHandler = (props) => {
+    SetName(props)
+  }
 
   const onContentHandler1 = (props) => {
     SetContent1(props)
@@ -389,10 +429,59 @@ function Formation () {
         // onStop={(e, data) => trackPos(data)}
         // 포지션 위치 값 보내는 방법
       >
-        <div className="move">
+        {/* <div className="move">
           <div>{Content1}</div>
+        </div> */}
+        <div className="move">
+          <Button className="button"
+            disabled={Status}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content1}</div>
+            <div>{Name}</div>
+          </Button>
         </div>
+
       </Draggable>
+        
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+        PaperProps={{
+          style: {
+            maxHeight: "200px",
+            width: '20ch',
+          },
+        }}
+      //스크롤 만드는것
+      >
+        {playerList.map((player, idx) => {
+          if(player.already === false){
+            return (
+              <MenuItem 
+                onClick={() => handleClose(player)}
+                //onClick={() => onChange(player)} 
+                key={idx}
+              >
+                {player.name}
+              </MenuItem>
+            )
+          }
+        })}
+      </Menu>
+
+      {/* <MenuItem onClick={handleClose}>My account</MenuItem>
+      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+
 
       <Draggable 
         disabled={Status} 

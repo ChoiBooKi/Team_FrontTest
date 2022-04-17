@@ -32,3 +32,10 @@
   cursor: not-allowed;
   position: absolute;
 }
+.button {
+  border-radius:50%;
+  text-align:center;
+  font-size:30px;
+  vertical-align:middle;
+  line-height:50px;
+}
