@@ -5,10 +5,12 @@ import axios from 'axios';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
-import { playersList } from './data';
+import { useEffect } from 'react';
+//import { playersList } from './data';
 
 function Formation () {
-  const [playerList, setPlayerList] = useState(playersList);
+  //const [playerList, setPlayerList] = useState(playersList);
+  const [playerList, setPlayerList] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,13 +20,12 @@ function Formation () {
   const handleClose = (props) => {
     setAnchorEl();
     const {id, name, already} = props
-    // setPlayerList(playerList.map((player) =>
-    // player.already === true ? {...player, already: !already}: player)
-    // ) 
     setPlayerList(playerList.map((player) =>
       player.id === id ? { ...player, already: !already} : player)
     )
-
+    // setPlayerList(playerList.map((player) =>
+    // player.already === true ? {...player, already: !already}: player)
+    // )
     onNameHandler(name)
     //onChange(props)
     //axios.get 으로 받아온 데이터를 setPlayerList로 선수 리스트
@@ -44,19 +45,31 @@ function Formation () {
     SetStatus(!Status)
   }
   
+  useEffect(async () => {
+    // const res = await axios.get("/api/readUser")
+    // setPlayerList(res.data)
+    axios.get('/api/readUser')
+    .then((res) => {
+      setPlayerList(res.data)
+    })
+    console.log(playerList)
+    console.log("asda")
+  }, [])
+
   const readDB = () => {
     if(Status){
-      console.log("read")
       axios.get('/api/readUser') // res = axios 이런식으로 해서 res를 가지고 있어야됨 방법 찾아보자
       .then(res => {
         console.log(res.data)
+        //setPlayerList(res)
         // const name = res.data.UserName
         // const x = res.data.x
         // const y = res.data.y
         // console.log(name,x,y)
       })
       console.log("포메이션 원에 위에서 받은 선수 데이터 넣어주기")
-    } else{
+      //console.log(playerList)
+    } else {
       console.log("send")
       let body = {
         Status: Status,
@@ -442,13 +455,13 @@ function Formation () {
             onContextMenu={handleClick}
           >
             <div>{Content1}</div>
-            <div>{Name}</div>
           </Button>
+          <div>{Name}</div>
         </div>
 
       </Draggable>
         
-      <Menu
+      {/* <Menu
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -469,7 +482,6 @@ function Formation () {
             return (
               <MenuItem 
                 onClick={() => handleClose(player)}
-                //onClick={() => onChange(player)} 
                 key={idx}
               >
                 {player.name}
@@ -477,7 +489,7 @@ function Formation () {
             )
           }
         })}
-      </Menu>
+      </Menu> */}
 
       {/* <MenuItem onClick={handleClose}>My account</MenuItem>
       <MenuItem onClick={handleClose}>Logout</MenuItem> */}

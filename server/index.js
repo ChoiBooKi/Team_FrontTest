@@ -7,15 +7,16 @@ const config = require('./config/key')
 const cookieParser = require('cookie-parser')
 const { auth } = require('./middleware/auth')
 const { User } = require("./models/User")
+const { SoccerUser } = require("./models/Soccer")
 
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
-mongoose.connect(config.mongoURI
-).then( () => console.log('MongoDB Connected'))
- .catch(err => console.log(err))
+mongoose.connect(config.mongoURI)
+.then( () => console.log('MongoDB Connected'))
+.catch(err => console.log(err))
 
 app.get('/', (req, res) => {
   res.send('Hello World! BooKi')
@@ -137,12 +138,13 @@ app.get('/api/hello', (req, res) => {
 
 app.get('/api/readUser', (req, res) => {
   //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
-
-  //res.send(token)
-  return res.status(200).json({
-    UserName: "최부기",
-    x: null,
-    y: null
+  SoccerUser.find()
+  .then((users) => {
+    res.json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    next(err);
   })
 })
 
