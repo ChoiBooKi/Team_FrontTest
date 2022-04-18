@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema({
     },
     Change: {
       type: Boolean
+    },
+    x: {
+      type: Number
     }
 })
 

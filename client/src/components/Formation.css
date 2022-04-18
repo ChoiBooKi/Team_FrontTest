@@ -33,9 +33,12 @@
   position: absolute;
 }
 .button {
+  width:80px;
+  height:80px;
   border-radius:50%;
   text-align:center;
   font-size:30px;
   vertical-align:middle;
   line-height:50px;
+  z-index: 1;
 }
