@@ -28,11 +28,6 @@ function Formation (props) {
     // setPlayerList(playerList.map((player) =>
     // player.already === true ? {...player, already: !already}: player)
     // ) 선수 교체하면 원래있던 선수 다시 false로 변경되게 해야됨
-
-    // if(props.type !== "click"){ //선수 변경 안하고 밖을 눌렀을 때 name이 변경되지않게
-    //   onNameHandler1(name)
-    //   onNameHandler2(name) //name 스테이트 변경할 때 어떤 원에서 선택했는지 알 수 있게 -> 핸들클로즈를 10개 만들자
-    // }//어떤 원에서 props를 받았는지 가지고 이름변경 핸들러를 분기
   };
 
   const [Status, SetStatus] = useState(true)
@@ -120,8 +115,9 @@ function Formation (props) {
         return SetName10(name)  
       case "button11" :
         return SetName11(name)  
+      default:
+        return null
     }
-
   }
 
   const onContentHandler1 = (props) => {
@@ -460,15 +456,15 @@ function Formation (props) {
         }}
       //스크롤 만드는것
       >
-        {playerList.map((player, idx) => {
+        {playerList.map((player) => {
           if(player.already === false){
             return (
-              <MenuItem 
+              <MenuItem
                 onClick={() => {
                   handleClose(player)
                   onNameHandler(player)
                 }}
-                key={idx}
+                key={player.id}
               >
                 {player.name}
               </MenuItem>
@@ -503,9 +499,6 @@ function Formation (props) {
         </div>
 
       </Draggable>
-
-      {/* <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
 
       <Draggable 
         disabled={Status} 
