@@ -11,22 +11,24 @@ import { playersList } from './data';
 function Formation (props) {
   const [playerList, setPlayerList] = useState(playersList);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [buttonNum, setbuttonNum] = useState()
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setbuttonNum(event.currentTarget.id)
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
 
-  const handleClose = (props) => {
+  const handleClose = ({id, name, already}) => {
     setAnchorEl();
-    const {id, name, already} = props
-    console.log(props)
+
     setPlayerList(playerList.map((player) =>
       player.id === id ? { ...player, already: !already} : player)
     )
     // setPlayerList(playerList.map((player) =>
     // player.already === true ? {...player, already: !already}: player)
     // ) 선수 교체하면 원래있던 선수 다시 false로 변경되게 해야됨
+
     // if(props.type !== "click"){ //선수 변경 안하고 밖을 눌렀을 때 name이 변경되지않게
     //   onNameHandler1(name)
     //   onNameHandler2(name) //name 스테이트 변경할 때 어떤 원에서 선택했는지 알 수 있게 -> 핸들클로즈를 10개 만들자
@@ -84,18 +86,42 @@ function Formation (props) {
 
   const [Name1, SetName1] = useState("")
   const [Name2, SetName2] = useState("")
+  const [Name3, SetName3] = useState("")
+  const [Name4, SetName4] = useState("")
+  const [Name5, SetName5] = useState("")
+  const [Name6, SetName6] = useState("")
+  const [Name7, SetName7] = useState("")
+  const [Name8, SetName8] = useState("")
+  const [Name9, SetName9] = useState("")
+  const [Name10, SetName10] = useState("")
+  const [Name11, SetName11] = useState("")
 
-  const onNameHandler1 = (props) => {
-    const {id, name, already} = props
-    console.log(props)
-    console.log("핸들러")
-    SetName1(name)
-  }
-  const onNameHandler2 = (props) => {
-    const {id, name, already} = props
-    console.log(props)
-    console.log("핸들러2")
-    SetName2(name)
+  const onNameHandler = ({id, name, already}) => {
+    switch(buttonNum){
+      case "button1" :
+        return SetName1(name)
+      case "button2" :
+        return SetName2(name)
+      case "button3" :
+        return SetName3(name)
+      case "button4" :
+        return SetName4(name)
+      case "button5" :
+        return SetName5(name)
+      case "button6" :
+        return SetName6(name)
+      case "button7" :
+        return SetName7(name)
+      case "button8" :
+        return SetName8(name)
+      case "button9" :
+        return SetName9(name)
+      case "button10" :
+        return SetName10(name)  
+      case "button11" :
+        return SetName11(name)  
+    }
+
   }
 
   const onContentHandler1 = (props) => {
@@ -418,33 +444,6 @@ function Formation (props) {
         {Status ? "편집" : "편집 완료"}
       </button>
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: 145, y: 80}}
-        onDrag = {(e, data) => onDragHandler1(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        // onStop={(e, data) => trackPos(data)}
-        // 포지션 위치 값 보내는 방법
-      >
-        {/* <div className="move">
-          <div>{Content1}</div>
-        </div> */}
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div>{Content1}</div>
-          </Button>
-          <div>{Name1}</div>
-        </div>
-
-      </Draggable>
-        
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -467,7 +466,7 @@ function Formation (props) {
               <MenuItem 
                 onClick={() => {
                   handleClose(player)
-                  onNameHandler1(player)
+                  onNameHandler(player)
                 }}
                 key={idx}
               >
@@ -477,6 +476,33 @@ function Formation (props) {
           }
         })}
       </Menu>
+
+      <Draggable 
+        disabled={Status} 
+        defaultPosition={{x: 145, y: 80}}
+        onDrag = {(e, data) => onDragHandler1(data)}
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+        // onStop={(e, data) => trackPos(data)}
+        // 포지션 위치 값 보내는 방법
+      >
+        {/* <div className="move">
+          <div>{Content1}</div>
+        </div> */}
+        <div className="move">
+          <Button className="button"
+            disabled={Status}
+            id="button1"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={(e) => handleClick(e)}
+          >
+            <div>{Content1}</div>
+          </Button>
+          <div>{Name1}</div>
+        </div>
+
+      </Draggable>
 
       {/* <MenuItem onClick={handleClose}>My account</MenuItem>
       <MenuItem onClick={handleClose}>Logout</MenuItem> */}
@@ -489,13 +515,10 @@ function Formation (props) {
         // onStop={(e, data) => trackPos(data)}
         // 포지션 위치 값 보내는 방법
       >
-        {/* <div className="move">
-          <div>{Content1}</div>
-        </div> */}
         <div className="move">
           <Button className="button"
             disabled={Status}
-            id="basic-button"
+            id="button2"
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
@@ -505,52 +528,7 @@ function Formation (props) {
           </Button>
           <div>{Name2}</div>
         </div>
-
       </Draggable>
-        
-      {/* <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-        PaperProps={{
-          style: {
-            maxHeight: "200px",
-            width: '20ch',
-          },
-        }}
-      //스크롤 만드는것
-      >
-        {playerList.map((player, idx) => {
-          if(player.already === false){
-            return (
-              <MenuItem 
-                onClick={() => {
-                  handleClose(player)
-                  onNameHandler2(player)
-                }}
-                key={idx}
-              >
-                {player.name}
-              </MenuItem>
-            )
-          }
-        })}
-      </Menu> */}
-
-      {/* <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: 380, y: 80}}
-        onDrag = {(e, data) => onDragHandler2(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-      >
-        <div className="move">
-          <div>{Content2}</div>
-        </div>
-      </Draggable> */}
 
       <Draggable 
         disabled={Status} 
@@ -559,7 +537,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content3}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button3"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content3}</div>
+          </Button>
+          <div>{Name3}</div>
         </div>
       </Draggable>
 
@@ -570,7 +558,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content4}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button4"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content4}</div>
+          </Button>
+          <div>{Name4}</div>
         </div>
       </Draggable>
 
@@ -581,7 +579,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content5}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button5"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content5}</div>
+          </Button>
+          <div>{Name5}</div>
         </div>
       </Draggable>
 
@@ -592,7 +600,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content6}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button6"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content6}</div>
+          </Button>
+          <div>{Name6}</div>
         </div>
       </Draggable>
 
@@ -603,7 +621,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content7}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button7"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content7}</div>
+          </Button>
+          <div>{Name7}</div>
         </div>
       </Draggable>
 
@@ -614,7 +642,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content8}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button8"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content8}</div>
+          </Button>
+          <div>{Name8}</div>
         </div>
       </Draggable>
 
@@ -625,7 +663,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content9}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button9"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content9}</div>
+          </Button>
+          <div>{Name9}</div>
         </div>
       </Draggable>
 
@@ -636,7 +684,17 @@ function Formation (props) {
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
       >
         <div className="move">
-          <div>{Content10}</div>
+          <Button className="button"
+            disabled={Status}
+            id="button10"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content10}</div>
+          </Button>
+          <div>{Name10}</div>
         </div>
       </Draggable>
 
@@ -644,9 +702,19 @@ function Formation (props) {
         disabled={true} 
         defaultPosition={{x: 260, y: 790}}
       >
-        <div className="GK">
-          <div>GK</div>
-        </div>
+        <div className="move">
+          <Button className="button"
+            disabled={Status}
+            id="button11"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>GK</div>
+          </Button>
+          <div>{Name11}</div>
+        </div>        
       </Draggable>
     </div>
   )
