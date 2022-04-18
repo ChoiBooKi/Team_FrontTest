@@ -6,74 +6,48 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
-//import { playersList } from './data';
+import { playersList } from './data';
 
-function Formation () {
-  //const [playerList, setPlayerList] = useState(playersList);
-  const [playerList, setPlayerList] = useState(null);
+function Formation (props) {
+  const [playerList, setPlayerList] = useState(playersList);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
+
   const handleClose = (props) => {
     setAnchorEl();
     const {id, name, already} = props
+    console.log(props)
     setPlayerList(playerList.map((player) =>
       player.id === id ? { ...player, already: !already} : player)
     )
     // setPlayerList(playerList.map((player) =>
     // player.already === true ? {...player, already: !already}: player)
-    // )
-    onNameHandler(name)
-    //onChange(props)
-    //axios.get 으로 받아온 데이터를 setPlayerList로 선수 리스트
-    //여기서 받은 프롭스로 변경된 데이터 업데이트
-    //axios.post할때 playerList 보내면됨
+    // ) 선수 교체하면 원래있던 선수 다시 false로 변경되게 해야됨
+    // if(props.type !== "click"){ //선수 변경 안하고 밖을 눌렀을 때 name이 변경되지않게
+    //   onNameHandler1(name)
+    //   onNameHandler2(name) //name 스테이트 변경할 때 어떤 원에서 선택했는지 알 수 있게 -> 핸들클로즈를 10개 만들자
+    // }//어떤 원에서 props를 받았는지 가지고 이름변경 핸들러를 분기
   };
-  // const onChange = (props) => {
-  //   const {id, name, already} = props
-  //   setPlayerList(playerList.map((player) =>
-  //   player.id === id ? { ...player, already: !already} : player)
-  //   )
-  // }
 
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {
     SetStatus(!Status)
   }
-  
-  useEffect(async () => {
-    // const res = await axios.get("/api/readUser")
-    // setPlayerList(res.data)
-    axios.get('/api/readUser')
-    .then((res) => {
-      setPlayerList(res.data)
-    })
-    console.log(playerList)
-    console.log("asda")
+
+  useEffect(async () => { //목업 데이터 먼저 넣고 화면 띄운 뒤에 useEffect로 setPlayerList 업데이트
+    const res = await axios.get("/api/readUser")
+    setPlayerList(res.data)
   }, [])
 
   const readDB = () => {
-    if(Status){
-      axios.get('/api/readUser') // res = axios 이런식으로 해서 res를 가지고 있어야됨 방법 찾아보자
-      .then(res => {
-        console.log(res.data)
-        //setPlayerList(res)
-        // const name = res.data.UserName
-        // const x = res.data.x
-        // const y = res.data.y
-        // console.log(name,x,y)
-      })
-      console.log("포메이션 원에 위에서 받은 선수 데이터 넣어주기")
-      //console.log(playerList)
-    } else {
-      console.log("send")
+    if(Status === false){
       let body = {
-        Status: Status,
-        first_Position: Content1 //첫번째 요소 포지션 
+        playerList //첫번째 요소 포지션 
       }
       axios.post('/api/sendUser', body)
       .then(res => {
@@ -108,10 +82,20 @@ function Formation () {
   const [Content9, SetContent9] = useState("CB");
   const [Content10, SetContent10] = useState("RB");
 
-  const [Name, SetName] = useState("")
+  const [Name1, SetName1] = useState("")
+  const [Name2, SetName2] = useState("")
 
-  const onNameHandler = (props) => {
-    SetName(props)
+  const onNameHandler1 = (props) => {
+    const {id, name, already} = props
+    console.log(props)
+    console.log("핸들러")
+    SetName1(name)
+  }
+  const onNameHandler2 = (props) => {
+    const {id, name, already} = props
+    console.log(props)
+    console.log("핸들러2")
+    SetName2(name)
   }
 
   const onContentHandler1 = (props) => {
@@ -426,7 +410,7 @@ function Formation () {
 
   return(
     <div className="formation">
-
+      
       <button onClick={ () => {
         onStatusHandler()
         readDB()
@@ -456,7 +440,70 @@ function Formation () {
           >
             <div>{Content1}</div>
           </Button>
-          <div>{Name}</div>
+          <div>{Name1}</div>
+        </div>
+
+      </Draggable>
+        
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+        PaperProps={{
+          style: {
+            maxHeight: "200px",
+            width: '20ch',
+          },
+        }}
+      //스크롤 만드는것
+      >
+        {playerList.map((player, idx) => {
+          if(player.already === false){
+            return (
+              <MenuItem 
+                onClick={() => {
+                  handleClose(player)
+                  onNameHandler1(player)
+                }}
+                key={idx}
+              >
+                {player.name}
+              </MenuItem>
+            )
+          }
+        })}
+      </Menu>
+
+      {/* <MenuItem onClick={handleClose}>My account</MenuItem>
+      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+
+      <Draggable 
+        disabled={Status} 
+        defaultPosition={{x: 380, y: 80}}
+        onDrag = {(e, data) => onDragHandler2(data)}
+        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+        // onStop={(e, data) => trackPos(data)}
+        // 포지션 위치 값 보내는 방법
+      >
+        {/* <div className="move">
+          <div>{Content1}</div>
+        </div> */}
+        <div className="move">
+          <Button className="button"
+            disabled={Status}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onContextMenu={handleClick}
+          >
+            <div>{Content2}</div>
+          </Button>
+          <div>{Name2}</div>
         </div>
 
       </Draggable>
@@ -481,7 +528,10 @@ function Formation () {
           if(player.already === false){
             return (
               <MenuItem 
-                onClick={() => handleClose(player)}
+                onClick={() => {
+                  handleClose(player)
+                  onNameHandler2(player)
+                }}
                 key={idx}
               >
                 {player.name}
@@ -491,11 +541,7 @@ function Formation () {
         })}
       </Menu> */}
 
-      {/* <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-
-
-      <Draggable 
+      {/* <Draggable 
         disabled={Status} 
         defaultPosition={{x: 380, y: 80}}
         onDrag = {(e, data) => onDragHandler2(data)}
@@ -504,7 +550,7 @@ function Formation () {
         <div className="move">
           <div>{Content2}</div>
         </div>
-      </Draggable>
+      </Draggable> */}
 
       <Draggable 
         disabled={Status} 

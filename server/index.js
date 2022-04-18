@@ -153,8 +153,7 @@ app.post('/api/sendUser', (req, res) => {
 
   //res.send(token)
   return res.status(200).json({
-    Status: req.body.Status,
-    first: req.body.first_Position
+    List: req.body
   })
 })
 

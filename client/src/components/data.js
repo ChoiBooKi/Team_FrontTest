@@ -12,60 +12,60 @@ export const playersList = [
     {
         id: 1,
         name: "1최부기",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 2,
         name: "2번",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 3,
         name: "3번",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 4,
         name: "4번",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 5,
         name: "5번",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 6,
         name: "6번",
-        already: false,
-        Change: false
+        already: true,
+        Change: true
     },
     {
         id: 7,
         name: "7번",
-        already: false
+        already: true
     },
     {
         id: 8,
         name: "8번",
-        already: false,
+        already: true,
         Change: false
     },
     {
         id: 9,
         name: "9번",
-        already: false,
+        already: true,
         Change: false
     },
     {
         id: 10,
         name: "10번",
-        already: false,
+        already: true,
         Change: false
     },
     {
