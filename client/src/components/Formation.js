@@ -21,15 +21,8 @@ function Formation (props) {
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
 
-  const handleClose = ({id, name, already}) => {
+  const handleClose = () => {
     setAnchorEl();
-
-    setPlayerList(playerList.map((player) =>
-      player.id === id ? { ...player, already: !already} : player)
-    )
-    // setPlayerList(playerList.map((player) =>
-    // player.already === true ? {...player, already: !already}: player)
-    // ) 선수 교체하면 원래있던 선수 다시 false로 변경되게 해야됨
   };
 
   const [Status, SetStatus] = useState(true)
@@ -44,7 +37,7 @@ function Formation (props) {
     setPlayerList(res.data)
   }, [])
 
-  const readDB = () => {
+  const sendDB = () => {
     if(Status === false){
       let body = {
         playerList, //첫번째 요소 포지션 
@@ -56,7 +49,6 @@ function Formation (props) {
       })
     }
   }
-console.log(PositionList)
   // 포지션 위치 값 보내는 방법
   const trackPos = (e, data) => {
     console.log(e.target.id)
@@ -139,63 +131,108 @@ console.log(PositionList)
   const [Name10, SetName10] = useState(PositionList[9].name)
   const [Name11, SetName11] = useState(PositionList[10].name)
 
-  const onNameHandler = ({id, name, already}) => {
+  const onNameHandler = ({_id, id, name, already, Change}) => {
+    setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
     switch(buttonNum){
       case "button1" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 1 ? { ...position, name: name} : position)
-        )
-        return SetName1(name)
+        position.circle === 1 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          return SetName1(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
+          return SetName1(name)
+        }
       case "button2" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 2 ? { ...position, name: name} : position)
-        )
-        return SetName2(name)
+        position.circle === 2 ? { ...position, name: name} : position))
+        if(Name2 === null){ 
+          return SetName2(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name2 ? { ...player, already: false} : player))
+          return SetName2(name)
+        }
       case "button3" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 3 ? { ...position, name: name} : position)
-        )
-        return SetName3(name)
+        position.circle === 3 ? { ...position, name: name} : position))
+        if(Name3 === null){ 
+          return SetName3(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name3 ? { ...player, already: false} : player))
+          return SetName3(name)
+        }
       case "button4" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 4 ? { ...position, name: name} : position)
-        )
-        return SetName4(name)
+        position.circle === 4 ? { ...position, name: name} : position))
+        if(Name4 === null){ 
+          return SetName4(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name4 ? { ...player, already: false} : player))
+          return SetName4(name)
+        }
       case "button5" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 5 ? { ...position, name: name} : position)
-        )
-        return SetName5(name)
+        position.circle === 5 ? { ...position, name: name} : position))
+        if(Name5 === null){ 
+          return SetName5(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name5 ? { ...player, already: false} : player))
+          return SetName5(name)
+        }
       case "button6" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 6 ? { ...position, name: name} : position)
-        )
-        return SetName6(name)
+        position.circle === 6 ? { ...position, name: name} : position))
+        if(Name6 === null){ 
+          return SetName6(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name6 ? { ...player, already: false} : player))
+          return SetName6(name)
+        }
       case "button7" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 7 ? { ...position, name: name} : position)
-        )
-        return SetName7(name)
+        position.circle === 7 ? { ...position, name: name} : position))
+        if(Name7 === null){ 
+          return SetName7(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name7 ? { ...player, already: false} : player))
+          return SetName7(name)
+        }
       case "button8" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 8 ? { ...position, name: name} : position)
-        )
-        return SetName8(name)
+        position.circle === 8 ? { ...position, name: name} : position))
+        if(Name8 === null){ 
+          return SetName8(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name8 ? { ...player, already: false} : player))
+          return SetName8(name)
+        }
       case "button9" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 9 ? { ...position, name: name} : position)
-        )
-        return SetName9(name)
+        position.circle === 9 ? { ...position, name: name} : position))
+        if(Name9 === null){ 
+          return SetName9(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name9 ? { ...player, already: false} : player))
+          return SetName9(name)
+        }
       case "button10" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 10 ? { ...position, name: name} : position)
-        )
-        return SetName10(name)  
+        position.circle === 10 ? { ...position, name: name} : position))
+        if(Name10 === null){ 
+          return SetName10(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name10 ? { ...player, already: false} : player))
+          return SetName10(name)
+        } 
       case "button11" :
         SetPositionList(PositionList.map((position) =>
-        position.circle === 11 ? { ...position, name: name} : position)
-        )
-        return SetName11(name)  
+        position.circle === 11 ? { ...position, name: name} : position))
+        if(Name11 === null){ 
+          return SetName11(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name11 ? { ...player, already: false} : player))
+          return SetName11(name)
+        }
       default:
         return null
     }
@@ -516,7 +553,7 @@ console.log(PositionList)
       
       <button onClick={ () => {
         onStatusHandler()
-        readDB()
+        sendDB()
       }}>
         {Status ? "편집" : "편집 완료"}
       </button>
@@ -542,7 +579,7 @@ console.log(PositionList)
             return (
               <MenuItem
                 onClick={() => {
-                  handleClose(player)
+                  handleClose()
                   onNameHandler(player)
                 }}
                 key={player.id}
@@ -572,9 +609,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={(e) => handleClick(e)}
           >
-            <div>{Content1}</div>
+            <div id="button1">{Content1}</div>
           </Button>
-          <div>{Name1}</div>
+          <div id="button1">{Name1}</div>
         </div>
 
       </Draggable>
@@ -596,9 +633,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content2}</div>
+            <div id="button2">{Content2}</div>
           </Button>
-          <div>{Name2}</div>
+          <div id="button2">{Name2}</div>
         </div>
       </Draggable>
 
@@ -619,9 +656,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content3}</div>
+            <div id="button3">{Content3}</div>
           </Button>
-          <div>{Name3}</div>
+          <div id="button3">{Name3}</div>
         </div>
       </Draggable>
 
@@ -642,9 +679,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content4}</div>
+            <div id="button4">{Content4}</div>
           </Button>
-          <div>{Name4}</div>
+          <div id="button4">{Name4}</div>
         </div>
       </Draggable>
 
@@ -665,9 +702,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content5}</div>
+            <div id="button5">{Content5}</div>
           </Button>
-          <div>{Name5}</div>
+          <div id="button5">{Name5}</div>
         </div>
       </Draggable>
 
@@ -688,9 +725,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content6}</div>
+            <div id="button6">{Content6}</div>
           </Button>
-          <div>{Name6}</div>
+          <div id="button6">{Name6}</div>
         </div>
       </Draggable>
 
@@ -711,9 +748,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content7}</div>
+            <div id="button7">{Content7}</div>
           </Button>
-          <div>{Name7}</div>
+          <div id="button7">{Name7}</div>
         </div>
       </Draggable>
 
@@ -734,9 +771,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content8}</div>
+            <div id="button8">{Content8}</div>
           </Button>
-          <div>{Name8}</div>
+          <div id="button8">{Name8}</div>
         </div>
       </Draggable>
 
@@ -757,9 +794,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content9}</div>
+            <div id="button9">{Content9}</div>
           </Button>
-          <div>{Name9}</div>
+          <div id="button9">{Name9}</div>
         </div>
       </Draggable>
 
@@ -780,9 +817,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>{Content10}</div>
+            <div id="button10">{Content10}</div>
           </Button>
-          <div>{Name10}</div>
+          <div id="button10">{Name10}</div>
         </div>
       </Draggable>
 
@@ -800,9 +837,9 @@ console.log(PositionList)
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={handleClick}
           >
-            <div>GK</div>
+            <div id="button11">GK</div>
           </Button>
-          <div>{Name11}</div>
+          <div id="button11">{Name11}</div>
         </div>        
       </Draggable>
     </div>
