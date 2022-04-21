@@ -19,6 +19,6 @@ const userSchema = mongoose.Schema({
     },
 })
 
-const Position = mongoose.model('Position', userSchema)
+const Positions = mongoose.model('Positions', userSchema)
 
-module.exports = { Position }
+module.exports = { Positions }

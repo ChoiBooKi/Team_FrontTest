@@ -20,7 +20,7 @@ function Formation (props) {
     setbuttonNum(event.currentTarget.id)
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
-
+  console.log(playerList)
   const handleClose = () => {
     setAnchorEl();
   };
@@ -35,8 +35,10 @@ function Formation (props) {
     //position도 받아와야됨
     const res = await axios.get("/api/readUser")
     setPlayerList(res.data)
+    const res1 = await axios.get("api/readPosition")
+    SetPositionList(res1.data)
   }, [])
-
+console.log(PositionList)
   const sendDB = () => {
     if(Status === false){
       let body = {
@@ -47,6 +49,9 @@ function Formation (props) {
       .then(res => {
         console.log(res.data)
       })
+    } else {
+      axios.get('/api/readUser')
+      .then(res => setPlayerList(res.data))
     }
   }
   // 포지션 위치 값 보내는 방법

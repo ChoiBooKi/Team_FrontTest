@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 const { auth } = require('./middleware/auth')
 const { User } = require("./models/User")
 const { SoccerUser } = require("./models/Soccer")
-
+const { Positions } = require("./models/Position")
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -148,13 +148,21 @@ app.get('/api/readUser', (req, res) => {
   })
 })
 
-app.post('/api/sendUser', (req, res) => {
+app.get('/api/readPosition', (req, res) => {
   //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
-
-  //res.send(token)
-  return res.status(200).json({
-    List: req.body
+  Positions.find()
+  .then((users) => {
+    res.json(users);
   })
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+})
+
+app.post('/api/sendUser', (req, res) => {
+
+  return res.json(req.body)
 })
 
 app.listen(port, () => {
