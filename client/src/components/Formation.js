@@ -10,8 +10,8 @@ import { playersList } from './data';
 import { positionsList } from './data2';
 
 function Formation (props) {
-  const [playerList, setPlayerList] = useState(playersList);
-  const [PositionList, SetPositionList] = useState(positionsList)
+  const [playerList, setPlayerList] = useState(null);
+  const [PositionList, SetPositionList] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null);
   const [buttonNum, setbuttonNum] = useState()
   const open = Boolean(anchorEl);
@@ -20,7 +20,6 @@ function Formation (props) {
     setbuttonNum(event.currentTarget.id)
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
-  console.log(playerList)
   const handleClose = () => {
     setAnchorEl();
   };
@@ -33,19 +32,41 @@ function Formation (props) {
 
   useEffect(async () => { //목업 데이터 먼저 넣고 화면 띄운 뒤에 useEffect로 setPlayerList 업데이트
     //position도 받아와야됨
-    const res = await axios.get("/api/readUser")
-    setPlayerList(res.data)
     const res1 = await axios.get("api/readPosition")
     SetPositionList(res1.data)
+    const res = await axios.get("/api/readUser")
+    setPlayerList(res.data)
+    SetName1(res1.data[0].name)
+    SetName2(res1.data[1].name)
+    SetName3(res1.data[2].name)
+    SetName4(res1.data[3].name)
+    SetName5(res1.data[4].name)
+    SetName6(res1.data[5].name)
+    SetName7(res1.data[6].name)
+    SetName8(res1.data[7].name)
+    SetName9(res1.data[8].name)
+    SetName10(res1.data[9].name)
+    SetName11(res1.data[10].name)
+    Setxy1({x: res1.data[0].x, y: res1.data[0].y})
+    Setxy2({x: res1.data[1].x, y: res1.data[1].y})
+    Setxy3({x: res1.data[2].x, y: res1.data[2].y})
+    Setxy4({x: res1.data[3].x, y: res1.data[3].y})
+    Setxy5({x: res1.data[4].x, y: res1.data[4].y})
+    Setxy6({x: res1.data[5].x, y: res1.data[5].y})
+    Setxy7({x: res1.data[6].x, y: res1.data[6].y})
+    Setxy8({x: res1.data[7].x, y: res1.data[7].y})
+    Setxy9({x: res1.data[8].x, y: res1.data[8].y})
+    Setxy10({x: res1.data[9].x, y: res1.data[9].y})
+    Setxy11({x: res1.data[10].x, y: res1.data[10].y})
   }, [])
-console.log(PositionList)
+
   const sendDB = () => {
     if(Status === false){
-      let body = {
-        playerList, //첫번째 요소 포지션 
-        PositionList
-      }
-      axios.post('/api/sendUser', body)
+      // let body = {
+      //   playerList, //첫번째 요소 포지션 
+      //   PositionList
+      // }
+      axios.post('/api/sendUser', playerList)
       .then(res => {
         console.log(res.data)
       })
@@ -124,17 +145,29 @@ console.log(PositionList)
   const [Content9, SetContent9] = useState("CB");
   const [Content10, SetContent10] = useState("RB");
 
-  const [Name1, SetName1] = useState(PositionList[0].name)
-  const [Name2, SetName2] = useState(PositionList[1].name)
-  const [Name3, SetName3] = useState(PositionList[2].name)
-  const [Name4, SetName4] = useState(PositionList[3].name)
-  const [Name5, SetName5] = useState(PositionList[4].name)
-  const [Name6, SetName6] = useState(PositionList[5].name)
-  const [Name7, SetName7] = useState(PositionList[6].name)
-  const [Name8, SetName8] = useState(PositionList[7].name)
-  const [Name9, SetName9] = useState(PositionList[8].name)
-  const [Name10, SetName10] = useState(PositionList[9].name)
-  const [Name11, SetName11] = useState(PositionList[10].name)
+  const [Name1, SetName1] = useState()
+  const [Name2, SetName2] = useState()
+  const [Name3, SetName3] = useState()
+  const [Name4, SetName4] = useState()
+  const [Name5, SetName5] = useState()
+  const [Name6, SetName6] = useState()
+  const [Name7, SetName7] = useState()
+  const [Name8, SetName8] = useState()
+  const [Name9, SetName9] = useState()
+  const [Name10, SetName10] = useState()
+  const [Name11, SetName11] = useState()
+
+  const [xy1, Setxy1] = useState()
+  const [xy2, Setxy2] = useState()
+  const [xy3, Setxy3] = useState()
+  const [xy4, Setxy4] = useState()
+  const [xy5, Setxy5] = useState()
+  const [xy6, Setxy6] = useState()
+  const [xy7, Setxy7] = useState()
+  const [xy8, Setxy8] = useState()
+  const [xy9, Setxy9] = useState()
+  const [xy10, Setxy10] = useState()
+  const [xy11, Setxy11] = useState()
 
   const onNameHandler = ({_id, id, name, already, Change}) => {
     setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
@@ -579,7 +612,7 @@ console.log(PositionList)
         }}
       //스크롤 만드는것
       >
-        {playerList.map((player) => {
+        {playerList && playerList.map((player) => {
           if(player.already === false){
             return (
               <MenuItem
@@ -599,7 +632,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status}
         //defaultPosition={{x: 145, y: 80}}
-        defaultPosition={{x: PositionList[0].x, y: PositionList[0].y}}//DB에서 받은 데이터로 초기포지션
+        //defaultPosition={{x: xy1&&xy1.x, y: xy1&&xy1.y}}//DB에서 받은 데이터로 초기포지션
+        defaultPosition={{x: positionsList[0].x, y:positionsList[0].y}}
         onDrag = {(e, data) => onDragHandler1(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -623,7 +657,8 @@ console.log(PositionList)
 
       <Draggable 
         disabled={Status} 
-        defaultPosition={{x: PositionList[1].x, y: PositionList[1].y}}
+        //defaultPosition={{x: PositionList&&PositionList[1].x, y: PositionList&&PositionList[1].y}}
+        //defaultPosition={{x: xy2&&xy2.x, y: xy2&&xy2.y}}
         onDrag = {(e, data) => onDragHandler2(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -646,8 +681,9 @@ console.log(PositionList)
 
       <Draggable 
         disabled={Status} 
-        //defaultPosition={{x: 25, y: 280}}
-        defaultPosition={{x: PositionList[2].x, y: PositionList[2].y}}
+        defaultPosition={{x: 25, y: 280}}
+        //defaultPosition={{x: PositionList&&PositionList[2].x, y: PositionList&&PositionList[2].y}}
+        //defaultPosition={{x: xy3&&xy3.x, y: xy3&&xy3.y}}
         onDrag = {(e, data) => onDragHandler3(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -669,8 +705,9 @@ console.log(PositionList)
 
       <Draggable 
         disabled={Status} 
-        //defaultPosition={{ x: 160, y: 360 }}
-        defaultPosition={{x: PositionList[3].x, y: PositionList[3].y}}
+        defaultPosition={{ x: 160, y: 360 }}
+        //defaultPosition={{x: PositionList&&PositionList[3].x, y: PositionList&&PositionList[3].y}}
+        //defaultPosition={{x: xy4&&xy4.x, y: xy4&&xy4.y}}
         onDrag = {(e, data) => onDragHandler4(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -693,7 +730,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 350, y: 360}}
-        defaultPosition={{x: PositionList[4].x, y: PositionList[4].y}}
+        //defaultPosition={{x: PositionList&&PositionList[4].x, y: PositionList&&PositionList[4].y}}
+        defaultPosition={{x: xy5&&xy5.x, y: xy5&&xy5.y}}
         onDrag = {(e, data) => onDragHandler5(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -716,7 +754,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 500, y: 280}}
-        defaultPosition={{x: PositionList[5].x, y: PositionList[5].y}}
+        //defaultPosition={{x: PositionList&&PositionList[5].x, y: PositionList&&PositionList[5].y}}
+        defaultPosition={{x: xy6&&xy6.x, y: xy6&&xy6.y}}
         onDrag = {(e, data) => onDragHandler6(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -739,7 +778,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 30, y: 580}}
-        defaultPosition={{x: PositionList[6].x, y: PositionList[6].y}}
+        //defaultPosition={{x: PositionList&&PositionList[6].x, y: PositionList&&PositionList[6].y}}
+        defaultPosition={{x: xy7&&xy7.x, y: xy7&&xy7.y}}
         onDrag = {(e, data) => onDragHandler7(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -762,7 +802,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 160, y: 660}}
-        defaultPosition={{x: PositionList[7].x, y: PositionList[7].y}}
+        //defaultPosition={{x: PositionList&&PositionList[7].x, y: PositionList&&PositionList[7].y}}
+        defaultPosition={{x: xy8&&xy8.x, y: xy8&&xy8.y}}
         onDrag = {(e, data) => onDragHandler8(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -785,7 +826,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 350, y: 660}}
-        defaultPosition={{x: PositionList[8].x, y: PositionList[8].y}}
+        //defaultPosition={{x: PositionList&&PositionList[8].x, y: PositionList&&PositionList[8].y}}
+        defaultPosition={{x: xy9&&xy9.x, y: xy9&&xy9.y}}
         onDrag = {(e, data) => onDragHandler9(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -808,7 +850,8 @@ console.log(PositionList)
       <Draggable 
         disabled={Status} 
         //defaultPosition={{x: 485, y: 580}}
-        defaultPosition={{x: PositionList[9].x, y: PositionList[9].y}}
+        //defaultPosition={{x: PositionList&&PositionList[9].x, y: PositionList&&PositionList[9].y}}
+        defaultPosition={{x: xy10&&xy10.x, y: xy10&&xy10.y}}
         onDrag = {(e, data) => onDragHandler10(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -831,7 +874,8 @@ console.log(PositionList)
       <Draggable 
         disabled={true} 
         //defaultPosition={{x: 260, y: 790}}
-        defaultPosition={{x: PositionList[10].x, y: PositionList[10].y}}
+        //defaultPosition={{x: PositionList&&PositionList[10].x, y: PositionList&&PositionList[10].y}}
+        defaultPosition={{x: xy11&&xy11.x, y: xy11&&xy11.y}}
       >
         <div className="move">
           <Button className="button"

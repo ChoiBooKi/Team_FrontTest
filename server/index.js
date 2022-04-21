@@ -161,8 +161,27 @@ app.get('/api/readPosition', (req, res) => {
 })
 
 app.post('/api/sendUser', (req, res) => {
-
-  return res.json(req.body)
+  // SoccerUser.remove({Change: true}, (err, kit) => {
+  //   if(err) return res.json(err)
+  // })
+  // SoccerUser.remove({__v: 0}, (err, kit) => {
+  //   if(err) return res.json(err)
+  //   return res.json({
+  //     list: req.body[0].id
+  //   })
+  // })
+  //for(i=0; i<14; i++){
+    // const user = new SoccerUser(req.body[0])
+    // user.save((err, userInfo) => {
+    // if (err) return res.json({ success: false, err})
+    // })
+  //}
+  return res.status(200)
+  // const user = new SoccerUser(req.body[0])
+  // user.save((err, userInfo) => {
+  // if (err) return res.json({ success: false, err})
+  // return res.status(200)
+  // })
 })
 
 app.listen(port, () => {

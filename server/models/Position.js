@@ -17,6 +17,9 @@ const userSchema = mongoose.Schema({
     y: {
       type: Number
     },
+    cid: {
+      type: Number
+    }
 })
 
 const Positions = mongoose.model('Positions', userSchema)
