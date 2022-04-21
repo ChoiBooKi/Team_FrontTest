@@ -22,11 +22,14 @@ function Formation (props) {
   const handleClose = ({id, name, already}) => {
     setAnchorEl();
 
+    // setPlayerList(playerList.map((player) =>
+    // player.already === true ? {...player, already: !already}: player))
+    //setPlayerList(playerList.map((player) => ))
+
     setPlayerList(playerList.map((player) =>
       player.id === id ? { ...player, already: !already} : player)
     )
-    // setPlayerList(playerList.map((player) =>
-    // player.already === true ? {...player, already: !already}: player)
+
     // ) 선수 교체하면 원래있던 선수 다시 false로 변경되게 해야됨
 
     // if(props.type !== "click"){ //선수 변경 안하고 밖을 눌렀을 때 name이 변경되지않게
@@ -121,7 +124,6 @@ function Formation (props) {
       case "button11" :
         return SetName11(name)  
     }
-
   }
 
   const onContentHandler1 = (props) => {
