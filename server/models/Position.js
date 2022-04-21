@@ -4,18 +4,21 @@ const userSchema = mongoose.Schema({
     id: {
         type: Number
     },
+    circle: {
+      type: Number,
+    },
     name: {
       type: String,
       maxlength: 50
     },
-    already: {
-      type: Boolean
+    x: {
+      type: Number
     },
-    Change: {
-      type: Boolean
+    y: {
+      type: Number
     },
 })
 
-const SoccerUser = mongoose.model('SoccerUser', userSchema)
+const Position = mongoose.model('Position', userSchema)
 
-module.exports = { SoccerUser }
+module.exports = { Position }

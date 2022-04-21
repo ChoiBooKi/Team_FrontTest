@@ -12,7 +12,7 @@ export const playersList = [
     {
         id: 1,
         name: "1최부기",
-        already: true,
+        already: false,
         Change: true
     },
     {
@@ -24,48 +24,48 @@ export const playersList = [
     {
         id: 3,
         name: "3번",
-        already: true,
+        already: false,
         Change: true
     },
     {
         id: 4,
         name: "4번",
-        already: true,
+        already: false,
         Change: true
     },
     {
         id: 5,
         name: "5번",
-        already: true,
+        already: false,
         Change: true
     },
     {
         id: 6,
         name: "6번",
-        already: true,
+        already: false,
         Change: true
     },
     {
         id: 7,
         name: "7번",
-        already: true
+        already: false
     },
     {
         id: 8,
         name: "8번",
-        already: true,
+        already: false,
         Change: false
     },
     {
         id: 9,
         name: "9번",
-        already: true,
+        already: false,
         Change: false
     },
     {
         id: 10,
         name: "10번",
-        already: true,
+        already: false,
         Change: false
     },
     {
