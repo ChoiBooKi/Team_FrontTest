@@ -36,17 +36,6 @@ function Formation (props) {
     SetPositionList(res1.data)
     const res = await axios.get("/api/readUser")
     setPlayerList(res.data)
-    Setxy1({x: res1.data[0].x, y: res1.data[0].y})
-    Setxy2({x: res1.data[1].x, y: res1.data[1].y})
-    Setxy3({x: res1.data[2].x, y: res1.data[2].y})
-    Setxy4({x: res1.data[3].x, y: res1.data[3].y})
-    Setxy5({x: res1.data[4].x, y: res1.data[4].y})
-    Setxy6({x: res1.data[5].x, y: res1.data[5].y})
-    Setxy7({x: res1.data[6].x, y: res1.data[6].y})
-    Setxy8({x: res1.data[7].x, y: res1.data[7].y})
-    Setxy9({x: res1.data[8].x, y: res1.data[8].y})
-    Setxy10({x: res1.data[9].x, y: res1.data[9].y})
-    Setxy11({x: res1.data[10].x, y: res1.data[10].y})
     SetName1(res1.data[0].name)
     SetName2(res1.data[1].name)
     SetName3(res1.data[2].name)
@@ -156,22 +145,6 @@ function Formation (props) {
   const [Name9, SetName9] = useState()
   const [Name10, SetName10] = useState()
   const [Name11, SetName11] = useState()
-
-  const [xy1, Setxy1] = useState({x: 200, y:200})
-  const [xy2, Setxy2] = useState()
-  const [xy3, Setxy3] = useState()
-  const [xy4, Setxy4] = useState()
-  const [xy5, Setxy5] = useState()
-  const [xy6, Setxy6] = useState()
-  const [xy7, Setxy7] = useState()
-  const [xy8, Setxy8] = useState()
-  const [xy9, Setxy9] = useState()
-  const [xy10, Setxy10] = useState()
-  const [xy11, Setxy11] = useState()
-
-  console.log(playerList)
-  console.log(PositionList)
-  console.log(xy1)
 
   const onNameHandler = ({_id, id, name, already, Change}) => {
     setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
@@ -592,7 +565,7 @@ function Formation (props) {
 
   return(
     <div className="formation">
-      
+
       <button onClick={ () => {
         onStatusHandler()
         sendDB()
@@ -633,268 +606,289 @@ function Formation (props) {
         })}
       </Menu>
 
-      <Draggable 
-        disabled={Status}
-        //defaultPosition={{x: 145, y: 80}}
-        defaultPosition={{x: xy1&&xy1.x, y: xy1&&xy1.y}}//DB에서 받은 데이터로 초기포지션
-        //defaultPosition={{x: PositionList&&PositionList[0].x, y:PositionList&&PositionList[0].y}}
-        onDrag = {(e, data) => onDragHandler1(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-        // 포지션 위치 값 보내는 방법
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button1"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={(e) => handleClick(e)}
-          >
-            <div id="button1">{Content1}</div>
-          </Button>
-          <div id="button1">{Name1}</div>
-        </div>
+      {PositionList &&
+        <Draggable 
+          disabled={Status}
+          //defaultPosition={{x: 145, y: 80}}
+          //defaultPosition={{x: xy1&&xy1.x, y: xy1&&xy1.y}}//DB에서 받은 데이터로 초기포지션
+          defaultPosition={{x: PositionList&&PositionList[0].x, y:PositionList&&PositionList[0].y}}
+          onDrag = {(e, data) => onDragHandler1(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+          // 포지션 위치 값 보내는 방법
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button1"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={(e) => handleClick(e)}
+            >
+              <div id="button1">{Content1}</div>
+            </Button>
+            <div id="button1">{Name1}</div>
+          </div>
+        </Draggable>
+      }
 
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          defaultPosition={{x: PositionList&&PositionList[1].x, y: PositionList&&PositionList[1].y}}
+          //defaultPosition={{x: xy2&&xy2.x, y: xy2&&xy2.y}}
+          onDrag = {(e, data) => onDragHandler2(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+          // 포지션 위치 값 보내는 방법
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button2"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button2">{Content2}</div>
+            </Button>
+            <div id="button2">{Name2}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: positionsList&&positionsList[1].x, y: positionsList&&positionsList[1].y}}
-        //defaultPosition={{x: xy2&&xy2.x, y: xy2&&xy2.y}}
-        onDrag = {(e, data) => onDragHandler2(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-        // 포지션 위치 값 보내는 방법
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button2"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button2">{Content2}</div>
-          </Button>
-          <div id="button2">{Name2}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 25, y: 280}}
+          defaultPosition={{x: PositionList&&PositionList[2].x, y: PositionList&&PositionList[2].y}}
+          //defaultPosition={{x: xy3&&xy3.x, y: xy3&&xy3.y}}
+          onDrag = {(e, data) => onDragHandler3(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button3"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button3">{Content3}</div>
+            </Button>
+            <div id="button3">{Name3}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: 25, y: 280}}
-        //defaultPosition={{x: PositionList&&PositionList[2].x, y: PositionList&&PositionList[2].y}}
-        //defaultPosition={{x: xy3&&xy3.x, y: xy3&&xy3.y}}
-        onDrag = {(e, data) => onDragHandler3(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button3"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button3">{Content3}</div>
-          </Button>
-          <div id="button3">{Name3}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{ x: 160, y: 360 }}
+          defaultPosition={{x: PositionList&&PositionList[3].x, y: PositionList&&PositionList[3].y}}
+          //defaultPosition={{x: xy4&&xy4.x, y: xy4&&xy4.y}}
+          onDrag = {(e, data) => onDragHandler4(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button4"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button4">{Content4}</div>
+            </Button>
+            <div id="button4">{Name4}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{ x: 160, y: 360 }}
-        //defaultPosition={{x: PositionList&&PositionList[3].x, y: PositionList&&PositionList[3].y}}
-        //defaultPosition={{x: xy4&&xy4.x, y: xy4&&xy4.y}}
-        onDrag = {(e, data) => onDragHandler4(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button4"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button4">{Content4}</div>
-          </Button>
-          <div id="button4">{Name4}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 350, y: 360}}
+          defaultPosition={{x: PositionList&&PositionList[4].x, y: PositionList&&PositionList[4].y}}
+          //defaultPosition={{x: xy5&&xy5.x, y: xy5&&xy5.y}}
+          onDrag = {(e, data) => onDragHandler5(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button5"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button5">{Content5}</div>
+            </Button>
+            <div id="button5">{Name5}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: 350, y: 360}}
-        //defaultPosition={{x: PositionList&&PositionList[4].x, y: PositionList&&PositionList[4].y}}
-        //defaultPosition={{x: xy5&&xy5.x, y: xy5&&xy5.y}}
-        onDrag = {(e, data) => onDragHandler5(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button5"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button5">{Content5}</div>
-          </Button>
-          <div id="button5">{Name5}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 500, y: 280}}
+          defaultPosition={{x: PositionList&&PositionList[5].x, y: PositionList&&PositionList[5].y}}
+          //defaultPosition={{x: xy6&&xy6.x, y: xy6&&xy6.y}}
+          onDrag = {(e, data) => onDragHandler6(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button6"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button6">{Content6}</div>
+            </Button>
+            <div id="button6">{Name6}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        defaultPosition={{x: 500, y: 280}}
-        //defaultPosition={{x: PositionList&&PositionList[5].x, y: PositionList&&PositionList[5].y}}
-        //defaultPosition={{x: xy6&&xy6.x, y: xy6&&xy6.y}}
-        onDrag = {(e, data) => onDragHandler6(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button6"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button6">{Content6}</div>
-          </Button>
-          <div id="button6">{Name6}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 30, y: 580}}
+          defaultPosition={{x: PositionList&&PositionList[6].x, y: PositionList&&PositionList[6].y}}
+          //defaultPosition={{x: xy7&&xy7.x, y: xy7&&xy7.y}}
+          onDrag = {(e, data) => onDragHandler7(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button7"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button7">{Content7}</div>
+            </Button>
+            <div id="button7">{Name7}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        //defaultPosition={{x: 30, y: 580}}
-        //defaultPosition={{x: PositionList&&PositionList[6].x, y: PositionList&&PositionList[6].y}}
-        defaultPosition={{x: xy7&&xy7.x, y: xy7&&xy7.y}}
-        onDrag = {(e, data) => onDragHandler7(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button7"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button7">{Content7}</div>
-          </Button>
-          <div id="button7">{Name7}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 160, y: 660}}
+          defaultPosition={{x: PositionList&&PositionList[7].x, y: PositionList&&PositionList[7].y}}
+          //defaultPosition={{x: xy8&&xy8.x, y: xy8&&xy8.y}}
+          onDrag = {(e, data) => onDragHandler8(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button8"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button8">{Content8}</div>
+            </Button>
+            <div id="button8">{Name8}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        //defaultPosition={{x: 160, y: 660}}
-        //defaultPosition={{x: PositionList&&PositionList[7].x, y: PositionList&&PositionList[7].y}}
-        defaultPosition={{x: xy8&&xy8.x, y: xy8&&xy8.y}}
-        onDrag = {(e, data) => onDragHandler8(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button8"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button8">{Content8}</div>
-          </Button>
-          <div id="button8">{Name8}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 350, y: 660}}
+          defaultPosition={{x: PositionList&&PositionList[8].x, y: PositionList&&PositionList[8].y}}
+          //defaultPosition={{x: xy9&&xy9.x, y: xy9&&xy9.y}}
+          onDrag = {(e, data) => onDragHandler9(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button9"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button9">{Content9}</div>
+            </Button>
+            <div id="button9">{Name9}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        //defaultPosition={{x: 350, y: 660}}
-        //defaultPosition={{x: PositionList&&PositionList[8].x, y: PositionList&&PositionList[8].y}}
-        defaultPosition={{x: xy9&&xy9.x, y: xy9&&xy9.y}}
-        onDrag = {(e, data) => onDragHandler9(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button9"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button9">{Content9}</div>
-          </Button>
-          <div id="button9">{Name9}</div>
-        </div>
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={Status} 
+          //defaultPosition={{x: 485, y: 580}}
+          defaultPosition={{x: PositionList&&PositionList[9].x, y: PositionList&&PositionList[9].y}}
+          //defaultPosition={{x: xy10&&xy10.x, y: xy10&&xy10.y}}
+          onDrag = {(e, data) => onDragHandler10(data)}
+          bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          onStop={(e, data) => trackPos(e, data)}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button10"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button10">{Content10}</div>
+            </Button>
+            <div id="button10">{Name10}</div>
+          </div>
+        </Draggable>
+      }
 
-      <Draggable 
-        disabled={Status} 
-        //defaultPosition={{x: 485, y: 580}}
-        //defaultPosition={{x: PositionList&&PositionList[9].x, y: PositionList&&PositionList[9].y}}
-        defaultPosition={{x: xy10&&xy10.x, y: xy10&&xy10.y}}
-        onDrag = {(e, data) => onDragHandler10(data)}
-        bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-        onStop={(e, data) => trackPos(e, data)}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button10"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button10">{Content10}</div>
-          </Button>
-          <div id="button10">{Name10}</div>
-        </div>
-      </Draggable>
-
-      <Draggable 
-        disabled={true} 
-        //defaultPosition={{x: 260, y: 790}}
-        //defaultPosition={{x: PositionList&&PositionList[10].x, y: PositionList&&PositionList[10].y}}
-        defaultPosition={{x: xy11&&xy11.x, y: xy11&&xy11.y}}
-      >
-        <div className="move">
-          <Button className="button"
-            disabled={Status}
-            id="button11"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onContextMenu={handleClick}
-          >
-            <div id="button11">GK</div>
-          </Button>
-          <div id="button11">{Name11}</div>
-        </div>        
-      </Draggable>
+      {PositionList &&
+        <Draggable 
+          disabled={true} 
+          //defaultPosition={{x: 260, y: 790}}
+          defaultPosition={{x: PositionList&&PositionList[10].x, y: PositionList&&PositionList[10].y}}
+          //defaultPosition={{x: xy11&&xy11.x, y: xy11&&xy11.y}}
+        >
+          <div className="move">
+            <Button className="button"
+              disabled={Status}
+              id="button11"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onContextMenu={handleClick}
+            >
+              <div id="button11">GK</div>
+            </Button>
+            <div id="button11">{Name11}</div>
+          </div>        
+        </Draggable>
+      }
     </div>
   )
 }
