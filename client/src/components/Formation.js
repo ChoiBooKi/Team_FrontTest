@@ -36,17 +36,6 @@ function Formation (props) {
     SetPositionList(res1.data)
     const res = await axios.get("/api/readUser")
     setPlayerList(res.data)
-    SetName1(res1.data[0].name)
-    SetName2(res1.data[1].name)
-    SetName3(res1.data[2].name)
-    SetName4(res1.data[3].name)
-    SetName5(res1.data[4].name)
-    SetName6(res1.data[5].name)
-    SetName7(res1.data[6].name)
-    SetName8(res1.data[7].name)
-    SetName9(res1.data[8].name)
-    SetName10(res1.data[9].name)
-    SetName11(res1.data[10].name)
     Setxy1({x: res1.data[0].x, y: res1.data[0].y})
     Setxy2({x: res1.data[1].x, y: res1.data[1].y})
     Setxy3({x: res1.data[2].x, y: res1.data[2].y})
@@ -58,6 +47,17 @@ function Formation (props) {
     Setxy9({x: res1.data[8].x, y: res1.data[8].y})
     Setxy10({x: res1.data[9].x, y: res1.data[9].y})
     Setxy11({x: res1.data[10].x, y: res1.data[10].y})
+    SetName1(res1.data[0].name)
+    SetName2(res1.data[1].name)
+    SetName3(res1.data[2].name)
+    SetName4(res1.data[3].name)
+    SetName5(res1.data[4].name)
+    SetName6(res1.data[5].name)
+    SetName7(res1.data[6].name)
+    SetName8(res1.data[7].name)
+    SetName9(res1.data[8].name)
+    SetName10(res1.data[9].name)
+    SetName11(res1.data[10].name)
   }, [])
 
   const sendDB = () => {
@@ -157,7 +157,7 @@ function Formation (props) {
   const [Name10, SetName10] = useState()
   const [Name11, SetName11] = useState()
 
-  const [xy1, Setxy1] = useState()
+  const [xy1, Setxy1] = useState({x: 200, y:200})
   const [xy2, Setxy2] = useState()
   const [xy3, Setxy3] = useState()
   const [xy4, Setxy4] = useState()
@@ -168,6 +168,10 @@ function Formation (props) {
   const [xy9, Setxy9] = useState()
   const [xy10, Setxy10] = useState()
   const [xy11, Setxy11] = useState()
+
+  console.log(playerList)
+  console.log(PositionList)
+  console.log(xy1)
 
   const onNameHandler = ({_id, id, name, already, Change}) => {
     setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
@@ -632,8 +636,8 @@ function Formation (props) {
       <Draggable 
         disabled={Status}
         //defaultPosition={{x: 145, y: 80}}
-        //defaultPosition={{x: xy1&&xy1.x, y: xy1&&xy1.y}}//DB에서 받은 데이터로 초기포지션
-        defaultPosition={{x: positionsList[0].x, y:positionsList[0].y}}
+        defaultPosition={{x: xy1&&xy1.x, y: xy1&&xy1.y}}//DB에서 받은 데이터로 초기포지션
+        //defaultPosition={{x: PositionList&&PositionList[0].x, y:PositionList&&PositionList[0].y}}
         onDrag = {(e, data) => onDragHandler1(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -657,7 +661,7 @@ function Formation (props) {
 
       <Draggable 
         disabled={Status} 
-        //defaultPosition={{x: PositionList&&PositionList[1].x, y: PositionList&&PositionList[1].y}}
+        defaultPosition={{x: positionsList&&positionsList[1].x, y: positionsList&&positionsList[1].y}}
         //defaultPosition={{x: xy2&&xy2.x, y: xy2&&xy2.y}}
         onDrag = {(e, data) => onDragHandler2(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
@@ -729,9 +733,9 @@ function Formation (props) {
 
       <Draggable 
         disabled={Status} 
-        //defaultPosition={{x: 350, y: 360}}
+        defaultPosition={{x: 350, y: 360}}
         //defaultPosition={{x: PositionList&&PositionList[4].x, y: PositionList&&PositionList[4].y}}
-        defaultPosition={{x: xy5&&xy5.x, y: xy5&&xy5.y}}
+        //defaultPosition={{x: xy5&&xy5.x, y: xy5&&xy5.y}}
         onDrag = {(e, data) => onDragHandler5(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
@@ -753,9 +757,9 @@ function Formation (props) {
 
       <Draggable 
         disabled={Status} 
-        //defaultPosition={{x: 500, y: 280}}
+        defaultPosition={{x: 500, y: 280}}
         //defaultPosition={{x: PositionList&&PositionList[5].x, y: PositionList&&PositionList[5].y}}
-        defaultPosition={{x: xy6&&xy6.x, y: xy6&&xy6.y}}
+        //defaultPosition={{x: xy6&&xy6.x, y: xy6&&xy6.y}}
         onDrag = {(e, data) => onDragHandler6(data)}
         bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
         onStop={(e, data) => trackPos(e, data)}
