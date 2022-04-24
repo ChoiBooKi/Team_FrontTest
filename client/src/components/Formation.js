@@ -6,8 +6,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
-import { playersList } from './data';
-import { positionsList } from './data2';
 
 function Formation (props) {
   const [playerList, setPlayerList] = useState(null);
@@ -30,7 +28,7 @@ function Formation (props) {
     SetStatus(!Status)
   }
 
-  useEffect(async () => { //목업 데이터 먼저 넣고 화면 띄운 뒤에 useEffect로 setPlayerList 업데이트
+  useEffect(async () => { //목 데이터 먼저 넣고 화면 띄운 뒤에 useEffect로 setPlayerList 업데이트
     //position도 받아와야됨
     const res1 = await axios.get("api/readPosition")
     SetPositionList(res1.data)
@@ -146,6 +144,8 @@ function Formation (props) {
   const [Name10, SetName10] = useState()
   const [Name11, SetName11] = useState()
 
+  //window.confirm 으로 사용자한테 물어보기
+  //선호 포지션이랑 배치될 포지션이 다르면 물어보기
   const onNameHandler = ({_id, id, name, already, Change}) => {
     setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
     switch(buttonNum){
@@ -599,6 +599,7 @@ function Formation (props) {
                 }}
                 key={player.id}
               >
+                {/* 선호 포지션 리스트에 표시해야됨 */}
                 {player.name}
               </MenuItem>
             )
