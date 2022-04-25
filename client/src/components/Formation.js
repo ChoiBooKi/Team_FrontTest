@@ -661,7 +661,6 @@ function Formation (props) {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={(e) => handleClick(e)}
-              
             >
               <div id="button1">{Content1}<br/>{Name1}<br/>{playerList && playerList[0].id}</div>
               {/* 플레이어 리스트.id가 아니라 등번호로 바꿔주면 됨 */}
