@@ -653,18 +653,17 @@ function Formation (props) {
             //onFormationHandler(data)
           }}
         >
-          <div className="move">
-            <Button className="button"
-              disabled={Status}
-              id="button1"
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onContextMenu={(e) => handleClick(e)}
-            >
-              <div id="button1">{Content1}<br/>{Name1}<br/>{playerList && playerList[0].id}</div>
-              {/* 플레이어 리스트.id가 아니라 등번호로 바꿔주면 됨 */}
-            </Button>
+          <div className="hexagon">
+              <Button className="button"
+                disabled={Status}
+                id="button1"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onContextMenu={(e) => handleClick(e)}
+              >
+                <div id="button1">{Content1}<br/>{playerList && playerList[0].id}<br/>{Name1}</div>
+              </Button>
           </div>
         </Draggable>
       }
@@ -677,7 +676,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button2"
@@ -686,7 +685,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button2">{Content2}<br/>{Name2}<br/>{playerList && playerList[1].id}</div>
+              <div id="button2">{Content2}<br/>{playerList && playerList[1].id}<br/>{Name2}</div>
             </Button>
           </div>
         </Draggable>
@@ -700,7 +699,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button3"
@@ -709,7 +708,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button3">{Content3}<br/>{Name3}<br/>{playerList && playerList[2].id}</div>
+              <div id="button3">{Content3}<br/>{playerList && playerList[2].id}<br/>{Name3}</div>
             </Button>
           </div>
         </Draggable>
@@ -723,7 +722,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button4"
@@ -732,7 +731,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button4">{Content4}<br/>{Name4}<br/>{playerList && playerList[3].id}</div>
+              <div id="button4">{Content4}<br/>{playerList && playerList[3].id}<br/>{Name4}</div>
             </Button>
           </div>
         </Draggable>
@@ -746,7 +745,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button5"
@@ -755,7 +754,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button5">{Content5}<br/>{Name5}<br/>{playerList && playerList[4].id}</div>
+              <div id="button5">{Content5}<br/>{playerList && playerList[4].id}<br/>{Name5}</div>
             </Button>
           </div>
         </Draggable>
@@ -769,7 +768,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button6"
@@ -778,7 +777,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button6">{Content6}<br/>{Name6}<br/>{playerList && playerList[5].id}</div>
+              <div id="button6">{Content6}<br/>{playerList && playerList[5].id}<br/>{Name6}</div>
             </Button>
           </div>
         </Draggable>
@@ -792,7 +791,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button7"
@@ -801,7 +800,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button7">{Content7}<br/>{Name7}<br/>{playerList && playerList[7].id}</div>
+              <div id="button7">{Content7}<br/>{playerList && playerList[6].id}<br/>{Name7}</div>
             </Button>
           </div>
         </Draggable>
@@ -815,7 +814,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button8"
@@ -824,7 +823,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button8">{Content8}<br/>{Name8}<br/>{playerList && playerList[7].id}</div>
+              <div id="button8">{Content8}<br/>{playerList && playerList[7].id}<br/>{Name8}</div>
             </Button>
           </div>
         </Draggable>
@@ -838,7 +837,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button9"
@@ -847,7 +846,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button9">{Content9}<br/>{Name9}<br/>{playerList && playerList[8].id}</div>
+              <div id="button9">{Content9}<br/>{playerList && playerList[8].id}<br/>{Name9}</div>
             </Button>
           </div>
         </Draggable>
@@ -861,7 +860,7 @@ function Formation (props) {
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
         >
-          <div className="move">
+          <div className="hexagon">
             <Button className="button"
               disabled={Status}
               id="button10"
@@ -870,7 +869,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button10">{Content10}<br/>{Name10}<br/>{playerList && playerList[9].id}</div>
+              <div id="button10">{Content10}<br/>{playerList && playerList[5].id}<br/>{Name10}</div>
             </Button>
           </div>
         </Draggable>
@@ -881,7 +880,7 @@ function Formation (props) {
           disabled={true} 
           defaultPosition={{x: PositionList&&PositionList[10].x, y: PositionList&&PositionList[10].y}}
         >
-          <div className="GK">
+          <div className="hexagon">
             <Button className="buttonGK"
               disabled={Status}
               id="button11"
@@ -891,7 +890,7 @@ function Formation (props) {
               onContextMenu={handleClick}
               //color = "white"
             >
-              <div id="button11">GK<br/>{Name11}<br/>{playerList && playerList[10].id}</div>
+              <div id="button11">GK<br/>{playerList && playerList[5].id}<br/>{Name11}</div>
             </Button>
           </div>        
         </Draggable>
