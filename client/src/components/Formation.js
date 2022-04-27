@@ -44,6 +44,17 @@ function Formation (props) {
     SetName9(res1.data[8].name)
     SetName10(res1.data[9].name)
     SetName11(res1.data[10].name)
+    SetBack1(res1.data[0].back)
+    SetBack2(res1.data[1].back)
+    SetBack3(res1.data[2].back)
+    SetBack4(res1.data[3].back)
+    SetBack5(res1.data[4].back)
+    SetBack6(res1.data[5].back)
+    SetBack7(res1.data[6].back)
+    SetBack8(res1.data[7].back)
+    SetBack9(res1.data[8].back)
+    SetBack10(res1.data[9].back)
+    SetBack11(res1.data[10].back)
   }, [])
 
   const sendDB = () => {//DB에 변경된 정보 보내기
@@ -143,115 +154,162 @@ function Formation (props) {
   const [Name10, SetName10] = useState()
   const [Name11, SetName11] = useState()
 
+  //각 원의 현재 등록된 선수의 등번호
+  const [Back1, SetBack1] = useState()
+  const [Back2, SetBack2] = useState()
+  const [Back3, SetBack3] = useState()
+  const [Back4, SetBack4] = useState()
+  const [Back5, SetBack5] = useState()
+  const [Back6, SetBack6] = useState()
+  const [Back7, SetBack7] = useState()
+  const [Back8, SetBack8] = useState()
+  const [Back9, SetBack9] = useState()
+  const [Back10, SetBack10] = useState()
+  const [Back11, SetBack11] = useState()
+
   //리스트에서 선택된 선수를 원에 띄우는 함수
-  const onNameHandler = ({_id, id, name, already, Change}) => {
-    if(window.confirm("선택한 선수와 변경하시겠습니까?")){
-      setPlayerList((prev) => prev.map((player) => player.id === id ? { ...player, already: !already} : player))
-      //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
-      switch(buttonNum){
-        case "button1" :
-          //if(프롭스로 들어온 선호 포지션과 현재 원의 Content가 맞지 않으면 window.confirm 실행)
-          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되어 있는지 포지션 리스트에 저장
-          position.circle === 1 ? { ...position, name: name} : position))
-          if(Name1 === null){ 
-            return SetName1(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
-            return SetName1(name)
-          }
-        case "button2" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 2 ? { ...position, name: name} : position))
-          if(Name2 === null){ 
-            return SetName2(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name2 ? { ...player, already: false} : player))
-            return SetName2(name)
-          }
-        case "button3" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 3 ? { ...position, name: name} : position))
-          if(Name3 === null){ 
-            return SetName3(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name3 ? { ...player, already: false} : player))
-            return SetName3(name)
-          }
-        case "button4" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 4 ? { ...position, name: name} : position))
-          if(Name4 === null){ 
-            return SetName4(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name4 ? { ...player, already: false} : player))
-            return SetName4(name)
-          }
-        case "button5" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 5 ? { ...position, name: name} : position))
-          if(Name5 === null){ 
-            return SetName5(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name5 ? { ...player, already: false} : player))
-            return SetName5(name)
-          }
-        case "button6" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 6 ? { ...position, name: name} : position))
-          if(Name6 === null){ 
-            return SetName6(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name6 ? { ...player, already: false} : player))
-            return SetName6(name)
-          }
-        case "button7" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 7 ? { ...position, name: name} : position))
-          if(Name7 === null){ 
-            return SetName7(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name7 ? { ...player, already: false} : player))
-            return SetName7(name)
-          }
-        case "button8" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 8 ? { ...position, name: name} : position))
-          if(Name8 === null){ 
-            return SetName8(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name8 ? { ...player, already: false} : player))
-            return SetName8(name)
-          }
-        case "button9" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 9 ? { ...position, name: name} : position))
-          if(Name9 === null){ 
-            return SetName9(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name9 ? { ...player, already: false} : player))
-            return SetName9(name)
-          }
-        case "button10" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 10 ? { ...position, name: name} : position))
-          if(Name10 === null){ 
-            return SetName10(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name10 ? { ...player, already: false} : player))
-            return SetName10(name)
-          } 
-        case "button11" :
-          SetPositionList(PositionList.map((position) =>
-          position.circle === 11 ? { ...position, name: name} : position))
-          if(Name11 === null){ 
-            return SetName11(name)
-          } else {
-              setPlayerList((prev) => prev.map((player) => player.name === Name11 ? { ...player, already: false} : player))
-            return SetName11(name)
-          }
-        default:
-          return null
-      }
+  const onNameHandler = ({_id, name, already, Change, back, like}) => {
+    setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+    //등록할 선수를 리스트에 뜨지 않게 하는 로직
+    switch(buttonNum){
+      case "button1" :
+        // if(like !== Content1){
+          
+        // }
+        //if(프롭스로 들어온 선호 포지션과 현재 원의 Content가 맞지 않으면 window.confirm 실행)
+        SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 포지션 리스트에 저장
+        position.circle === 1 ? { ...position, name: name, back: back} : position))
+        if(Name1 === null){ 
+          SetBack1(back)
+          return SetName1(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack1(back)
+          return SetName1(name)
+        }
+      case "button2" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 2 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack2(back)
+          return SetName2(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name2 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack2(back)
+          return SetName2(name)
+        }
+      case "button3" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 3 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack3(back)
+          return SetName3(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name3 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack3(back)
+          return SetName3(name)
+        }
+      case "button4" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 4 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack4(back)
+          return SetName4(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name4 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack4(back)
+          return SetName4(name)
+        }
+      case "button5" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 5 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack5(back)
+          return SetName5(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name5 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack5(back)
+          return SetName5(name)
+        }
+      case "button6" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 6 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack6(back)
+          return SetName6(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name6 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack6(back)
+          return SetName6(name)
+        }
+      case "button7" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 7 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack7(back)
+          return SetName7(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name7 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack7(back)
+          return SetName7(name)
+        }
+      case "button8" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 8 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack8(back)
+          return SetName8(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name8 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack8(back)
+          return SetName8(name)
+        }
+      case "button9" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 9 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack9(back)
+          return SetName9(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name9 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack9(back)
+          return SetName9(name)
+        }
+      case "button10" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 10 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack10(back)
+          return SetName10(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name10 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack10(back)
+          return SetName10(name)
+        }
+      case "button11" :
+        SetPositionList(PositionList.map((position) =>
+        position.circle === 11 ? { ...position, name: name} : position))
+        if(Name1 === null){ 
+          SetBack11(back)
+          return SetName11(name)
+        } else {
+            setPlayerList((prev) => prev.map((player) => player.name === Name11 ? { ...player, already: false} : player))
+            //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+            SetBack11(back)
+          return SetName11(name)
+        }
+      default:
+        return null
     }
   }
 
@@ -631,7 +689,7 @@ function Formation (props) {
                 key={player.id}
               >
                 {player.name}
-                {player.id}
+                {player.like}
                 {/* {player.id} -> 포지션으로 바꿔주면 됨 */}
               </MenuItem>
             )
@@ -662,7 +720,7 @@ function Formation (props) {
                 aria-expanded={open ? 'true' : undefined}
                 onContextMenu={(e) => handleClick(e)}
               >
-                <div id="button1">{Content1}<br/>{playerList && playerList[0].id}<br/>{Name1}</div>
+                <div id="button1">{Content1}<br/>{Back1}<br/>{Name1}</div>
               </Button>
           </div>
         </Draggable>
@@ -685,7 +743,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button2">{Content2}<br/>{playerList && playerList[1].id}<br/>{Name2}</div>
+              <div id="button2">{Content2}<br/>{Back2}<br/>{Name2}</div>
             </Button>
           </div>
         </Draggable>
@@ -708,7 +766,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button3">{Content3}<br/>{playerList && playerList[2].id}<br/>{Name3}</div>
+              <div id="button3">{Content3}<br/>{Back3}<br/>{Name3}</div>
             </Button>
           </div>
         </Draggable>
@@ -731,7 +789,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button4">{Content4}<br/>{playerList && playerList[3].id}<br/>{Name4}</div>
+              <div id="button4">{Content4}<br/>{Back4}<br/>{Name4}</div>
             </Button>
           </div>
         </Draggable>
@@ -754,7 +812,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button5">{Content5}<br/>{playerList && playerList[4].id}<br/>{Name5}</div>
+              <div id="button5">{Content5}<br/>{Back5}<br/>{Name5}</div>
             </Button>
           </div>
         </Draggable>
@@ -777,7 +835,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button6">{Content6}<br/>{playerList && playerList[5].id}<br/>{Name6}</div>
+              <div id="button6">{Content6}<br/>{Back6}<br/>{Name6}</div>
             </Button>
           </div>
         </Draggable>
@@ -800,7 +858,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button7">{Content7}<br/>{playerList && playerList[6].id}<br/>{Name7}</div>
+              <div id="button7">{Content7}<br/>{Back7}<br/>{Name7}</div>
             </Button>
           </div>
         </Draggable>
@@ -823,7 +881,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button8">{Content8}<br/>{playerList && playerList[7].id}<br/>{Name8}</div>
+              <div id="button8">{Content8}<br/>{Back8}<br/>{Name8}</div>
             </Button>
           </div>
         </Draggable>
@@ -846,7 +904,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button9">{Content9}<br/>{playerList && playerList[8].id}<br/>{Name9}</div>
+              <div id="button9">{Content9}<br/>{Back9}<br/>{Name9}</div>
             </Button>
           </div>
         </Draggable>
@@ -869,7 +927,7 @@ function Formation (props) {
               aria-expanded={open ? 'true' : undefined}
               onContextMenu={handleClick}
             >
-              <div id="button10">{Content10}<br/>{playerList && playerList[5].id}<br/>{Name10}</div>
+              <div id="button10">{Content10}<br/>{Back10}<br/>{Name10}</div>
             </Button>
           </div>
         </Draggable>
@@ -890,7 +948,7 @@ function Formation (props) {
               onContextMenu={handleClick}
               //color = "white"
             >
-              <div id="button11">GK<br/>{playerList && playerList[5].id}<br/>{Name11}</div>
+              <div id="button11">GK<br/>{Back11}<br/>{Name11}</div>
             </Button>
           </div>        
         </Draggable>

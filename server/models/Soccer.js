@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema({
     Change: {
       type: Boolean
     },
+    like: {
+      type: String,
+      maxlength: 50
+    }
 })
 
 const SoccerUser = mongoose.model('SoccerUser', userSchema)

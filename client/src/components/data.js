@@ -10,87 +10,101 @@
 
 export const playersList = [
     {
-        id: 1,
-        name: "1번",
-        already: false,
-        Change: true
+        back: 12,
+        name: "최부기",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 2,
-        name: "2번",
-        already: false,
-        Change: true
+        back: 52,
+        name: "차준혁",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 3,
-        name: "3번",
-        already: false,
-        Change: true
+        back: 33,
+        name: "이성훈",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 4,
-        name: "4번",
-        already: false,
-        Change: true
+        back: 44,
+        name: "윤성록",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 5,
-        name: "5번",
-        already: false,
-        Change: true
+        back: 15,
+        name: "정지원",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 6,
-        name: "6번",
-        already: false,
-        Change: true
+        back: 26,
+        name: "이찬근",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 7,
-        name: "7번",
-        already: false,
-        Change: true
+        back: 37,
+        name: "이진성",
+        already: true,
+        Change: true,
+        like: "ST"
     },
     {
-        id: 8,
-        name: "8번",
+        back: 28,
+        name: "이지현",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 9,
-        name: "9번",
+        back: 19,
+        name: "이재이",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 10,
-        name: "10번",
+        back: 31,
+        name: "신승우",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 11,
-        name: "11번선수",
+        back: 41,
+        name: "박승태",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 12,
-        name: "12번선수",
+        back: 62,
+        name: "박길우",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 13,
-        name: "13번선수",
+        back: 73,
+        name: "김동기",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
     {
-        id: 14,
-        name: "14번선수",
+        back: 84,
+        name: "강승우",
         already: false,
-        Change: true
+        Change: true,
+        like: "ST"
     },
 ];

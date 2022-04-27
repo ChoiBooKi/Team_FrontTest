@@ -10,63 +10,63 @@
 
 export const positionsList = [
   {
-    id: 1,
+    back: 52,
     circle: 1,
-    name: null,
+    name: "차준혁",
     x : 145,
-    y : 80,
+    y : 0,
     cid: 1
   },
   {
-    id: 2,
+    back: 12,
     circle: 2,
-    name: null,
+    name: "최부기",
     x : 380,
-    y : 80,
+    y : 0,
     cid: 1
   },
   {
-    id: 3,
+    back: 44,
     circle: 3,
-    name: null,
+    name: "윤성록",
     x : 25,
-    y : 280,
+    y : 0,
     cid: 1
   },
   {
-    id: 4,
+    back: 15,
     circle: 4,
-    name: null,
+    name: "정지원",
     x : 160,
-    y : 360,
+    y : 0,
     cid: 1
   },
   {
-    id: 5,
+    back: 33,
     circle: 5,
-    name: null,
+    name: "이성훈",
     x : 350,
-    y : 360,
+    y : 0,
     cid: 1
   },
   {
-    id: 6,
+    back: 26,
     circle: 6,
-    name: null,
+    name: "이찬근",
     x : 500,
-    y : 280,
+    y : 0,
     cid: 1
   },
   {
-    id: 7,
+    back: 37,
     circle: 7,
-    name: null,
+    name: "이진성",
     x : 30,
-    y : 580,
+    y : 0,
     cid: 1
   },
   {
-    id: 8,
+    back: null,
     circle: 8,
     name: null,
     x : 160,
@@ -74,7 +74,7 @@ export const positionsList = [
     cid: 1
   },
   {
-    id: 9,
+    back: null,
     circle: 9,
     name: null,
     x : 350,
@@ -82,7 +82,7 @@ export const positionsList = [
     cid: 1
   },
   {
-    id: 10,
+    back: null,
     circle: 10,
     name: null,
     x : 485,
@@ -90,7 +90,7 @@ export const positionsList = [
     cid: 1
   },
   {
-    id: 11,
+    back: null,
     circle: 11,
     name: null,
     x : 260,
