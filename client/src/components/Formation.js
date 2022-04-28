@@ -7,6 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
 import Modal from 'react-modal';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function Formation (props) {
   const [playerList, setPlayerList] = useState(null);//선수 이름, 선호 포지션, 등번호, 배치되어있는지 등
@@ -175,145 +177,538 @@ function Formation (props) {
   const [Back10, SetBack10] = useState()
   const [Back11, SetBack11] = useState()
 
+  const submit1 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 1 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name1 === null){ 
+              SetBack1(back)
+              return SetName1(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack1(back)
+            return SetName1(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit2 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 2 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name2 === null){ 
+              SetBack2(back)
+              return SetName2(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name2 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack2(back)
+            return SetName2(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit3 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 3 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name3 === null){ 
+              SetBack3(back)
+              return SetName3(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name3 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack3(back)
+            return SetName3(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit4 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 4 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name4 === null){ 
+              SetBack4(back)
+              return SetName4(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name4 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack4(back)
+            return SetName4(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit5 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 5 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name5 === null){ 
+              SetBack5(back)
+              return SetName5(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name5 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack5(back)
+            return SetName5(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit6 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 6 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name6 === null){ 
+              SetBack6(back)
+              return SetName6(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name6 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack6(back)
+            return SetName6(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit7 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 7 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name7 === null){ 
+              SetBack7(back)
+              return SetName7(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name7 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack7(back)
+            return SetName7(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit8 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 8 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name8 === null){ 
+              SetBack8(back)
+              return SetName8(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name8 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack8(back)
+            return SetName8(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit9 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 9 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name9 === null){ 
+              SetBack9(back)
+              return SetName9(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name9 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack9(back)
+            return SetName9(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit10 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 10 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name10 === null){ 
+              SetBack10(back)
+              return SetName10(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name10 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack10(back)
+            return SetName10(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+  const submit11 = ({_id, name, already, Change, back, like}) => {
+    confirmAlert({
+      title: '해당 선수의 선호 포지션과 배치될 원의 포지션이 다릅니다.',
+      message: '계속 하시겠습니까?',
+      buttons: [
+        {
+          label: '네',
+          onClick: () => {
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+            //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            SetPositionList(PositionList.map((position) => position.circle === 11 ? { ...position, name: name, back: back} : position))
+            //각 원에 어떤 선수가 배치되는지 원 정보에 저장
+            if(Name11 === null){ 
+              SetBack11(back)
+              return SetName11(name)
+            } else {
+              setPlayerList((prev) => prev.map((player) => player.name === Name11 ? { ...player, already: false} : player))
+              //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+              SetBack11(back)
+            return SetName11(name)
+            }
+          }
+        },
+        {
+          label: '아니오',
+        }
+      ]
+    })
+  }
+
+
   //리스트에서 선택된 선수를 원에 띄우는 함수
   const onNameHandler = ({_id, name, already, Change, back, like}) => {
-    setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
-    //등록할 선수를 리스트에 뜨지 않게 하는 로직
     switch(buttonNum){
       case "button1" :
         if(like !== Content1){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
-          setModalIsOpen(true)
-        }
-        SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
-        position.circle === 1 ? { ...position, name: name, back: back} : position))
-        if(Name1 === null){ 
-          SetBack1(back)
-          return SetName1(name)
+          submit1({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 1 ? { ...position, name: name, back: back} : position))
+          if(Name1 === null){ 
+            SetBack1(back)
+            return SetName1(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack1(back)
           return SetName1(name)
+          }
         }
       case "button2" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 2 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack2(back)
-          return SetName2(name)
+        if(like !== Content2){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit2({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 2 ? { ...position, name: name, back: back} : position))
+          if(Name2 === null){ 
+            SetBack2(back)
+            return SetName2(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name2 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack2(back)
           return SetName2(name)
+          }
         }
       case "button3" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 3 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack3(back)
-          return SetName3(name)
+        if(like !== Content3){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit3({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 3 ? { ...position, name: name, back: back} : position))
+          if(Name3 === null){ 
+            SetBack3(back)
+            return SetName3(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name3 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack3(back)
           return SetName3(name)
+          }
         }
       case "button4" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 4 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack4(back)
-          return SetName4(name)
+        if(like !== Content4){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit4({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 4 ? { ...position, name: name, back: back} : position))
+          if(Name4 === null){ 
+            SetBack4(back)
+            return SetName4(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name4 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack4(back)
           return SetName4(name)
+          }
         }
       case "button5" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 5 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack5(back)
-          return SetName5(name)
+        if(like !== Content5){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit5({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 5 ? { ...position, name: name, back: back} : position))
+          if(Name5 === null){ 
+            SetBack5(back)
+            return SetName5(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name5 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack5(back)
           return SetName5(name)
+          }
         }
       case "button6" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 6 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack6(back)
-          return SetName6(name)
+        if(like !== Content6){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit6({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 6 ? { ...position, name: name, back: back} : position))
+          if(Name6 === null){ 
+            SetBack6(back)
+            return SetName6(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name6 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack6(back)
           return SetName6(name)
+          }
         }
       case "button7" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 7 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack7(back)
-          return SetName7(name)
+        if(like !== Content7){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit7({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 7 ? { ...position, name: name, back: back} : position))
+          if(Name7 === null){ 
+            SetBack7(back)
+            return SetName7(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name7 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack7(back)
           return SetName7(name)
+          }
         }
       case "button8" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 8 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack8(back)
-          return SetName8(name)
+        if(like !== Content8){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit8({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 8 ? { ...position, name: name, back: back} : position))
+          if(Name8 === null){ 
+            SetBack8(back)
+            return SetName8(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name8 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack8(back)
           return SetName8(name)
+          }
         }
       case "button9" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 9 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack9(back)
-          return SetName9(name)
+        if(like !== Content9){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit9({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 9 ? { ...position, name: name, back: back} : position))
+          if(Name9 === null){ 
+            SetBack9(back)
+            return SetName9(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name9 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack9(back)
           return SetName9(name)
+          }
         }
       case "button10" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 10 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack10(back)
-          return SetName10(name)
+        if(like !== Content10){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit10({_id, name, already, Change, back, like})
+          break;
         } else {
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 10 ? { ...position, name: name, back: back} : position))
+          if(Name10 === null){ 
+            SetBack10(back)
+            return SetName10(name)
+          } else {
             setPlayerList((prev) => prev.map((player) => player.name === Name10 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack10(back)
           return SetName10(name)
+          }
         }
       case "button11" :
-        SetPositionList(PositionList.map((position) =>
-        position.circle === 11 ? { ...position, name: name} : position))
-        if(Name1 === null){ 
-          SetBack11(back)
-          return SetName11(name)
+        if(like !== "GK"){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          submit11({_id, name, already, Change, back, like})
+          break;
         } else {
-            setPlayerList((prev) => prev.map((player) => player.name === Name11 ? { ...player, already: false} : player))
+          setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+          //등록할 선수를 리스트에 뜨지 않게 하는 로직
+          SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
+          position.circle === 11 ? { ...position, name: name, back: back} : position))
+          if(Name11 === null){ 
+            SetBack11(back)
+            return SetName11(name)
+          } else {
+            setPlayerList((prev) => prev.map((player) => player.name === SetName11 ? { ...player, already: false} : player))
             //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
             SetBack11(back)
           return SetName11(name)
+          }
         }
       default:
         return null
