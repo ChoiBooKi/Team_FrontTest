@@ -6,12 +6,15 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
+import Modal from 'react-modal';
 
 function Formation (props) {
   const [playerList, setPlayerList] = useState(null);//선수 이름, 선호 포지션, 등번호, 배치되어있는지 등
   const [PositionList, SetPositionList] = useState(null)//원 번호, 원의 좌표, 원에 등록되어있던 선수 등
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
   const [buttonNum, setbuttonNum] = useState() //각 원의 인덱스를 의미
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [Ans, SetAns] = useState()
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
   const handleClick = (event) => { //리스트 띄우고, 선택한 원의 번호 저장
     setAnchorEl(event.currentTarget);
@@ -21,7 +24,12 @@ function Formation (props) {
   const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-
+  const modalAns = (e) => {
+    setModalIsOpen(false)
+    SetAns(e.target.value)
+    console.log(e.target.value)
+  }
+  
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {//편집 버튼 누르면 상태 변화
@@ -173,11 +181,10 @@ function Formation (props) {
     //등록할 선수를 리스트에 뜨지 않게 하는 로직
     switch(buttonNum){
       case "button1" :
-        // if(like !== Content1){
-          
-        // }
-        //if(프롭스로 들어온 선호 포지션과 현재 원의 Content가 맞지 않으면 window.confirm 실행)
-        SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 포지션 리스트에 저장
+        if(like !== Content1){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
+          setModalIsOpen(true)
+        }
+        SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 원 정보에 저장
         position.circle === 1 ? { ...position, name: name, back: back} : position))
         if(Name1 === null){ 
           SetBack1(back)
@@ -313,6 +320,43 @@ function Formation (props) {
     }
   }
 
+  // const a = ({_id, name, already, Change, back, like}) => {
+  //   setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+  //   switch(buttonNum){
+  //     case "button1" :
+  //       SetPositionList(PositionList.map((position) =>//각 원에 어떤 선수가 배치되는지 포지션 리스트에 저장
+  //       position.circle === 1 ? { ...position, name: name, back: back} : position))
+  //       if(Name1 === null){ 
+  //         SetBack1(back)
+  //         return SetName1(name)
+  //       } else {
+  //           setPlayerList((prev) => prev.map((player) => player.name === Name1 ? { ...player, already: false} : player))
+  //           //현재 등록되어있던 선수를 다시 비등록으로 변경해주는 로직
+  //           SetBack1(back)
+  //         return SetName1(name)
+  //       }
+  //     default:
+  //       return null
+  //   }
+  // }
+
+  // const onNameHandler = (props) => {
+  //   const like = props.like
+  //   //setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
+  //   //등록할 선수를 리스트에 뜨지 않게 하는 로직
+  //   switch(buttonNum){
+  //     case "button1" :
+  //       if(like !== Content1){
+  //         setModalIsOpen(true)
+  //       } else {
+  //         a(props)
+  //       }
+  //     default:
+  //       return null
+  //   }
+  // }
+
+  
   // const [Up, SetUp] = useState(0)
   // const [Mid, SetMid] = useState(0)
   // const [Down, SetDown] = useState(0)
@@ -686,16 +730,30 @@ function Formation (props) {
                   handleClose()
                   onNameHandler(player)
                 }}
-                key={player.id}
+                key={player._id}
               >
                 {player.name}
                 {player.like}
-                {/* {player.id} -> 포지션으로 바꿔주면 됨 */}
               </MenuItem>
             )
           }
         })}
       </Menu>
+
+      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}>
+        선호 포지션과 배치될 포지션이 다릅니다.
+        배치하시겠습니까?
+        <button 
+          value="true"
+          onClick={(e)=> {modalAns(e)}}>
+          네
+        </button>
+        <button 
+          value="false"
+          onClick={(e)=> {modalAns(e)}}>
+          아니오
+        </button>
+      </Modal>
 
       {PositionList &&
         <Draggable 
@@ -956,6 +1014,5 @@ function Formation (props) {
     </div>
   )
 }
-
 
 export default Formation
