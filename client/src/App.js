@@ -9,6 +9,7 @@ import TeamLeader from "./components/TeamLeader";
 import Formation from "./components/Formation"
 import axios from 'axios';
 import { useState } from "react";
+import TeamManage from "./components/TeamManage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/teamleader" element={<TeamLeader/>} />
           <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
           <Route path="/move" element={<Formation />} />
+          <Route path="/teammanage" element={<TeamManage />} />
         </Routes>
       </div>
     </Router>

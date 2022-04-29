@@ -6,7 +6,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
-import Modal from 'react-modal';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -15,8 +14,6 @@ function Formation (props) {
   const [PositionList, SetPositionList] = useState(null)//원 번호, 원의 좌표, 원에 등록되어있던 선수 등
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
   const [buttonNum, setbuttonNum] = useState() //각 원의 인덱스를 의미
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [Ans, SetAns] = useState()
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
   const handleClick = (event) => { //리스트 띄우고, 선택한 원의 번호 저장
     setAnchorEl(event.currentTarget);
@@ -26,18 +23,13 @@ function Formation (props) {
   const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-  const modalAns = (e) => {
-    setModalIsOpen(false)
-    SetAns(e.target.value)
-    console.log(e.target.value)
-  }
   
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {//편집 버튼 누르면 상태 변화
     SetStatus(!Status)
   }
-
+  
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("api/readPosition")
     SetPositionList(res1.data)
@@ -65,6 +57,16 @@ function Formation (props) {
     SetBack9(res1.data[8].back)
     SetBack10(res1.data[9].back)
     SetBack11(res1.data[10].back)
+    SetContent1(res1.data[0].position)
+    SetContent2(res1.data[1].position)
+    SetContent3(res1.data[2].position)
+    SetContent4(res1.data[3].position)
+    SetContent5(res1.data[4].position)
+    SetContent6(res1.data[5].position)
+    SetContent7(res1.data[6].position)
+    SetContent8(res1.data[7].position)
+    SetContent9(res1.data[8].position)
+    SetContent10(res1.data[9].position)
   }, [])
 
   const sendDB = () => {//DB에 변경된 정보 보내기
@@ -140,16 +142,17 @@ function Formation (props) {
     }
   };
   //각 원의 현재 포지션
-  const [Content1, SetContent1] = useState("ST");
-  const [Content2, SetContent2] = useState("ST");
-  const [Content3, SetContent3] = useState("LM");
-  const [Content4, SetContent4] = useState("CM");
-  const [Content5, SetContent5] = useState("CM");
-  const [Content6, SetContent6] = useState("RM");
-  const [Content7, SetContent7] = useState("LB");
-  const [Content8, SetContent8] = useState("CB");
-  const [Content9, SetContent9] = useState("CB");
-  const [Content10, SetContent10] = useState("RB");
+  //초기값 null로 주고 DB에서 받아오는 값으로 렌더링 해야됨
+  const [Content1, SetContent1] = useState();
+  const [Content2, SetContent2] = useState();
+  const [Content3, SetContent3] = useState();
+  const [Content4, SetContent4] = useState();
+  const [Content5, SetContent5] = useState();
+  const [Content6, SetContent6] = useState();
+  const [Content7, SetContent7] = useState();
+  const [Content8, SetContent8] = useState();
+  const [Content9, SetContent9] = useState();
+  const [Content10, SetContent10] = useState();
   
   //각 원의 현재 등록된 선수의 이름
   const [Name1, SetName1] = useState()
@@ -187,6 +190,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content1} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 1 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name1 === null){ 
@@ -216,6 +221,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content2} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 2 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name2 === null){ 
@@ -245,6 +252,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content3} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 3 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name3 === null){ 
@@ -274,6 +283,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content4} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 4 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name4 === null){ 
@@ -303,6 +314,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content5} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 5 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name5 === null){ 
@@ -332,6 +345,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content6} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 6 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name6 === null){ 
@@ -361,6 +376,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content7} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 7 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name7 === null){ 
@@ -390,6 +407,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content8} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 8 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name8 === null){ 
@@ -419,6 +438,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content9} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 9 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name9 === null){ 
@@ -448,6 +469,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: Content10} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 10 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name10 === null){ 
@@ -477,6 +500,8 @@ function Formation (props) {
           onClick: () => {
             setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, already: !already} : player))
             //등록할 선수를 리스트에 뜨지 않게 하는 로직
+            setPlayerList((prev) => prev.map((player) => player._id === _id ? { ...player, select: "GK"} : player))
+            //배치될 포지션을 select에 저장
             SetPositionList(PositionList.map((position) => position.circle === 11 ? { ...position, name: name, back: back} : position))
             //각 원에 어떤 선수가 배치되는지 원 정보에 저장
             if(Name11 === null){ 
@@ -497,9 +522,12 @@ function Formation (props) {
     })
   }
 
-
   //리스트에서 선택된 선수를 원에 띄우는 함수
   const onNameHandler = ({_id, name, already, Change, back, like}) => {
+    // const a = buttonNum.split('')[6]
+    // console.log(a)
+    // const submit = "submit" + a
+    // console.log(submit)
     switch(buttonNum){
       case "button1" :
         if(like !== Content1){//선호포지션과 현재 원의 포지션이 맞지 않으면 실행
@@ -1134,21 +1162,6 @@ function Formation (props) {
           }
         })}
       </Menu>
-
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} ariaHideApp={false}>
-        선호 포지션과 배치될 포지션이 다릅니다.
-        배치하시겠습니까?
-        <button 
-          value="true"
-          onClick={(e)=> {modalAns(e)}}>
-          네
-        </button>
-        <button 
-          value="false"
-          onClick={(e)=> {modalAns(e)}}>
-          아니오
-        </button>
-      </Modal>
 
       {PositionList &&
         <Draggable 
