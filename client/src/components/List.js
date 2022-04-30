@@ -18,7 +18,7 @@ function List () {
   }, [])
     
   return (
-    <div>
+    <div className='list'>
       <h2>선수 리스트</h2>
       <ul>
         {PlayerList && PlayerList.map((player) => {

@@ -1,5 +1,9 @@
+.list{
+  width: 600px;
+  background-color: aquamarine;
+}
 .selected{
-  color:blue
+  color:blue;
 }
 .candidate{
   color:red
