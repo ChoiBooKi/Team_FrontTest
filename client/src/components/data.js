@@ -15,7 +15,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        //팀네임, 주장여부
     },
     {
         back: 52,

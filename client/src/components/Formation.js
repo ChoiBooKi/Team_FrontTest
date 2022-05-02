@@ -23,7 +23,7 @@ function Formation (props) {
   const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-  
+  console.log('hi')
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {//편집 버튼 누르면 상태 변화
@@ -57,6 +57,7 @@ function Formation (props) {
     SetBack9(res1.data[8].back)
     SetBack10(res1.data[9].back)
     SetBack11(res1.data[10].back)
+    //if로 값이 null인지 아닌지 분기
     SetContent1(res1.data[0].position)
     SetContent2(res1.data[1].position)
     SetContent3(res1.data[2].position)
@@ -779,7 +780,6 @@ function Formation (props) {
   //   }
   // }
 
-  
   // const [Up, SetUp] = useState(0)
   // const [Mid, SetMid] = useState(0)
   // const [Down, SetDown] = useState(0)
