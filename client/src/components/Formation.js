@@ -33,30 +33,121 @@ function Formation (props) {
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("api/readPosition")
     SetPositionList(res1.data)
+    console.log(res1.data)
     const res = await axios.get("/api/readUser")
     setPlayerList(res.data)
-    SetName1(res1.data[0].name)
-    SetName2(res1.data[1].name)
-    SetName3(res1.data[2].name)
-    SetName4(res1.data[3].name)
-    SetName5(res1.data[4].name)
-    SetName6(res1.data[5].name)
-    SetName7(res1.data[6].name)
-    SetName8(res1.data[7].name)
-    SetName9(res1.data[8].name)
-    SetName10(res1.data[9].name)
-    SetName11(res1.data[10].name)
-    SetBack1(res1.data[0].back)
-    SetBack2(res1.data[1].back)
-    SetBack3(res1.data[2].back)
-    SetBack4(res1.data[3].back)
-    SetBack5(res1.data[4].back)
-    SetBack6(res1.data[5].back)
-    SetBack7(res1.data[6].back)
-    SetBack8(res1.data[7].back)
-    SetBack9(res1.data[8].back)
-    SetBack10(res1.data[9].back)
-    SetBack11(res1.data[10].back)
+    console.log(res.data)
+    if(res1.data[0].name === null){
+      SetName1('-')
+    } else {
+      SetName1(res1.data[0].name)
+    }
+    if(res1.data[1].name === null){
+      SetName2('-')
+    } else {
+      SetName2(res1.data[1].name)
+    }
+    if(res1.data[2].name === null){
+      SetName3('-')
+    } else {
+      SetName3(res1.data[2].name)
+    }
+    if(res1.data[3].name === null){
+      SetName4('-')
+    } else {
+      SetName4(res1.data[3].name)
+    }
+    if(res1.data[4].name === null){
+      SetName5('-')
+    } else {
+      SetName5(res1.data[4].name)
+    }
+    if(res1.data[5].name === null){
+      SetName6('-')
+    } else {
+      SetName6(res1.data[5].name)
+    }
+    if(res1.data[6].name === null){
+      SetName7('-')
+    } else {
+      SetName7(res1.data[6].name)
+    }
+    if(res1.data[7].name === null){
+      SetName8('-')
+    } else {
+      SetName8(res1.data[7].name)
+    }
+    if(res1.data[8].name === null){
+      SetName9('-')
+    } else {
+      SetName9(res1.data[8].name)
+    }
+    if(res1.data[9].name === null){
+      SetName10('-')
+    } else {
+      SetName10(res1.data[9].name)
+    }    if(res1.data[10].name === null){
+      SetName11('-')
+    } else {
+      SetName11(res1.data[10].name)
+    }
+
+    if(res1.data[0].back === null) {
+      SetBack1('-')
+    } else {
+      SetBack1(res1.data[0].back)
+    }
+    if(res1.data[1].back === null) {
+      SetBack2('-')
+    } else {
+      SetBack2(res1.data[1].back)
+    }
+    if(res1.data[2].back === null) {
+      SetBack3('-')
+    } else {
+      SetBack3(res1.data[2].back)
+    }
+    if(res1.data[3].back === null) {
+      SetBack4('-')
+    } else {
+      SetBack4(res1.data[3].back)
+    }
+    if(res1.data[4].back === null) {
+      SetBack5('-')
+    } else {
+      SetBack5(res1.data[4].back)
+    }
+    if(res1.data[5].back === null) {
+      SetBack6('-')
+    } else {
+      SetBack6(res1.data[5].back)
+    }
+    if(res1.data[6].back === null) {
+      SetBack7('-')
+    } else {
+      SetBack7(res1.data[6].back)
+    }
+    if(res1.data[7].back === null) {
+      SetBack8('-')
+    } else {
+      SetBack8(res1.data[7].back)
+    }
+    if(res1.data[8].back === null) {
+      SetBack9('-')
+    } else {
+      SetBack9(res1.data[8].back)
+    }
+    if(res1.data[9].back === null) {
+      SetBack10('-')
+    } else {
+      SetBack10(res1.data[9].back)
+    }
+    if(res1.data[10].back === null) {
+      SetBack11('-')
+    } else {
+      SetBack11(res1.data[10].back)
+    }
+
     //if로 값이 null인지 아닌지 분기
     SetContent1(res1.data[0].position)
     SetContent2(res1.data[1].position)
@@ -69,7 +160,7 @@ function Formation (props) {
     SetContent9(res1.data[8].position)
     SetContent10(res1.data[9].position)
   }, [])
-
+  console.log(PositionList)
   const sendDB = () => {//DB에 변경된 정보 보내기
     if(Status === false){
       // let body = {
