@@ -23,7 +23,7 @@ function Formation (props) {
   const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-  console.log('hi')
+
   const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {//편집 버튼 누르면 상태 변화
@@ -160,7 +160,7 @@ function Formation (props) {
     SetContent9(res1.data[8].position)
     SetContent10(res1.data[9].position)
   }, [])
-  console.log(PositionList)
+
   const sendDB = () => {//DB에 변경된 정보 보내기
     if(Status === false){
       // let body = {
