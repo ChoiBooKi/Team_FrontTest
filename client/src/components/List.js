@@ -6,7 +6,8 @@ import Modal from 'react-modal';
 import {info} from './data3'
 
 
-function List () {
+function List (props) {
+  //console.log(props)
   const [PlayerList, SetPlayerList] = useState(null);
   const [Modalis, SetModalis] = useState(false)
   const [Info, SetInfo] = useState(info)
@@ -27,20 +28,17 @@ function List () {
     SetModalis(false)
   }
   const ModalOpen = (e) => {
-    console.log(e.currentTarget.id)
-    for(let i=0; i<10; i++){
-      if(e.currentTarget.id === Info[i].id){//여기서 에러남
-        SetContent(Info[i].info)
-      }
-    }
+    Info.map((player) =>//현재 발생한 이벤트 선수의 id값이랑 info에 저장된 id값이 같으면 그 같은 사람의 데이터를 저장
+      player.id === e.currentTarget.id ? SetContent({info: player.info, name: player.name, back: player.back}) : null
+    )
     SetModalis(true)
-    //axios.get으로 해당 회원 정보 넘겨받고 받은 내용 SetInfo에 저장하고 Modal에서 띄워주기
-    //대답오기 전까지는 로딩 원 가능하면 하기
   }
   return (
     <div>
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
-        {Content}
+        {Content && Content.name}
+        {Content && Content.back}
+        {Content && Content.info}
       </Modal>
       <div className='list'>
         <h2>선수 리스트</h2>
@@ -48,7 +46,7 @@ function List () {
           {PlayerList && PlayerList.map((player) => {
             if(player.already === true){
               return (
-                <li id="hi" className = "selected" key={player._id}>
+                <li className = "selected" key={player._id}>
                   선발
                   {player.name}
                   {player.select}

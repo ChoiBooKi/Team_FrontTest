@@ -33,10 +33,8 @@ function Formation (props) {
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("api/readPosition")
     SetPositionList(res1.data)
-    console.log(res1.data)
     const res = await axios.get("/api/readUser")
     setPlayerList(res.data)
-    console.log(res.data)
     if(res1.data[0].name === null){
       SetName1('-')
     } else {
