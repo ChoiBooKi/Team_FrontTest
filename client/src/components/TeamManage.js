@@ -3,6 +3,7 @@ import React from 'react';
 // import axios from 'axios';
 import Formation from "./Formation"
 import List from "./List"
+import TeamInfo from './TeamInfo';
 
 function TeamManage () {
   // const [a, seta] = useState()
@@ -16,6 +17,7 @@ function TeamManage () {
     <div style={{display: 'flex'}}>
       {<Formation />}
       {<List />}
+      {<TeamInfo />}
     </div>
   )
 }

@@ -6,8 +6,7 @@ import Modal from 'react-modal';
 import {info} from './data3'
 
 
-function List (props) {
-  //console.log(props)
+function List () {
   const [PlayerList, SetPlayerList] = useState(null);
   const [Modalis, SetModalis] = useState(false)
   const [Info, SetInfo] = useState(info)
