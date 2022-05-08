@@ -15,9 +15,9 @@ function TeamManage () {
 
   return(
     <div style={{display: 'flex'}}>
+      {<TeamInfo />}
       {<Formation />}
       {<List />}
-      {<TeamInfo />}
     </div>
   )
 }
