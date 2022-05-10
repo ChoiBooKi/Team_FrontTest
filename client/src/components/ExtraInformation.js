@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function TeamExtraInformation(props) {
   const navigate = useNavigate()
-  const regionList = [" ", "서울", "경기", "전라", "경상"]
+  const regionList = [" ", "서울", "경기", "전라", "경상"]//디비한테 '도' 명만 쿼리로 보내주면 상세지역은 get으로 받아와서 처리
   const positionList = ["  ", "공격수", "미드필더", "수비수", "공격수"]
   const proList = [" ", "네", "아니오"]
   const [NickName, setNickName] = useState("")

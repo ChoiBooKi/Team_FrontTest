@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-function Formation (props) {
+function Formation (props) {//여기서 팀명받아오는거 괜찮
   const [playerList, setPlayerList] = useState(null);//선수 이름, 선호 포지션, 등번호, 배치되어있는지 등
   const [PositionList, SetPositionList] = useState(null)//원 번호, 원의 좌표, 원에 등록되어있던 선수 등
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
@@ -31,9 +31,9 @@ function Formation (props) {
   }
   
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
-    const res1 = await axios.get("api/readPosition")
+    const res1 = await axios.get("/api/readPosition")//쿼리로 팀이름 넣어줘야됨
     SetPositionList(res1.data)
-    const res = await axios.get("/api/readUser")
+    const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
     setPlayerList(res.data)
     if(res1.data[0].name === null){
       SetName1('-')
@@ -165,10 +165,14 @@ function Formation (props) {
       //   playerList, //첫번째 요소 포지션 
       //   PositionList
       // }
-      axios.post('/api/sendUser', playerList)
+      axios.post('/api/sendUser', playerList)// /api/player/save
       .then(res => {
         console.log(res.data)
       })
+      // axios.post('/api/sendPosition', PositionList)// /api/formation/save
+      // .then(res => {
+      //   console.log(res.data)
+      // })
     } else {
       axios.get('/api/readUser')
       .then(res => setPlayerList(res.data))

@@ -12,7 +12,8 @@ function List () {
   const [Info, SetInfo] = useState(info)
   const [Content, SetContent] =useState()
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
-    const res = await axios.get("/api/readUser")
+    const res = await axios.get("/api/readUser")//선수정보
+    //유저정보도 받아와야됨
     const sort = res.data.sort(function(a, b){//DB에서 온 리스트 선발선수 맨위로 정렬
       let x = a.already
       if(x === true){
@@ -30,6 +31,7 @@ function List () {
     Info.map((player) =>//현재 발생한 이벤트 선수의 id값이랑 info에 저장된 id값이 같으면 그 같은 사람의 데이터를 저장
       player.id === e.currentTarget.id ? SetContent({info: player.info, name: player.name, back: player.back}) : null
     )
+    //***************************useEffect로 바로 받아오는게 아니라 i버튼 클릭할 때 id값으로 get 요청해서 받아온 값 띄우는걸로 변경, 쿼리에는 id로 넘기기
     SetModalis(true)
   }
   return (

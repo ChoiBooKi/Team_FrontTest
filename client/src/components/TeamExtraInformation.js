@@ -52,10 +52,10 @@ function TeamExtraInformation(props) {
     }
   }
 
-  const onCheckHandler = (event) => { // 조회 버튼
+  const onCheckHandler = (event) => { // 조회 버튼 ************************버튼클릭안하고 돔에서 벗어나면 바로 중복조회되게 처리 네이버처럼 *****************************
     event.preventDefault()
     if (TeamName) {
-      Search = 1 // 중복 조회 확인
+      Search = 1 // 중복 조회 확인 ********************************중복조회 두번하는 경우가 생기는데 왜그런지 모르겠음*******************************************
       axios.get('/api/searchTeamName', {
           params: {
             Teamname: TeamName

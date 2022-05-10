@@ -22,6 +22,8 @@ function TeamInfo () {
     }
     reader.readAsDataURL(e.target.files[0])
   }
+
+  //팀소개 글자수제한, 팀장, 팀 등록일, 총 선수 수, 연령대, 활동 지역
   return(
     <div className='body'>
       <h1>팀명</h1>

@@ -10,13 +10,14 @@
 
 export const positionsList = [
   {
-    back: 52,
-    circle: 1,
-    name: "이성훈",
-    x : 145,
-    y : 0,
+    back: 52,//등번호
+    circle: 1,//원 번호
+    name: "이성훈",//원에 배치된 선수이름
+    x : 145,//원 x값
+    y : 0,//원 y값
     cid: 1,
-    position: "ST"
+    position: "ST"//현재 원의 포지션
+    //팀네임
   },
   {
     back: 12,
