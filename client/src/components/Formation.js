@@ -20,7 +20,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
   const [buttonNum, setbuttonNum] = useState() //각 원의 인덱스를 의미
   const [Formation, SetFormation] = useState('포메이션 선택') //드롭다운 안에 값
   const [Status, SetStatus] = useState(true)//편집완료 or 편집 상태변경
-  const [form, setForm] = useState()
+  const [form, setform] = useState()
 
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
 
@@ -48,46 +48,20 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
     //   }
     // }
     )
-    .then(res => {
-      //받아온 값으로 x,y값 변경해줘야됨
-      console.log(res.data)
-      setForm(res.data)
+    .then(res => { // 받아온 값으로 x, y값 변경
       // for(let i = 0; i<11; i++){
-      //   SetPositionList(PositionList.map((position) =>
+      //   SetPositionList(prev => prev.map((position) =>
       //   position.circle === i+1 ? { ...position, x: res.data[i].x, y: res.data[i].y} : position))
-      // }
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 1 ? { ...position, x: res.data[0].x, y: res.data[0].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 2 ? { ...position, x: res.data[1].x, y: res.data[1].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 3 ? { ...position, x: res.data[2].x, y: res.data[2].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 4 ? { ...position, x: res.data[3].x, y: res.data[3].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 5 ? { ...position, x: res.data[4].x, y: res.data[4].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 6 ? { ...position, x: res.data[5].x, y: res.data[5].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 7 ? { ...position, x: res.data[6].x, y: res.data[6].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 8 ? { ...position, x: res.data[7].x, y: res.data[7].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 9 ? { ...position, x: res.data[8].x, y: res.data[8].y} : position))
-      // SetPositionList(PositionList.map((position) =>
-      // position.circle === 10 ? { ...position, x: res.data[9].x, y: res.data[9].y} : position))
+      // }//여기서 받아온 좌표값으로 변경은 하는데 변경된 좌표대로 배치가 안됨
+      // window.location.replace("/teammanage") //페이지 새로고침
+      setform(res.data)
     })
   }
-  // if(form){
-  //   for(let i = 0; i<11; i++){
-  //     SetPositionList(PositionList.map((position) =>
-  //     position.circle === i+1 ? { ...position, x: form[i].x, y: form[i].y} : position))
-  //   }
-  // }
-  // console.log(PositionList)
+  console.log(form)
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("/api/readPosition")//쿼리로 팀이름 넣어줘야됨
     SetPositionList(res1.data)
+    setform(res1.data)
     const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
     setPlayerList(res.data)
     if(res1.data[0].name === null){
@@ -237,51 +211,71 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
   const trackPos = (e, data) => {//원이 멈췄을 때 불리는 함수, 변경된 원의 좌표값 각 원 정보에 저장
     switch(e.target.id){
       case "button1" :
+        setform(form.map((form) => //position에 사용되는 form에 x, y 좌표가 있기 때문에 이걸로 변경을 해줘야 위치가 옮겨짐
+        form.circle === 1 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 1 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button2" :
+        setform(form.map((form) =>
+        form.circle === 2 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 2 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button3" :
+        setform(form.map((form) =>
+        form.circle === 3 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 3 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button4" :
+        setform(form.map((form) =>
+        form.circle === 4 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 4 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button5" :
+        setform(form.map((form) =>
+        form.circle === 5 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 5 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button6" :
+        setform(form.map((form) =>
+        form.circle === 6 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 6 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button7" :
+        setform(form.map((form) =>
+        form.circle === 7 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 7 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button8" :
+        setform(form.map((form) =>
+        form.circle === 8 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 8 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button9" :
+        setform(form.map((form) =>
+        form.circle === 9 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 9 ? { ...position, x: data.x, y: data.y} : position))
         )
       case "button10" :
+        setform(form.map((form) =>
+        form.circle === 10 ? { ...form, x: data.x, y: data.y} : form))
         return(
           SetPositionList(PositionList.map((position) =>
             position.circle === 10 ? { ...position, x: data.x, y: data.y} : position))
@@ -1330,16 +1324,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[0].x, y:PositionList&&PositionList[0].y}}
-          onDrag = {(e, data) => {
-            onDragHandler1(data)
-            //onFormationHandler(data)
-          }}
+          onDrag = {(e, data) => { onDragHandler1(data) }}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
-          onStop={(e, data) => {
-            trackPos(e, data)
-            //onFormationHandler(data)
-          }}
+          onStop={(e, data) => { trackPos(e, data) }}
+          position={{x: form&&form[0].x, y:form&&form[0].y}}
         >
           <div className="hexagon">
               <Button className="button"
@@ -1359,10 +1347,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status} 
-          defaultPosition={{x: PositionList&&PositionList[1].x, y: PositionList&&PositionList[1].y}}
           onDrag = {(e, data) => onDragHandler2(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[1].x, y:form&&form[1].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1382,10 +1370,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[2].x, y: PositionList&&PositionList[2].y}}
           onDrag = {(e, data) => onDragHandler3(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[2].x, y:form&&form[2].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1405,10 +1393,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[3].x, y: PositionList&&PositionList[3].y}}
           onDrag = {(e, data) => onDragHandler4(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[3].x, y:form&&form[3].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1428,10 +1416,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[4].x, y: PositionList&&PositionList[4].y}}
           onDrag = {(e, data) => onDragHandler5(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[4].x, y:form&&form[4].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1451,10 +1439,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[5].x, y: PositionList&&PositionList[5].y}}
           onDrag = {(e, data) => onDragHandler6(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[5].x, y:form&&form[5].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1474,10 +1462,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[6].x, y: PositionList&&PositionList[6].y}}
           onDrag = {(e, data) => onDragHandler7(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[6].x, y:form&&form[6].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1497,10 +1485,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status}
-          defaultPosition={{x: PositionList&&PositionList[7].x, y: PositionList&&PositionList[7].y}}
           onDrag = {(e, data) => onDragHandler8(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[7].x, y:form&&form[7].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1520,10 +1508,10 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status} 
-          defaultPosition={{x: PositionList&&PositionList[8].x, y: PositionList&&PositionList[8].y}}
           onDrag = {(e, data) => onDragHandler9(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[8].x, y:form&&form[8].y}}
         >
           <div className="hexagon">
             <Button className="button"
@@ -1543,10 +1531,11 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       {PositionList &&
         <Draggable 
           disabled={Status} 
-          defaultPosition={{x: PositionList&&PositionList[9].x, y: PositionList&&PositionList[9].y}}
+          //defaultPosition={{x: PositionList&&PositionList[9].x, y: PositionList&&PositionList[9].y}}
           onDrag = {(e, data) => onDragHandler10(data)}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
           onStop={(e, data) => trackPos(e, data)}
+          position={{x: form&&form[9].x, y:form&&form[9].y}}
         >
           <div className="hexagon">
             <Button className="button"
