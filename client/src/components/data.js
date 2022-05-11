@@ -16,6 +16,7 @@ export const PlayersList = [
         Change: true,//필요없음
         like: "ST",//선호포지션
         select: "ST",//현재 선택한 포지션
+        email: "부기@naver.com"
         //이메일 -> 선수정보로 유저정보 찾기위한 도구일뿐/ 넣을지 말지는 미정
         //팀네임
     },
@@ -25,7 +26,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "준혁@naver.com"
     },
     {
         back: 33,
@@ -33,7 +35,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "성훈@naver.com"
     },
     {
         back: 44,
@@ -41,7 +44,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "LW"
+        select: "LW",
+        email: "성록@naver.com"
     },
     {
         back: 15,
@@ -49,7 +53,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "지원@naver.com"
     },
     {
         back: 26,
@@ -57,7 +62,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "찬근@naver.com"
     },
     {
         back: 37,
@@ -65,7 +71,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "LW"
+        select: "LW",
+        email: "진성@naver.com"
     },
     {
         back: 28,
@@ -73,7 +80,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "지현@naver.com"
     },
     {
         back: 19,
@@ -81,7 +89,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "재이@naver.com"
     },
     {
         back: 31,
@@ -89,7 +98,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "신승우@naver.com"
     },
     {
         back: 41,
@@ -97,7 +107,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "승태@naver.com"
     },
     {
         back: 62,
@@ -105,7 +116,8 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "길우@naver.com"
     },
     {
         back: 73,
@@ -113,7 +125,8 @@ export const PlayersList = [
         already: true,
         Change: true,
         like: "ST",
-        select: "RW"
+        select: "RW",
+        email: "동기@naver.com"
     },
     {
         back: 84,
@@ -121,6 +134,7 @@ export const PlayersList = [
         already: false,
         Change: true,
         like: "ST",
-        select: "ST"
+        select: "ST",
+        email: "승우@naver.com"
     },
 ];

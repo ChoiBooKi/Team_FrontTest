@@ -4,6 +4,10 @@ import Draggable from 'react-draggable';
 import axios from 'axios';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
@@ -14,22 +18,73 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
   const [PositionList, SetPositionList] = useState(null)//원 번호, 원의 좌표, 원에 등록되어있던 선수 등
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
   const [buttonNum, setbuttonNum] = useState() //각 원의 인덱스를 의미
+  const [Formation, SetFormation] = useState('포메이션 선택') //드롭다운 안에 값
+  const [Status, SetStatus] = useState(true)//편집완료 or 편집 상태변경
+  const [form, setForm] = useState()
+
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
+
   const handleClick = (event) => { //리스트 띄우고, 선택한 원의 번호 저장
     setAnchorEl(event.currentTarget);
     setbuttonNum(event.currentTarget.id)
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
+
   const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-
-  const [Status, SetStatus] = useState(true)
 
   const onStatusHandler = () => {//편집 버튼 누르면 상태 변화
     SetStatus(!Status)
   }
   
+  const onFormationHandler = (e) => {//드롭다운 포메이션 누르면 발생
+    SetFormation(e.target.value)
+    console.log(e.target.value)
+    axios.get('/api/formation'
+    // ,{
+    //   params: {
+    //     formation: e.target.value
+    //   }
+    // }
+    )
+    .then(res => {
+      //받아온 값으로 x,y값 변경해줘야됨
+      console.log(res.data)
+      setForm(res.data)
+      // for(let i = 0; i<11; i++){
+      //   SetPositionList(PositionList.map((position) =>
+      //   position.circle === i+1 ? { ...position, x: res.data[i].x, y: res.data[i].y} : position))
+      // }
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 1 ? { ...position, x: res.data[0].x, y: res.data[0].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 2 ? { ...position, x: res.data[1].x, y: res.data[1].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 3 ? { ...position, x: res.data[2].x, y: res.data[2].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 4 ? { ...position, x: res.data[3].x, y: res.data[3].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 5 ? { ...position, x: res.data[4].x, y: res.data[4].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 6 ? { ...position, x: res.data[5].x, y: res.data[5].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 7 ? { ...position, x: res.data[6].x, y: res.data[6].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 8 ? { ...position, x: res.data[7].x, y: res.data[7].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 9 ? { ...position, x: res.data[8].x, y: res.data[8].y} : position))
+      // SetPositionList(PositionList.map((position) =>
+      // position.circle === 10 ? { ...position, x: res.data[9].x, y: res.data[9].y} : position))
+    })
+  }
+  // if(form){
+  //   for(let i = 0; i<11; i++){
+  //     SetPositionList(PositionList.map((position) =>
+  //     position.circle === i+1 ? { ...position, x: form[i].x, y: form[i].y} : position))
+  //   }
+  // }
+  // console.log(PositionList)
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("/api/readPosition")//쿼리로 팀이름 넣어줘야됨
     SetPositionList(res1.data)
@@ -1214,14 +1269,30 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
 
   return(
     <div className="formation">
+      <div>
+        <button onClick={ () => {
+          onStatusHandler()
+          sendDB()
+        }}>
+          {Status ? "편집" : "편집 완료"}
+        </button>
 
-      <button onClick={ () => {
-        onStatusHandler()
-        sendDB()
-      }}>
-        {Status ? "편집" : "편집 완료"}
-      </button>
-
+        <Box sx={{ minWidth: 120, float: 'right' }}>
+          <FormControl>
+            <InputLabel id="Formation">포메이션</InputLabel>
+            <Select
+              onChange={onFormationHandler}
+              value={Formation}
+            >
+              <MenuItem value='포메이션 선택'>포메이션 선택</MenuItem>
+              {/* 메뉴아이템에 있는 벨류가 select의 벨류로 돼야 에러가 안뜸 왜이러는지는 모르겠음 */}
+              <MenuItem value={4222}>4-2-2-2</MenuItem>
+              <MenuItem value={442}>4-4-2</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+      
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

@@ -9,6 +9,8 @@ const { auth } = require('./middleware/auth')
 const { User } = require("./models/User")
 const { SoccerUser } = require("./models/Soccer")
 const { Positions } = require("./models/Position")
+const { Info } = require("./models/info")
+const { formation } = require("./models/formation")
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -137,7 +139,6 @@ app.get('/api/hello', (req, res) => {
 // })
 
 app.get('/api/readUser', (req, res) => {
-  //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
   SoccerUser.find()
   .then((users) => {
     res.json(users);
@@ -149,8 +150,31 @@ app.get('/api/readUser', (req, res) => {
 })
 
 app.get('/api/readPosition', (req, res) => {
-  //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
   Positions.find()
+  .then((users) => {
+    res.json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+})
+
+app.get('/api/readInfo', (req, res) => {
+  const email = req.query.email
+  Info.find({email: email})
+  .then((users) => {
+    res.json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+})
+
+app.get('/api/formation', (req, res) => {
+  //const formation = req.query.email
+  formation.find()
   .then((users) => {
     res.json(users);
   })

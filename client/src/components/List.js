@@ -9,7 +9,6 @@ import {info} from './data3'
 function List () {
   const [PlayerList, SetPlayerList] = useState(null);
   const [Modalis, SetModalis] = useState(false)
-  const [Info, SetInfo] = useState(info)
   const [Content, SetContent] =useState()
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res = await axios.get("/api/readUser")//선수정보
@@ -28,9 +27,14 @@ function List () {
     SetModalis(false)
   }
   const ModalOpen = (e) => {
-    Info.map((player) =>//현재 발생한 이벤트 선수의 id값이랑 info에 저장된 id값이 같으면 그 같은 사람의 데이터를 저장
-      player.id === e.currentTarget.id ? SetContent({info: player.info, name: player.name, back: player.back}) : null
-    )
+    axios.get('/api/readInfo',{ // email 받아와서 백으로 보내고 백에서 email로 구분해서 정보 보내줌
+      params: {
+        email: e.currentTarget.id
+      }
+    }).then(res => {
+        console.log(res.data)
+        SetContent(res.data[0])
+      })
     //***************************useEffect로 바로 받아오는게 아니라 i버튼 클릭할 때 id값으로 get 요청해서 받아온 값 띄우는걸로 변경, 쿼리에는 id로 넘기기
     SetModalis(true)
   }
@@ -38,7 +42,12 @@ function List () {
     <div>
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
         {Content && Content.name}
-        {Content && Content.back}
+        {Content && Content.gender}
+        {Content && Content.email}
+        {Content && Content.nickname}
+        {Content && Content.region}
+        {Content && Content.like}
+        {Content && Content.player}
         {Content && Content.info}
       </Modal>
       <div className='list'>
@@ -52,7 +61,7 @@ function List () {
                   {player.name}
                   {player.select}
                   {player.back}
-                  <button id={player._id} onClick={(e) => ModalOpen(e)}>i</button>
+                  <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
                 </li>
               )
             } 
@@ -63,7 +72,7 @@ function List () {
                   {player.name}
                   {player.like}
                   {player.back}
-                  <button id={player._id} onClick={(e) => ModalOpen(e)}>i</button>
+                  <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
                 </li>
               )
             }
