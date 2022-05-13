@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 
 function TeamInfo () {
   const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-  const [TeamInfo, SetTeamInfo] = useState('가나다라마바사아자차카타파하')
+  const [TeamInfo, SetTeamInfo] = useState('가나다라마바사아자차카타파하가나다라마바사아자차카타파하')
   const fileInput = useRef(null)
 
   const onChange = (e) => {
@@ -43,7 +43,7 @@ function TeamInfo () {
         ref={fileInput}/>
       <div className='teaminfo'>
         <h2>팀 소개글</h2>
-        <textarea label>
+        <textarea>
           {TeamInfo}
         </textarea>
       </div>
@@ -59,7 +59,9 @@ function TeamInfo () {
         <h2>활동지역</h2>
         <p>{TeamInfo}</p>
       </div>
-      
+      <div style={{backgroundColor:'red'}}>
+        안녕
+      </div>
     </div>
   )
 }
