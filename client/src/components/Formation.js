@@ -18,9 +18,9 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
   const [PositionList, SetPositionList] = useState(null)//원 번호, 원의 좌표, 원에 등록되어있던 선수 등
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
   const [buttonNum, setbuttonNum] = useState() //각 원의 인덱스를 의미
-  const [Formation, SetFormation] = useState('포메이션 선택') //드롭다운 안에 값
+  const [Formation, SetFormation] = useState('') //드롭다운 안에 값
   const [Status, SetStatus] = useState(true)//편집완료 or 편집 상태변경
-  const [form, setform] = useState()
+  const [form, setform] = useState()//포메이션 드롭다운 용
 
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
 
@@ -1278,7 +1278,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
               onChange={onFormationHandler}
               value={Formation}
             >
-              <MenuItem value='포메이션 선택'>포메이션 선택</MenuItem>
+              {/* <MenuItem value='포메이션 선택' disabled={true}>포메이션 선택</MenuItem> */}
               {/* 메뉴아이템에 있는 벨류가 select의 벨류로 돼야 에러가 안뜸 왜이러는지는 모르겠음 */}
               <MenuItem value={4222}>4-2-2-2</MenuItem>
               <MenuItem value={442}>4-4-2</MenuItem>
