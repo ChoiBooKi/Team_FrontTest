@@ -1272,7 +1272,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
         </button>
 
         <Box sx={{ minWidth: 120, float: 'right' }}>
-          <FormControl>
+          <FormControl fullWidth>
             <InputLabel id="Formation">포메이션</InputLabel>
             <Select
               onChange={onFormationHandler}

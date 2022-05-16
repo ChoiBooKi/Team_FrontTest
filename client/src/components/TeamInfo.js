@@ -49,15 +49,15 @@ function TeamInfo () {
       </div>
       <div className='teaminfo'>
         <h2>팀장</h2>
-        <p>{TeamInfo}</p>
-        <h2>팀 등록일</h2>
+        <div>{TeamInfo}</div>
+        {/* <h2>팀 등록일</h2>
         <p>{TeamInfo}</p>
         <h2>총 선수 수</h2>
         <p>{TeamInfo}</p>
         <h2>연령대</h2>
         <p>{TeamInfo}</p>
         <h2>활동지역</h2>
-        <p>{TeamInfo}</p>
+        <p>{TeamInfo}</p> */}
       </div>
     </div>
   )
