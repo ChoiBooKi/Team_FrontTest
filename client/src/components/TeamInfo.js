@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import "./TeamInfo.css"
 
 function TeamInfo () {
-  const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+  const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")//기본이미지
   const [TeamInfo, SetTeamInfo] = useState('가나다라마바사아자차카타파하가나다라마바사아자차카타파하')
   const fileInput = useRef(null)
 
@@ -25,16 +25,17 @@ function TeamInfo () {
   }
 
   //팀소개 글자수제한, 팀장, 팀 등록일, 총 선수 수, 연령대, 활동 지역
-  //가로 길이 안늘어나는데 왜그런지 모르겠음
   return(
     <div className='body' >
       <h1>팀명</h1>
       <Avatar 
+        className='avatar'
         alt="팀이미지" 
         src={Image} 
         sx={{ width: 200, height: 200 }} 
         onClick={()=>{fileInput.current.click()}}/>
       <input 
+        className='input'
  	      type='file' 
     	  style={{display:'none'}}
         accept='image/jpg,impge/png,image/jpeg' 
@@ -50,14 +51,14 @@ function TeamInfo () {
       <div className='teaminfo'>
         <h2>팀장</h2>
         <div>{TeamInfo}</div>
-        {/* <h2>팀 등록일</h2>
+        <h2>팀 등록일</h2>
         <p>{TeamInfo}</p>
         <h2>총 선수 수</h2>
         <p>{TeamInfo}</p>
         <h2>연령대</h2>
         <p>{TeamInfo}</p>
         <h2>활동지역</h2>
-        <p>{TeamInfo}</p> */}
+        <p>{TeamInfo}</p>
       </div>
     </div>
   )
