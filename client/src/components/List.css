@@ -1,8 +1,11 @@
 .list{
+  margin: 1%;
   width: 600px;
   height: 950px;
   background-color: aquamarine;
+  border: 10px ridge gray;
 }
+
 .selected{
   color:blue;
 }

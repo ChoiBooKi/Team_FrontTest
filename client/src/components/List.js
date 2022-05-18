@@ -35,11 +35,12 @@ function List () {
         console.log(res.data)
         SetContent(res.data[0])
       })
+    //팀정보에서는 그냥 등번호 이름 포지션만 띄우고 선수관리에서 위의 로직을 사용하는것으로 변경하였다 우선 여기에 두고 나중에 가져다쓰자
     //***************************useEffect로 바로 받아오는게 아니라 i버튼 클릭할 때 id값으로 get 요청해서 받아온 값 띄우는걸로 변경, 쿼리에는 id로 넘기기
     SetModalis(true)
   }
   return (
-    <div>
+    <div className='list'>
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
         {Content && Content.name}
         {Content && Content.gender}
@@ -50,7 +51,7 @@ function List () {
         {Content && Content.player}
         {Content && Content.info}
       </Modal>
-      <div className='list'>
+      <div>
         <h2>선수 리스트</h2>
         <ul>
           {PlayerList && PlayerList.map((player) => {

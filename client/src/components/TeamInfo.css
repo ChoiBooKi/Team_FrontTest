@@ -1,16 +1,26 @@
 .body{
-  justify-content: center;
+  /* justify-content: center; */
   display: "flex" ;
   width: 600px;
   height: 950px;
-  background-color: red;
-  align-items: center;
+  border: 2px solid black;
+  /* align-items: center; */
   margin: 1%;
 }
 .avatar{
-  position: absolute;
   left: 200px;
+  border: 2px solid black;
 }
 .avatar:hover{
   cursor: pointer;
+}
+.teaminfo{
+  /* float: left; */
+  display: flex;
+  flex-direction: column;
+  vertical-align:middle;
+  /* flex-wrap: wrap; */
+  /* margin-left: 50px;
+  margin-top: 20px;
+  margin-left: 50px; */
 }
