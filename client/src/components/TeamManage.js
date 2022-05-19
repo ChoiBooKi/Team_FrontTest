@@ -4,6 +4,7 @@ import React from 'react';
 import Formation from "./Formation"
 import List from "./List"
 import TeamInfo from './TeamInfo';
+// import ResponsiveAppBar from "./Appbar"
 
 function TeamManage () {
   // const [a, seta] = useState()

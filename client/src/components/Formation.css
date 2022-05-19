@@ -16,13 +16,6 @@
   position: absolute;
   cursor: grab;
 }
-.button:disabled {
-  /* background-color: black; */
-}
-.button1:disabled{
-  color: black;
-  background-color: black;
-}
 .hexagon {
   background-image: url("./123.png");
   width:70px;
