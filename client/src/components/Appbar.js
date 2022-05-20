@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 //import Google from "./Google";
-import image from "../img/로고.png"
+import image from "../img/로고.png"//로고 색 변경 해야됨
 
 const pages = ['팀 관리', '팀 선택', '선수 검색'];
 const settings = ['내 정보', '로그아웃'];
@@ -177,6 +177,7 @@ const ResponsiveAppBar = () => {
               sx={{ my: 2, color: "white", display: "block" }}
             >
               로그인
+              {/* 로그인 회원가입 하나로 통일하고 온클릭 이벤트 하나로 뭉쳐야됨 */}
             </Button>
             <Button
               onClick={onClick}
