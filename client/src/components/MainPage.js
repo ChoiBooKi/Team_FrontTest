@@ -2,6 +2,7 @@ import React from 'react'
 import Google from "./Google";
 import ResponsiveAppBar from "./Appbar"
 import './MainPage.css'
+import { Button } from '@mui/material';
 
 function MainPage() {
   const REST_API_KEY = "526de075efd0393b1b3dd0cbc43354ed";
@@ -14,7 +15,18 @@ function MainPage() {
       <a href={KAKAO_AUTH_URL}>Kakao Login</a>
       <Google/>
       <br/>
-      <a href="http://localhost:3000/teammanage" >팀관리</a>
+      <a href="http://localhost:3000/teammanage" className='ab'>팀관리</a>
+      <div class="wrapper" >
+        <div class="small">Sent For All Sport Teams</div>
+        <div style={{display:"flex"}}>
+          <div class="big">S</div>
+          <div class="normal">ports &nbsp;</div>
+          <div class="big">ENT</div>
+          <div class="normal">ertainment </div>
+        </div>
+        <Button class="btn">Start Now</Button>
+        <Button class="smaller">Learn more</Button>
+      </div>
     </div>
   )
 }
