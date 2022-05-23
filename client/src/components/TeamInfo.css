@@ -1,7 +1,10 @@
 .body{
   /* justify-content: center; */
-  display: "flex" ;
-  width: 600px;
+  /* display: "flex" ; */
+  background-color: white;
+  /* min-width: 600px;
+  height: 950px; */
+  min-width: 600px;
   height: 950px;
   border: 2px solid black;
   /* align-items: center; */

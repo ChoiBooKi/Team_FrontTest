@@ -10,22 +10,28 @@ import Formation from "./components/Formation"
 import axios from 'axios';
 import { useState } from "react";
 import TeamManage from "./components/TeamManage";
+import Search from "./components/Search";
+import ResponsiveAppBar from "./components/Appbar"
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/extrainfo" element={<ExtraInformation />} />
-          <Route path="/login/oauth/kakao" element={<Kakao />} />
-          <Route path="/teamleader" element={<TeamLeader/>} />
-          <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
-          <Route path="/move" element={<Formation />} />
-          <Route path="/teammanage" element={<TeamManage />} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+      <Router>
+        {/* <ResponsiveAppBar/> */}
+        <div className="App" style={{backgroundImage:"url(./img/배경.png)"}}>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/extrainfo" element={<ExtraInformation />} />
+            <Route path="/login/oauth/kakao" element={<Kakao />} />
+            <Route path="/teamleader" element={<TeamLeader/>} />
+            <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
+            <Route path="/move" element={<Formation />} />
+            <Route path="/teammanage" element={<TeamManage />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
 

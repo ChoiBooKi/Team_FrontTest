@@ -15,8 +15,9 @@ import Google from "./Google";
 import image from "../img/흰로고.png"//로고 색 변경 해야됨
 import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
+import './Appbar.css'
 
-const pages = ['팀 관리', '팀 선택', '선수 검색'];
+const pages = ['팀 관리', '팀 목록', '선수 목록'];
 const settings = ['내 정보', '로그아웃'];
 const REST_API_KEY = "526de075efd0393b1b3dd0cbc43354ed";
 const REDIRECT_URI = "http://localhost:3000/login/oauth/kakao";
@@ -64,17 +65,19 @@ const ResponsiveAppBar = () => {
   let login = 1;
 
   return (
+    //<div style={{position:"absolute"}}>
     <div>
+    {/* <div style={{backgroundColor:"#141414"}}> */}
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
         <a href={KAKAO_AUTH_URL}>Kakao Login</a>
         <Google/>
       </Modal>
-      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none'}}>
+      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', marginTop:"1%"}}>
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 , src:"../img/로고"}} /> */}
           {/* 얘가 아이콘이야 */}
           {/* <div style = {{backgroundImage:"../img/로고"}} /> */}
-          <img src={image} style={{marginLeft: "50px"}}/>
+          <img src={image} style={{marginLeft: "50px", marginRight: "30px", maxWidth:"330px"}}/>
           {/* <Typography
             variant="h6"
             noWrap
@@ -156,7 +159,8 @@ const ResponsiveAppBar = () => {
                 key={page}
                 onClick={() => handleCloseNavMenu(page)}
                 // 이건뭐지??
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                className="page"
+                sx={{ my: 2, color: 'white', display: 'block', fontSize:"2rem", marginLeft:"40px"}}
               >
                 {page}
               </Button>
@@ -197,7 +201,7 @@ const ResponsiveAppBar = () => {
             <Button
               onClick={onClick}
               key="login"
-              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px"}}
+              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px", fontSize:"1.25rem"}}
             >
               로그인/회원가입
               {/* 로그인 회원가입 하나로 통일하고 온클릭 이벤트 하나로 뭉쳐야됨 */}

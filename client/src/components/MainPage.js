@@ -20,7 +20,7 @@ function MainPage() {
         <div class="small">Sent For All Sport Teams</div>
         <div style={{display:"flex"}}>
           <div class="big">S</div>
-          <div class="normal">ports &nbsp;</div>
+          <div class="normal">ports&nbsp;</div>
           <div class="big">ENT</div>
           <div class="normal">ertainment </div>
         </div>
