@@ -2,9 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  justify-content: space-evenly;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 1%;
+  flex-direction:row-reverse;
+  /* justify-content: space-evenly; */
+  margin-left: 3%;
+  margin-right: 3%;
+  /* margin-top: 1%; */
+  padding-top: 4%;
+  padding-right: 2%;
   border-radius: 15px;
+  height: 75vh;
 }

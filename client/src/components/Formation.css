@@ -1,9 +1,10 @@
 .formation {
-  min-width: 600px;
-  height: 950px;
-  background-image: url(https://velog.velcdn.com/images%2Fqnrl3442%2Fpost%2F733d5e03-5531-4e99-98e6-6f9a05c26c15%2Fformation.png);
+  min-width: 620px;
+  height: 875px;
+  /* background-image: url(https://velog.velcdn.com/images%2Fqnrl3442%2Fpost%2F733d5e03-5531-4e99-98e6-6f9a05c26c15%2Fformation.png); */
+    background-image: url(../img/축구장.png);
   margin: 1%;
-  border: 10px ridge gray;
+  border: 2px solid black;
 }
 .button {
   width:70px;

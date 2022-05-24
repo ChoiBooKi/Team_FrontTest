@@ -1,9 +1,9 @@
 .list{
   margin: 1%;
-  min-width: 600px;
-  height: 950px;
+  min-width: 620px;
+  height: 875px;
   background-color: aquamarine;
-  border: 10px ridge gray;
+  border: 2px solid black;
 }
 
 .selected{

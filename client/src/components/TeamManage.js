@@ -38,9 +38,9 @@ function TeamManage () {
     <div className='TeamManage'>
       {/* <Root className="box"> */}
       <div className="box">
-        {<TeamInfo />}
-        {<Formation />}
         {<List />}
+        {<Formation />}
+        {<TeamInfo />}
       {/* </Root> */}
       </div>
     </div>

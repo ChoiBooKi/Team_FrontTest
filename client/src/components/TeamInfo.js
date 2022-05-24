@@ -28,7 +28,7 @@ function TeamInfo () {
   return(
     <div className='body' >
       <h1>팀명</h1>
-      <Avatar 
+      {/* <Avatar 
         className='avatar'
         alt="팀이미지" 
         src={Image} 
@@ -41,21 +41,21 @@ function TeamInfo () {
         accept='image/jpg,impge/png,image/jpeg' 
         name='profile_img'
         onChange={onChange}
-        ref={fileInput}/>
+        ref={fileInput}/> */}
       <div className='teaminfo'>
         <h2 style={{marginRight:"50%", marginTop:"10%"}}>팀 소개</h2>
-        <textarea 
+        {/* <textarea 
           maxlength="200" 
           style={{resize: "none", width: "400px", marginLeft: "100px", border: "2px solid black",   borderRadius:"10px"}}
           rows="6">
           {TeamInfo}
-        </textarea>
+        </textarea> */}
         <div style={{display:"flex"}}>
           {/* 각각 가로로 보이게 해야됨 지금너무 야매스타일 */}
           <h2 style={{margin:"5%", marginLeft:"17%"}}>팀장</h2>
           <div style={{marginTop:"5.5%"}}>{TeamInfo}</div>
         </div>
-        <div style={{display:"flex"}}>
+        {/* <div style={{display:"flex"}}>
           <h2 style={{margin:"5%", marginLeft:"17%"}}>팀 등록일</h2>
           <p style={{marginTop:"5.5%"}}>{TeamInfo}</p>
         </div>
@@ -70,7 +70,7 @@ function TeamInfo () {
         <div style={{display:"flex"}}>
           <h2 style={{margin:"5%", marginLeft:"17%"}}>활동지역</h2>
           <p style={{marginTop:"5.5%"}}>{TeamInfo}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )
