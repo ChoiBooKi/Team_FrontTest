@@ -6,7 +6,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -65,38 +64,19 @@ const ResponsiveAppBar = () => {
   let login = 1;
 
   return (
-    //<div style={{position:"absolute"}}>
     <div>
-    {/* <div style={{backgroundColor:"#141414"}}> */}
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
         <a href={KAKAO_AUTH_URL}>Kakao Login</a>
         <Google/>
-      </Modal>
+      </Modal> 
+      {/* 로그인 회원가입 버튼 누르면 나오는 모달 */}
+      
       <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', padding: "1%"}}>
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 , src:"../img/로고"}} /> */}
-          {/* 얘가 아이콘이야 */}
-          {/* <div style = {{backgroundImage:"../img/로고"}} /> */}
-          <a href='/'><img src={image} style={{marginLeft: "50px", marginRight: "30px", maxWidth:"330px"}}/></a>
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            ㅇㅇ
-          </Typography> 얘는 필요가 없는데 위에있는 매개변수들 참고하자*/}
-          {/* 얘는 평소에 나오는 로고 */}
-          {login === 1 ?
+          <a href='/'><img src={image} alt ="에러입니다" style={{marginLeft: "50px", marginRight: "30px", maxWidth:"250px"}}/></a>
+          {/* SENT로고 */}
+
+          {login === 1 ? 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
               <IconButton
                 size="large"
@@ -134,45 +114,33 @@ const ResponsiveAppBar = () => {
               </Menu>
             </Box>
           : null }
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> 얘는 작아지면 나오는 아이콘 */}
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            얘는 작아지면 나오는 로고
-          </Typography> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
-            {login === 1 ? pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleCloseNavMenu(page)}
-                // 이건뭐지??
-                className="page"
-                sx={{ my: 2, color: 'white', display: 'block', fontSize:"2rem", marginLeft:"40px"}}
-              >
-                {page}
-              </Button>
-            )): null}
+          {/* 로그인이 되어 있을때 페이지 이동 버튼 나오고 로그인 안되어 있으면 아무것도 안나옴 */}
+          {/* 이 위에 태그는 페이지가 작을때 나오는 햄버거 메뉴 */}
+
+          {login === 1 ? 
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={() => handleCloseNavMenu(page)}
+                  className="page"
+                  sx={{ my: 2, color: 'white', display: 'block', fontSize:"25pt", marginLeft:"40px"}}
+                >
+                  {page}
+                </Button>
+            ))}
           </Box>
+          : null}
+          {/* 로그인이 되어 있을때 페이지 이동 버튼 나오고 로그인 안되어 있으면 아무것도 안나옴 */}
+          {/* 이 위에는 페이지가 클 때 나오는 페이지 이동 버튼 */}
+
           {login === 1 ? 
             <Box sx={{ flexGrow: 0 , mr: 5}}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                  {/* 로그인 돼있으면 아바타 안돼있으면 로그인/회원가입 띄우기 */}
                 </IconButton>
+                {/* 여기 위에 아바타를 해당 선수의 아바타 사진으로 넣어주야아 한다 */}
               </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}
@@ -196,18 +164,18 @@ const ResponsiveAppBar = () => {
                   </MenuItem>
                 ))}
               </Menu>
+              {/* 알람 */}
             </Box>
             : 
             <Button
               onClick={onClick}
               key="login"
-              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px", fontSize:"1.25rem"}}
+              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px", fontSize:"20pt",marginLeft: "1830px"}}
             >
               로그인/회원가입
-              {/* 로그인 회원가입 하나로 통일하고 온클릭 이벤트 하나로 뭉쳐야됨 */}
             </Button>
             }
-            {/* 로그인 회원가입 클릭해서 기능구현 */}
+            {/* 로그인 돼있으면 아바타 안돼있으면 로그인/회원가입 띄우기 */}
         </Toolbar>
       </AppBar>
     </div>

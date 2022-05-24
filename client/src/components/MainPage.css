@@ -10,11 +10,6 @@
   font-family: "E_M";
   src: url("../fonts/ELAND_M.ttf");
 }
-.main {
-  width: 100%;
-  min-height: 100vh;
-  background-image: url(../img/배경.png);
-}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -25,24 +20,24 @@
 .small {
   font-family: "E_L";
   color: white;
-  font-size: 3rem;
+  font-size: 35pt;
   margin-bottom: 50px;
 }
 .big {
   font-family: "E_B";
   color: #fff100;
-  font-size: 8rem;
+  font-size: 90pt;
 }
 .normal {
   font-family: "E_B";
   color: white;
-  font-size: 8rem;
+  font-size: 90pt;
 }
 .btn{
   font-family: "E_M";
   margin-top: 50px;
   color: white;
-  font-size: 2rem;
+  font-size: 25pt;
   padding: 20px 60px 20px 60px;
   border: #fff100 solid 2px;
   background-color: rgba(0, 0, 0, 0);
@@ -50,7 +45,7 @@
 .smaller {
   font-family: "E_L";
   color: white;
-  font-size: 1.2rem;
+  font-size: 15pt;
   margin-top: 20px;
   background-color: rgba(0, 0, 0, 0);
   border: rgba(0, 0, 0, 0);;

@@ -4,7 +4,9 @@ import React from 'react';
 import Formation from "./Formation"
 import List from "./List"
 import TeamInfo from './TeamInfo';
-import ResponsiveAppBar from "./Appbar"
+// import ResponsiveAppBar from "./Appbar"
+// import { styled } from "@mui/material/styles";
+// import { red, green, purple, blue } from "@mui/material/colors";
 import './TeamManage.css'
 
 function TeamManage () {
@@ -15,16 +17,31 @@ function TeamManage () {
   //   seta(res.data)
   // }, [])
   // console.log(a)
+  // const Root = styled("div")(({ theme }) => ({
+  //   padding: theme.spacing(1),
+  //   [theme.breakpoints.down("md")]: {
+  //     backgroundColor: red[500],
+  //   },
+  //   [theme.breakpoints.up("md")]: {
+  //     backgroundColor: blue[500],
+  //     flexDirection: "column",
+  //   },
+  //   [theme.breakpoints.up("lg")]: {
+  //     backgroundColor: green[500],
+  //     color: red,
+  //   },
+  // }));
 
   return(
     // <div style={{ display: "flex", justifyContent: "space-evenly" }}> 
     // 요소간 간격 동일하게 맞춰줌
     <div className='TeamManage'>
-      <ResponsiveAppBar/>
+      {/* <Root className="box"> */}
       <div className="box">
         {<TeamInfo />}
         {<Formation />}
         {<List />}
+      {/* </Root> */}
       </div>
     </div>
   )

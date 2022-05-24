@@ -1,6 +1,5 @@
 import React from 'react'
 import Google from "./Google";
-import ResponsiveAppBar from "./Appbar"
 import './MainPage.css'
 import { Button } from '@mui/material';
 
@@ -11,7 +10,6 @@ function MainPage() {
 
   return (
     <div className='main'>
-      <ResponsiveAppBar/>
       <a href={KAKAO_AUTH_URL}>Kakao Login</a>
       <Google/>
       <br/>

@@ -1,10 +1,6 @@
-.TeamManage{
-  background-image: url(../img/배경.png);
-  min-height: 100vh;
-  width: 100%;
-}
 .box{
   display: flex;
+  flex-wrap: wrap;
   background-color: white;
   justify-content: space-evenly;
   margin-left: 5%;
