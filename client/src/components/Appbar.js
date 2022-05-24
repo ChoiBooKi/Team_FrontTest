@@ -72,12 +72,12 @@ const ResponsiveAppBar = () => {
         <a href={KAKAO_AUTH_URL}>Kakao Login</a>
         <Google/>
       </Modal>
-      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', marginTop:"1%"}}>
+      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', padding: "1%"}}>
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 , src:"../img/로고"}} /> */}
           {/* 얘가 아이콘이야 */}
           {/* <div style = {{backgroundImage:"../img/로고"}} /> */}
-          <img src={image} style={{marginLeft: "50px", marginRight: "30px", maxWidth:"330px"}}/>
+          <a href='/'><img src={image} style={{marginLeft: "50px", marginRight: "30px", maxWidth:"330px"}}/></a>
           {/* <Typography
             variant="h6"
             noWrap
