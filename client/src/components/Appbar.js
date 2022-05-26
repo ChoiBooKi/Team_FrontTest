@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -26,8 +26,17 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [Modalis, SetModalis] = useState(false)
+  const [Alarm, SetAlarm] = useState(null)
 
   const navigate = useNavigate()
+
+  useEffect(() => { 
+    // const fetchData = async () => {
+    //   const res = await axios.get("/api/alarm")
+    //   SetAlarm(res);
+    // }
+    // setInterval(() => fetchData(), 5000); // 5초마다 데이터 update
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -135,6 +144,13 @@ const ResponsiveAppBar = () => {
           {/* 이 위에는 페이지가 클 때 나오는 페이지 이동 버튼 */}
 
           {login === 1 ? 
+          <>
+            {Alarm === null ? 
+              <div style={{width:"50px", height:"50px", backgroundColor:"red"}}></div>
+              :
+              <div style={{width:"50px", height:"50px", backgroundColor:"blue"}}></div>
+            }
+            {/* 메뉴 넣어놓고 map으로 알림내용 보여주도록 만들어야됨 */}
             <Box sx={{ flexGrow: 0 , mr: 5}}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -166,6 +182,7 @@ const ResponsiveAppBar = () => {
               </Menu>
               {/* 알람 */}
             </Box>
+          </>
             : 
             <Button
               onClick={onClick}
