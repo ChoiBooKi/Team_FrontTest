@@ -1,7 +1,14 @@
 .list{
-  margin: 1%;
-  min-width: 620px;
-  height: 875px;
+  margin-left: 1%;
+  /* min-width: 620px;
+  height: 875px; */
+  /* width: 23.35%;
+  height: 88.5%;
+  min-width: 20rem;
+  min-height: 32rem; */
+  min-width: 23.35%;
+  width: 20vw;
+  height: 31.3vw;
   background-color: aquamarine;
   border: 2px solid black;
 }

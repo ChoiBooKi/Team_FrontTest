@@ -18,7 +18,7 @@ function App() {
         <header>
           <ResponsiveAppBar/>
         </header>
-        <body>
+        {/* <body> */}
           <div className="App">
             <Routes>
               <Route path="/" element={<MainPage />} />
@@ -31,7 +31,7 @@ function App() {
               <Route path="/search" element={<Search />} />
             </Routes>
           </div>
-        </body>
+        {/* </body> */}
         {/* <footer>
           생길예정
         </footer> */}

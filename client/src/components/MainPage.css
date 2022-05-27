@@ -33,7 +33,7 @@
   color: white;
   font-size: 90pt;
 }
-.btn{
+#btn{
   font-family: "E_M";
   margin-top: 50px;
   color: white;
@@ -42,7 +42,7 @@
   border: #fff100 solid 2px;
   background-color: rgba(0, 0, 0, 0);
 }
-.smaller {
+#smaller {
   font-family: "E_L";
   color: white;
   font-size: 15pt;

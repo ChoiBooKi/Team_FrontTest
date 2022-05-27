@@ -14,16 +14,16 @@ function MainPage() {
       <Google/>
       <br/>
       <a href="http://localhost:3000/teammanage" className='ab'>팀관리</a>
-      <div class="wrapper" >
-        <div class="small">Sent For All Sport Teams</div>
+      <div className="wrapper" >
+        <div className="small">Sent For All Sport Teams</div>
         <div style={{display:"flex"}}>
-          <div class="big">S</div>
-          <div class="normal">ports&nbsp;</div>
-          <div class="big">ENT</div>
-          <div class="normal">ertainment </div>
+          <div className="big">S</div>
+          <div className="normal">ports&nbsp;</div>
+          <div className="big">ENT</div>
+          <div className="normal">ertainment </div>
         </div>
-        <Button class="btn">Start Now</Button>
-        <Button class="smaller">Learn more</Button>
+        <Button id="btn">Start Now</Button>
+        <Button id="smaller">Learn more</Button>
       </div>
     </div>
   )

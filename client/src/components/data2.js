@@ -170,3 +170,16 @@ export const positionsList = [
 //     y : 0,
 //   },
 // ]
+
+[
+  {
+    from: "team",
+    name: "팀부기",
+    teamname: "SENT"
+  },
+  {
+    from: "player",
+    name: "선부기",
+    teamname: "선수"
+  }
+]

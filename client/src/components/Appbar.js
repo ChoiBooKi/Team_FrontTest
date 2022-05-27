@@ -11,10 +11,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Google from "./Google";
-import image from "../img/흰로고.png"//로고 색 변경 해야됨
+import image from "../img/흰로고.png"
 import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
 import './Appbar.css'
+import axios from 'axios';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const pages = ['팀 관리', '팀 목록', '선수 목록'];
 const settings = ['내 정보', '로그아웃'];
@@ -25,19 +28,20 @@ const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElAlarm, setAnchorElAlarm] = useState(null);
   const [Modalis, SetModalis] = useState(false)
   const [Alarm, SetAlarm] = useState(null)
 
   const navigate = useNavigate()
 
   useEffect(() => { 
-    // const fetchData = async () => {
-    //   const res = await axios.get("/api/alarm")
-    //   SetAlarm(res);
-    // }
-    // setInterval(() => fetchData(), 5000); // 5초마다 데이터 update
+    const fetchData = async () => {
+      const res = await axios.get("/api/alarm")
+      SetAlarm(res.data);
+    }
+    setInterval(() => fetchData(), 5000); // 5초마다 데이터 update
   }, []);
-
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -58,10 +62,22 @@ const ResponsiveAppBar = () => {
         console.log('선수검색')
         break
       default:
-        alert('에러가 발생했습니다.')
         break
     }
   };
+
+  const removeAlarm = (id) => {
+    console.log(id)
+    axios.delete('/api/deletealarm', {
+      params: {
+        _id: id
+      }
+    })
+    .then(res => {
+      SetAlarm(res.data)
+    })
+    .catch(err => console.log(err))
+  }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -99,7 +115,7 @@ const ResponsiveAppBar = () => {
               </IconButton>
               <Menu
                 id="menu-appbar"
-                anchorEl={anchorElNav}
+                anchorEl={anchorElAlarm}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'left',
@@ -109,7 +125,7 @@ const ResponsiveAppBar = () => {
                   vertical: 'top',
                   horizontal: 'left',
                 }}
-                open={Boolean(anchorElNav)}
+                open={Boolean(anchorElAlarm)}
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: 'block', md: 'none' },
@@ -145,10 +161,76 @@ const ResponsiveAppBar = () => {
 
           {login === 1 ? 
           <>
-            {Alarm === null ? 
-              <div style={{width:"50px", height:"50px", backgroundColor:"red"}}></div>
+            {Alarm === null || Alarm.length === 0 ? 
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <NotificationsNoneIcon />
+                </IconButton>
+                <Menu
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+              >
+                <div>새로운 알림이 없습니다.</div>
+              </Menu>
+            </div>
               :
-              <div style={{width:"50px", height:"50px", backgroundColor:"blue"}}></div>
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <NotificationsIcon />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                >
+                  {
+                    Alarm.map((alarm) => 
+                    alarm.from === "team" ? 
+                      <MenuItem key={alarm._id} onClick={() => removeAlarm(alarm._id)}>
+                        <Typography textAlign="center">'{alarm.teamname}'에서 팀장 '{alarm.name}'가(이) 팀 가입 신청을 권유 하였습니다.</Typography>
+                        {/* 온클릭이벤트에서 key로 어떤 알림인지 구분한다음 클릭하면 바로 백한테 해당 알람 remove 요청 */}
+                      </MenuItem>
+                    :
+                      <MenuItem key={alarm._id} onClick={() => removeAlarm(alarm._id)}>
+                        <Typography textAlign="center">선수 {alarm.name}'가(이) 팀 가입 신청을 하였습니다.</Typography>
+                      </MenuItem>
+                    )
+                  }
+                </Menu>
+              </div>
             }
             {/* 메뉴 넣어놓고 map으로 알림내용 보여주도록 만들어야됨 */}
             <Box sx={{ flexGrow: 0 , mr: 5}}>
@@ -180,7 +262,6 @@ const ResponsiveAppBar = () => {
                   </MenuItem>
                 ))}
               </Menu>
-              {/* 알람 */}
             </Box>
           </>
             : 
