@@ -1,11 +1,15 @@
-import React, { useState, useRef }  from 'react';
+import React, { useState, useRef, useEffect }  from 'react';
 import Avatar from '@mui/material/Avatar';
 import "./TeamInfo.css"
+import axios from 'axios';
 
 function TeamInfo () {
   const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")//기본이미지
   const [TeamInfo, SetTeamInfo] = useState('안녕안녕')
+  const [Status, SetStatus] = useState(true)
   const fileInput = useRef(null)
+
+  // useEffect(axios.get으로 팀인포 불러와야됨)
 
   const onChange = (e) => {
     if(e.target.files[0]){
@@ -24,9 +28,25 @@ function TeamInfo () {
     reader.readAsDataURL(e.target.files[0])
   }
 
+  const onStatusHandler = () => {
+    SetStatus(!Status)
+    if(Status === false){
+      console.log('편집완료 누름')
+      // axios.post로 변경된거 보내야됨
+    } else {
+      console.log('편집누름')
+      // axios.get으로 받아와야됨
+    }
+  }
+
   //팀소개 글자수제한, 팀장, 팀 등록일, 총 선수 수, 연령대, 활동 지역
   return(
     <div className='body' >
+      <button onClick={ () => {
+          onStatusHandler()
+      }}>
+        {Status ? "편집" : "편집 완료"}
+      </button>
       <h1>팀명</h1>
       <Avatar 
         className='avatar'
