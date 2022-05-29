@@ -182,4 +182,16 @@ export const positionsList = [
     name: "선부기",
     teamname: "선수"
   }
+] //알림 정보
+
+[
+  {
+    teamname: "SENT",
+    intro: "안녕하세요. SENT 입니다. 저희팀은 이러쿵 저러쿵 멋지고 잘생긴 사람만 있답니다.",
+    leader: "차준혁",
+    date: "2022-05-29",
+    numofplayer: 9,
+    age: "20대 중반",
+    region: "경기도 수원시"
+  }
 ]

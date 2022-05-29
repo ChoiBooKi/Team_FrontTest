@@ -12,6 +12,7 @@ const { Positions } = require("./models/Position")
 const { Info } = require("./models/info")
 const { formation } = require("./models/formation")
 const { alarm } = require("./models/alarm")
+const { teaminfo } = require('./models/teaminfo')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -187,6 +188,17 @@ app.get('/api/formation', (req, res) => {
 
 app.get('/api/alarm', (req, res) => {
   alarm.find()
+  .then((users) => {
+    res.json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+})
+
+app.get('/api/teamInfo', (req, res) => {
+  teaminfo.find()
   .then((users) => {
     res.json(users);
   })

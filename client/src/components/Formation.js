@@ -57,7 +57,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
       setform(res.data)
     })
   }
-  console.log(form)
+  // console.log(form)
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res1 = await axios.get("/api/readPosition")//쿼리로 팀이름 넣어줘야됨
     SetPositionList(res1.data)
