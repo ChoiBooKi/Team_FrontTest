@@ -21,6 +21,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
   const [Formation, SetFormation] = useState('') //드롭다운 안에 값
   const [Status, SetStatus] = useState(true)//편집완료 or 편집 상태변경
   const [form, setform] = useState()//포메이션 드롭다운 용
+  // const [xy, setxy] = useState({x:0, y:0})
 
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
 
@@ -980,6 +981,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
     } else if(data.x>80 && data.y > 560 && data.x <450){
       onContentHandler1("CB")
     }
+    // setxy({x:data.x, y:data.y})
   }
 
   const onContentHandler2 = (props) => {
@@ -1326,6 +1328,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
           disabled={Status}
           onDrag = {(e, data) => { onDragHandler1(data) }}
           bounds = {{top: 0, left: 0, right: 520, bottom: 740}}
+          //bounds = "parent"
           onStop={(e, data) => { trackPos(e, data) }}
           position={{x: form&&form[0].x, y:form&&form[0].y}}
         >
@@ -1339,6 +1342,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
                 onContextMenu={(e) => handleClick(e)}
               >
                 <div id="button1">{Content1}<br/>{Back1}<br/>{Name1}</div>
+                {/* <div>x: {xy.x.toFixed(0)}, y: {xy.y.toFixed(0)}</div>  */}
               </Button>
           </div>
         </Draggable>

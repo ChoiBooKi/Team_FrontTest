@@ -47,7 +47,7 @@ function TeamInfo () {
   //팀소개 글자수제한, 팀장, 팀 등록일, 총 선수 수, 연령대, 활동 지역
   return(
     <div className='body' >
-      <button onClick={ () => {
+      {/* <button onClick={ () => {
           onStatusHandler()
       }}>
         {Status ? "편집" : "편집 완료"}
@@ -74,12 +74,12 @@ function TeamInfo () {
           value={TeamInfo && TeamInfo[0].intro} //벨류라서 변경이 안됨
           disabled={Status}
           style={{resize: "none", width: "400px", marginLeft: "100px", border: "2px solid black",   borderRadius:"10px"}}
-          rows="6">
+          rows="6"> */}
           {/* {TeamInfo && TeamInfo.intro} */}
-        </textarea>
-        <div style={{display:"flex"}}>
+        {/* </textarea>
+        <div style={{display:"flex"}}> */}
           {/* 각각 가로로 보이게 해야됨 지금너무 야매스타일 */}
-          <h2 style={{margin:"5%", marginLeft:"17%"}}>팀장</h2>
+          {/* <h2 style={{margin:"5%", marginLeft:"17%"}}>팀장</h2>
           <div style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].leader}</div>
         </div>
         <div style={{display:"flex"}}>
@@ -98,7 +98,7 @@ function TeamInfo () {
           <h2 style={{margin:"5%", marginLeft:"17%"}}>활동지역</h2>
           <p style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].region}</p>
         </div> 
-      </div>
+      </div> */}
     </div>
   )
 }

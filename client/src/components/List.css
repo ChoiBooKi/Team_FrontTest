@@ -6,9 +6,11 @@
   height: 88.5%;
   min-width: 20rem;
   min-height: 32rem; */
-  min-width: 23.35%;
-  width: 20vw;
-  height: 31.3vw;
+  /* min-width: 23.35%;
+  width: 20vw; */
+  min-width: 350px;
+  /* height: 31.3vw; */
+  height: 490px;
   background-color: aquamarine;
   border: 2px solid black;
 }
