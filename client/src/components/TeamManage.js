@@ -41,7 +41,6 @@ function TeamManage () {
         {<List />}
         {<Formation />}
         {<TeamInfo />}
-        {<TeamInfo />}
       {/* </Root> */}
       </div>
     </div>
