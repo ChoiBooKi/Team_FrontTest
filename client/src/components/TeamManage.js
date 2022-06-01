@@ -40,6 +40,7 @@ function TeamManage () {
       <div className="box">
         {<List />}
         {<Formation />}
+        {/* 포메이션은 살려두고 포메이션 버튼으로 눌러서 변경하는 방식으로 변경 */}
         {<TeamInfo />}
       {/* </Root> */}
       </div>
