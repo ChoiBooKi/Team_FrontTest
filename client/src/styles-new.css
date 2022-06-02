@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.mainHolder {
+  display: flex;
+  justify-content: center;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.nodrag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.ant-layout-content {
+  background: #18112e;
+}
+
+.playerHolder {
+  background: #001529;
+  height: 700px;
+  border: 5px solid #2f274c;
+  max-width: 1200px;
+}
+
+.subsCard {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.subsCard .ant-card-body {
+  padding: 6px 24px;
+}
+
+.subsCard .shirtNumber {
+  margin-right: 10px;
+}
+
+.playerHolder:before {
+  /* content: " ";
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40%;
+  height: 20%;
+  border: 5px solid red;
+  transform: translateX(-50%); */
+}
+
+.customFormationCheck span {
+  color: #fff;
+}
+
+.playerCard {
+  margin-bottom: 30px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  height: 130px;
+  text-transform: uppercase;
+}
+
+.playerCard .ant-card-body .ant-card-meta-title {
+  font-size: 15px;
+  font-weight: 500;
+  /* background: #3498db; */
+  border-radius: 5px;
+  color: #ffffffd9;
+  /* border: 1px solid transparent; */
+}
+
+.smooth .playerCard {
+  transition: all 0.25s ease-in-out;
+}
+
+.playerCard:hover {
+  cursor: pointer;
+}
+
+.playerCardSubs {
+  margin-bottom: 5px;
+}
+
+.playerCard.selected > .ant-card img {
+  /* border: 1px solid #3498db; */
+  /* border: 2px solid #3498db; */
+}
+
+.playerCard.selected > .ant-card:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: 20px;
+  border: 2px solid #3498db;
+  /* -webkit-box-shadow: 5px 5px 6px -5px #3498db; */
+  /* -moz-box-shadow: 5px 5px 6px -5px#3498db; */
+  /* box-shadow: 5px 5px 6px -5px #3498db; */
+}
+
+.playerCardSubs.selected > .subsCard {
+  border: 2px solid #3498db;
+}
+
+.playerCard .avatarWrapper {
+  width: auto;
+  height: auto;
+}
+
+.playerCard .playerAvatar {
+  position: relative;
+  width: 50px;
+  margin: 5px auto;
+  border-radius: 50%;
+  border: 2px solid #9b59b6;
+}
+
+.playerCard .ant-card {
+  background: rgb(64, 24, 182);
+  background: linear-gradient(
+    225deg,
+    rgb(72 63 212) 0%,
+    rgba(42, 164, 219, 1) 100%
+  );
+  border-radius: 20px;
+  border: none;
+  padding-top: 5px;
+}
+
+.playerCard .ant-card:hover {
+  box-shadow: none;
+  /* border: none; */
+}
+
+.playerCard .ant-card:hover img {
+  opacity: 0.85;
+}
+
+.playerCard .ant-card:hover .ant-card-meta-title {
+  opacity: 0.85;
+}
+
+.playerCard .ant-card-body {
+  padding: 0 21px 15px 21px;
+}
+
+.substitutions {
+  max-height: 100vh;
+  /* overflow-y: scroll; */
+  /* border-left: 2px solid #fff; */
+}
+
+.formation .playerCard.forceTranslate {
+  /* transform: translateX(-50%) !important; */
+}
+
+.popoverContent img {
+  width: 24px;
+  height: 24px;
+}
+
+.modalTitle {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.modalTitle img {
+  width: 64px;
+  margin-right: 10px;
+}
+
+.modalTitle p {
+  font-size: 24px;
+  line-height: 64px;
+  padding: 0;
+  margin: 0;
+}
+
+.itemsWrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.itemsWrapper img {
+  width: 32px;
+  margin-right: 20px;
+}
+
+.itemsWrapper p {
+  font-size: 18px;
+  line-height: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+.modalItems {
+  display: table;
+}
+
+.modalItemWrapper {
+  float: left;
+  width: 50%;
+  margin-top: 15px;
+}
+
+.popoverContent {
+  display: none;
+  position: absolute;
+  top: 2px;
+  right: 22px;
+  display: table;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  z-index: 99;
+  /* color: #3498db; */
+}
+
+.popoverContent.hidden {
+  opacity: 0;
+}
+
+.playerCardAction {
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  /* border: 1px solid #e8a4ce; */
+  background: #ffffff;
+  color: #c55b9d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.positionBadge {
+  position: absolute;
+  color: #88c5e0;
+  top: 10px;
+  left: 10px;
+}
+
+.shirtNumberBadge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  color: #2196f3;
+  background: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 13px;
+  padding: 2px;
+  font-weight: 500;
+}

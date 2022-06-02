@@ -1,0 +1,321 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.nodrag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.playerHolder {
+  /* background: #27ae60; */
+  max-height: 100vh;
+
+  border: 5px solid #fff;
+}
+
+.subsCard {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.subsCard .ant-card-body {
+  padding: 6px 24px;
+}
+
+.subsCard .shirtNumber {
+  margin-right: 10px;
+}
+
+.playerHolder:before {
+  /* content: " ";
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40%;
+  height: 20%;
+  border: 5px solid red;
+  transform: translateX(-50%); */
+}
+
+.customFormationCheck span {
+  color: #fff;
+}
+
+.playerCard {
+  margin-bottom: 30px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  height: 130px;
+  text-transform: uppercase;
+}
+
+.playerCard .ant-card-body .ant-card-meta-title {
+  font-size: 14px;
+  background: #3498db;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.smooth .playerCard {
+  transition: all 0.25s ease-in-out;
+}
+
+.playerCard:hover {
+  cursor: pointer;
+}
+
+.playerCardSubs {
+  margin-bottom: 5px;
+}
+
+.playerCard.selected > .ant-card img {
+  /* border: 1px solid #3498db; */
+  border: 2px solid #3498db;
+}
+
+.playerCardSubs.selected > .subsCard {
+  border: 2px solid #3498db;
+}
+
+.playerCard .playerAvatar {
+  width: 50px;
+  margin: 10px auto;
+  border-radius: 50%;
+}
+
+.playerCard .ant-card {
+  background: transparent;
+  border: none;
+}
+
+.playerCard .ant-card:hover {
+  box-shadow: none;
+}
+
+.playerCard .ant-card:hover img {
+  opacity: 0.85;
+}
+
+.playerCard .ant-card:hover .ant-card-meta-title {
+  opacity: 0.85;
+}
+
+.playerCard .ant-card-body {
+  padding: 0 21px 21px 21px;
+}
+
+.substitutions {
+  max-height: 100vh;
+  /* overflow-y: scroll; */
+  /* border-left: 2px solid #fff; */
+}
+
+.formation .playerCard.forceTranslate {
+  /* transform: translateX(-50%) !important; */
+}
+
+.popoverContent img {
+  width: 24px;
+  height: 24px;
+}
+
+.modalTitle {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.modalTitle img {
+  width: 64px;
+  margin-right: 10px;
+}
+
+.modalTitle p {
+  font-size: 24px;
+  line-height: 64px;
+  padding: 0;
+  margin: 0;
+}
+
+.itemsWrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.itemsWrapper img {
+  width: 32px;
+  margin-right: 20px;
+}
+
+.itemsWrapper p {
+  font-size: 18px;
+  line-height: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+.modalItems {
+  display: table;
+}
+
+.modalItemWrapper {
+  float: left;
+  width: 50%;
+  margin-top: 15px;
+}
+
+.popoverContent {
+  display: none;
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  display: table;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  z-index: 99;
+  /* color: #3498db; */
+}
+
+.popoverContent {
+}
+
+/* ---- Formation 3-5-1 ---- */
+
+/* 
+.formation.formation-3-5-1 .playerCard:nth-child(1) {
+  top: 20px;
+  left: calc(50% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(2) {
+  top: 160px;
+  left: calc(33.3% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(3) {
+  top: 160px;
+  left: calc(66.6% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(4) {
+  top: 300px;
+  left: calc(15% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(5) {
+  top: 300px;
+  left: calc(38.5% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(6) {
+  top: 300px;
+  left: calc(61.5% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(7) {
+  top: 300px;
+  left: calc(85% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(8) {
+  top: 450px;
+  left: calc(25% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(9) {
+  top: 450px;
+  left: calc(50% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(10) {
+  top: 450px;
+  left: calc(75% - 125px);
+}
+
+.formation.formation-3-5-1 .playerCard:nth-child(11) {
+  top: 590px;
+  left: calc(50% - 125px);
+} */
+
+/* ---- Formation 3-5-1 end ---- */
+
+/* ---- Formation 4-4-2 ---- */
+
+/* .formation.formation-4-4-2 .playerCard:nth-child(1) {
+  top: 20px;
+  left: calc(33.3% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(2) {
+  top: 20px;
+  left: calc(66.6% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(3) {
+  top: 202px;
+  left: calc(15% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(4) {
+  top: 202px;
+  left: calc(38.5% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(5) {
+  top: 202px;
+  left: calc(61.5% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(6) {
+  top: 202px;
+  left: calc(85% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(7) {
+  top: 375px;
+  left: calc(15% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(8) {
+  top: 375px;
+  left: calc(38.5% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(9) {
+  top: 375px;
+  left: calc(61.5% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(10) {
+  top: 375px;
+  left: calc(85% - 125px);
+}
+
+.formation.formation-4-4-2 .playerCard:nth-child(11) {
+  top: 590px;
+  left: calc(50% - 125px);
+} */
+
+/* ---- Formation 4-4-2 end ---- */
