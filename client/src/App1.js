@@ -1,6 +1,6 @@
-import Player from "./Component/Player";
-import Sub from "./Component/Sub";
-import HeaderComponent from "./Component/HeaderComponent";
+import Player from "./components/Player";
+import Sub from "./components/Sub";
+import HeaderComponent from "./components/HeaderComponent";
 import { initialState } from "./utils/initialState";
 import { findPlayerIndexById, makeSubstitution } from "./utils/arrayFunctions";
 import { Layout, Row, Col, message } from "antd";

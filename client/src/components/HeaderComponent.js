@@ -22,9 +22,9 @@ export default function HeaderComponent(props) {
             selectEnabled={selectEnabled}
           ></FormationSelect>
         </Col>
-        <Col span={4} className="customFormationCheck">
+        {/* <Col span={4} className="customFormationCheck">
           <Checkbox onChange={onChange}>Custom formation</Checkbox>
-        </Col>
+        </Col> */}
       </Row>
     </Header>
   );

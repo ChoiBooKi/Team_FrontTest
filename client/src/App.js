@@ -10,6 +10,7 @@ import Formation from "./components/Formation"
 import TeamManage from "./components/TeamManage";
 import Search from "./components/Search";
 import ResponsiveAppBar from "./components/Appbar"
+import App1 from "./App1";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/move" element={<Formation />} />
               <Route path="/teammanage" element={<TeamManage />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/test" element={<App1 />} />
             </Routes>
           </div>
         {/* </body> */}

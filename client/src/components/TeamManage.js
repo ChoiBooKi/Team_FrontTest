@@ -8,6 +8,7 @@ import TeamInfo from './TeamInfo';
 // import { styled } from "@mui/material/styles";
 // import { red, green, purple, blue } from "@mui/material/colors";
 import './TeamManage.css'
+import App1 from '../App1'
 
 function TeamManage () {
   
@@ -39,7 +40,8 @@ function TeamManage () {
       {/* <Root className="box"> */}
       <div className="box">
         {<List />}
-        {<Formation />}
+        {/* {<Formation />} */}
+        {<App1/>}
         {/* 포메이션은 살려두고 포메이션 버튼으로 눌러서 변경하는 방식으로 변경 */}
         {<TeamInfo />}
       {/* </Root> */}

@@ -1322,7 +1322,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
           }
         })}
       </Menu>
-
+{/* 
       {PositionList &&
         <Draggable 
           disabled={Status}
@@ -1342,7 +1342,6 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
                 onContextMenu={(e) => handleClick(e)}
               >
                 <div id="button1">{Content1}<br/>{Back1}<br/>{Name1}</div>
-                {/* <div>x: {xy.x.toFixed(0)}, y: {xy.y.toFixed(0)}</div>  */}
               </Button>
           </div>
         </Draggable>
@@ -1575,7 +1574,7 @@ function Formation (props) {//여기서 팀명받아오는거 괜찮
             </Button>
           </div>        
         </Draggable>
-      }
+      } */}
     </div>
   )
 }

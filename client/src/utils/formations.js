@@ -1,5 +1,4 @@
-{
-  "formations": [
+export const formations = [
     {
       "name": "3-5-1",
       "value": "3-5-1",
@@ -35,4 +34,3 @@
       ]
     }
   ]
-}

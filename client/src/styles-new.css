@@ -21,7 +21,7 @@
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+                        supported by Chrome, Edge, Opera and Firefox */
 }
 
 .nodrag {
@@ -33,28 +33,34 @@
 }
 
 .ant-layout-content {
-  background: #18112e;
+  background: transparent;
+  /* 배경색 */
 }
 
 .playerHolder {
-  background: #001529;
-  height: 700px;
+  /* 말판 밖에 색 */
+  /* background: #001529;
+  height: 20vh;
   border: 5px solid #2f274c;
-  max-width: 1200px;
+  width: 25vh; */
 }
 
 .subsCard {
+  /* 오른쪽 리스트 박스 */
   display: flex;
   justify-content: start;
   align-items: center;
   text-transform: uppercase;
+  width: 10vw;
 }
 
 .subsCard .ant-card-body {
+  /* 오른쪽 리스트 박스 여백인데 왜 더 줄어드는지 의문 */
   padding: 6px 24px;
 }
 
 .subsCard .shirtNumber {
+  /* 오른쪽 리스트 숫자랑 글짜 간격 */
   margin-right: 10px;
 }
 
@@ -70,21 +76,25 @@
   transform: translateX(-50%); */
 }
 
-.customFormationCheck span {
+/* .customFormationCheck span {
   color: #fff;
-}
+  커스텀 포메이션 체크박스
+} */
 
 .playerCard {
+  /* 말판 선수카드 박스 */
   margin-bottom: 30px;
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 250px;
-  height: 130px;
+  width: 5vw;
+  height: 5vh;
+  /* height는 박스가 커지는게 아니라 선수 변경가능한 투명한 박스가 커짐 */
   text-transform: uppercase;
 }
 
 .playerCard .ant-card-body .ant-card-meta-title {
+  /* 말판 선수카드 글자 관련*/
   font-size: 15px;
   font-weight: 500;
   /* background: #3498db; */
@@ -95,22 +105,27 @@
 
 .smooth .playerCard {
   transition: all 0.25s ease-in-out;
+  /* 포메이션 변경될때 스르륵 움직이는거 */
 }
 
 .playerCard:hover {
+  /* 선수 박스위에 마우스 올리면 */
   cursor: pointer;
 }
 
 .playerCardSubs {
+  /* 오른쪽 리스트 사이 간격 */
   margin-bottom: 5px;
 }
 
 .playerCard.selected > .ant-card img {
+  /* 이건 가져올 때 부터 주석처리 돼있었음 */
   /* border: 1px solid #3498db; */
   /* border: 2px solid #3498db; */
 }
 
 .playerCard.selected > .ant-card:before {
+  /* 선수카드 박스 선택됐을 때 */
   position: absolute;
   content: "";
   display: block;
@@ -127,15 +142,18 @@
 }
 
 .playerCardSubs.selected > .subsCard {
+  /* 오른쪽 리스트 클릭되면 외곽선 */
   border: 2px solid #3498db;
 }
 
 .playerCard .avatarWrapper {
   width: auto;
   height: auto;
+  /* width는 아바타 위치가 바뀌고 height는 박스 크기자체가 줄어버림 */
 }
 
 .playerCard .playerAvatar {
+  /* 아바타 관련 */
   position: relative;
   width: 50px;
   margin: 5px auto;
@@ -144,6 +162,7 @@
 }
 
 .playerCard .ant-card {
+  /* 선수 박스 배경 */
   background: rgb(64, 24, 182);
   background: linear-gradient(
     225deg,
@@ -156,7 +175,8 @@
 }
 
 .playerCard .ant-card:hover {
-  box-shadow: none;
+  /* 선수 카드 마우스 올리면 */
+  /* box-shadow: none; */
   /* border: none; */
 }
 
@@ -170,15 +190,18 @@
 
 .playerCard .ant-card-body {
   padding: 0 21px 15px 21px;
+  /* 선수 카드 내부 여백 */
 }
 
 .substitutions {
-  max-height: 100vh;
-  /* overflow-y: scroll; */
-  /* border-left: 2px solid #fff; */
+  /* 오른쪽 선수 리스트 */
+  max-height: 45vh;
+  overflow-y: scroll;
+  border-left: 2px solid #fff;
 }
 
 .formation .playerCard.forceTranslate {
+  /* 원래부터 주석돼있었음 */
   /* transform: translateX(-50%) !important; */
 }
 
@@ -188,17 +211,20 @@
 }
 
 .modalTitle {
+  /* i버튼 누르면 나오는 선수이름 */
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
 .modalTitle img {
+  /* i버튼 누르면 나오는 이미지 */
   width: 64px;
   margin-right: 10px;
 }
 
 .modalTitle p {
+  /* i버튼 누르면 나오는 선수이름 글자 크기*/
   font-size: 24px;
   line-height: 64px;
   padding: 0;
@@ -206,17 +232,20 @@
 }
 
 .itemsWrapper {
+  /* i버튼 누르면 나오는 팀로고랑 팀타이틀 배치 */
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
 .itemsWrapper img {
+  /* i버튼 누르면 나오는 팀로고크기 */
   width: 32px;
   margin-right: 20px;
 }
 
 .itemsWrapper p {
+  /* i버튼 누르면 나오는 팀타이틀 글자 크기 */
   font-size: 18px;
   line-height: 32px;
   padding: 0;
@@ -224,16 +253,19 @@
 }
 
 .modalItems {
+  /* i버튼 누르면 나오는 밑에 구분선 위치 */
   display: table;
 }
 
 .modalItemWrapper {
+  /* i버튼 누르면 나오는 상세정보 배치 */
   float: left;
   width: 50%;
   margin-top: 15px;
 }
 
 .popoverContent {
+  /* i버튼 자체에 관련 */
   display: none;
   position: absolute;
   top: 2px;
@@ -251,6 +283,7 @@
 }
 
 .playerCardAction {
+  /* i버튼 감싸고있는 동그라미 */
   border-radius: 50%;
   width: 26px;
   height: 26px;
@@ -266,6 +299,7 @@
 }
 
 .positionBadge {
+  /* 포지션 글자 */
   position: absolute;
   color: #88c5e0;
   top: 10px;
@@ -273,6 +307,7 @@
 }
 
 .shirtNumberBadge {
+  /* 선수 등번호 관련 */
   position: absolute;
   left: 10px;
   bottom: 10px;

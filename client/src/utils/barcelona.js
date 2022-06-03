@@ -1,5 +1,4 @@
-{
-  "players": [
+export const players= [
     {
       "name": "Ousmane Dembélé",
       "slug": "ousmane-dembele",
@@ -2730,4 +2729,3 @@
       "proposedMarketValue": 2300000
     }
   ]
-}
