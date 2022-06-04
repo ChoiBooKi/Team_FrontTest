@@ -147,8 +147,8 @@
 }
 
 .playerCard .avatarWrapper {
-  width: auto;
-  height: auto;
+  width: 100px;
+  height: 50px;
   /* width는 아바타 위치가 바뀌고 height는 박스 크기자체가 줄어버림 */
 }
 

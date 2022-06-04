@@ -6,6 +6,7 @@ import { findPlayerIndexById, makeSubstitution } from "./utils/arrayFunctions";
 import { Layout, Row, Col, message } from "antd";
 import { formations as initialFormations } from "./utils/formations";
 import CONSTS from "./utils/consts";
+import axios from 'axios';
 
 import "antd/dist/antd.css";
 
@@ -24,6 +25,7 @@ export default function App1() {
   const [formation, setFormation] = useState(initialFormations[0]);
   const [smoothTransition, setSmoothTransition] = useState(true);
   const [isDraggable, setIsDragable] = useState(false);
+  const [PlayerList, SetPlayerList] = useState()
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(CONSTS.LINEUP));
@@ -34,6 +36,11 @@ export default function App1() {
   useEffect(() => {
     localStorage.setItem(CONSTS.LINEUP, JSON.stringify(startingLineup));
   });
+
+  useEffect(async () => {
+    const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
+    SetPlayerList(res.data)
+  }, [])
 
   const success = (str) => {
     message.success(str);
@@ -51,19 +58,21 @@ export default function App1() {
   };
 
   const selectPlayer = (id) => {
-    if (isDraggable) {
-      return;
-    }
-    if (selectedPlayer) {
-      switchPlayers(id, selectedPlayer);
-      setSelectedPlayer(null);
-    } else {
-      setSelectedPlayer(id);
-      let selectedIndex = findPlayerIndexById(startingLineup, id);
-      startingLineup[selectedIndex].selected = true;
+    // if (isDraggable) {
+    //   return;
+    // }
+    // if (selectedPlayer) {
+    //   switchPlayers(id, selectedPlayer);
+    //   setSelectedPlayer(null);
+    // } else {
+    //   setSelectedPlayer(id);
+    //   let selectedIndex = findPlayerIndexById(startingLineup, id);
+    //   startingLineup[selectedIndex].selected = true;
 
-      setStartingLineup([...startingLineup]);
-    }
+    //   setStartingLineup([...startingLineup]);
+    // }
+    //선수 변경하는 로직
+    console.log('changed')
   };
 
   const handleFormationChange = (value) => {
@@ -71,26 +80,64 @@ export default function App1() {
     success("Formation changed");
   };
 
-  const playerItems = startingLineup
-    .slice(0, 11)
-    .map((player, key) => (
-      <Player
-        key={key}
-        data={player}
-        width={8}
-        pickPlayer={selectPlayer}
-        draggable={isDraggable}
-        top={formation.positions[key].top}
-        left={formation.positions[key].left}
-        positionName={formation.positions[key].name}
-      />
-    ));
+  // const playerItems = startingLineup
+  //   .slice(0, 11)
+  //   .map((player, key) => (
+  //     <Player
+  //       key={key}
+  //       data={player}
+  //       width={8}
+  //       pickPlayer={selectPlayer}
+  //       draggable={isDraggable}
+  //       top={formation.positions[key].top}
+  //       left={formation.positions[key].left}
+  //       positionName={formation.positions[key].name}
+  //     />
+  //   ));
 
-  const subItems = startingLineup
-    .slice(11)
-    .map((player, key) => (
-      <Sub key={key} data={player} pickPlayer={selectPlayer} />
-    ));
+  const playerItems = PlayerList && PlayerList.map((player, key) => {
+    if(player.already === true){
+      return (
+        <Player
+          // onClick={() => {
+          //   handleClose()
+          //   onNameHandler(player)
+          // }}
+          key={key}
+          data={player}
+          pickPlayer={selectPlayer}
+          width={8}
+          draggable={isDraggable}
+          // top={formation.positions[key].top}아니 프롭스로 보내는건데
+          // left={formation.positions[key].left}도대체 뭐가 없다는거야
+          // positionName={formation.positions[key].name}
+        />
+      )}
+    })
+
+  // const subItems = startingLineup
+  //   .slice(11)
+  //   .map((player, key) => (
+  //     <Sub key={key} data={player} pickPlayer={selectPlayer} />
+  //   ));
+
+  const subItems = PlayerList && PlayerList.map((player, key) => {
+    if(player.already === false){
+      return (
+        <Sub
+          // onClick={() => {
+          //   handleClose()
+          //   onNameHandler(player)
+          // }}
+          key={player._id}
+          data={player}
+          pickPlayer={selectPlayer}
+        >
+          {player.name}
+          {player.like}
+        </Sub>
+      )}
+    })
 
   return (
     <div className="App1">
@@ -114,7 +161,7 @@ export default function App1() {
               </Row>
             </Col>
             <Col span={5} className="substitutions">
-              {subItems}
+              {PlayerList && subItems}
             </Col>
           </Row>
         </Content>

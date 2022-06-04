@@ -53,7 +53,7 @@ export default function PopoverContent(props) {
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <div className="itemsWrapper">
+      {/* <div className="itemsWrapper">
         <img src={getClubImage(team.id)} alt={team.name} />
         <p>{team.name}</p>
       </div>
@@ -77,7 +77,8 @@ export default function PopoverContent(props) {
           <b>Market value:</b> {Number(proposedMarketValue).toLocaleString()}
           &euro;
         </div>
-      </div>
+      </div> */}
+      <div>안녕</div>
     </Modal>
   );
 
