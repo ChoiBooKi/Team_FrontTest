@@ -161,7 +161,8 @@ export default function App1() {
               </Row>
             </Col>
             <Col span={5} className="substitutions">
-              {PlayerList && subItems}
+              {PlayerList && subItems} 
+              {/* 이거 col대신에 모달로 바꿔야됨 */}
             </Col>
           </Row>
         </Content>

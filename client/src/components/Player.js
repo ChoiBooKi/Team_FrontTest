@@ -3,7 +3,7 @@ import { Card, Col } from "antd";
 import { getPlayerImage } from "./../utils/formatters";
 import Draggable from "react-draggable";
 import PopoverContent from "./Popover";
-
+//이게 선수 카드 만드는건데 여기서 i버튼이랑 그런거 모달같은거 해야될듯??
 const { Meta } = Card;
 
 export default function Player(props) {
