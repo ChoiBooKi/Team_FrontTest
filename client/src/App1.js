@@ -39,7 +39,14 @@ export default function App1() {
 
   useEffect(async () => {
     const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
-    SetPlayerList(res.data)
+    const sort = res.data.sort(function(a, b){//DB에서 온 리스트 선발선수 맨위로 정렬
+      let x = a.already
+      if(x === true){
+        return -1
+      }
+      return 0
+    })
+    SetPlayerList(sort)
   }, [])
 
   const success = (str) => {
@@ -57,7 +64,7 @@ export default function App1() {
     }
   };
 
-  const selectPlayer = (_id) => {
+  const selectPlayer = (Id, player) => {
     // if (isDraggable) {
     //   return;
     // }
@@ -71,8 +78,12 @@ export default function App1() {
 
     //   setStartingLineup([...startingLineup]);
     // }
-    //선수 변경하는 로직
-    console.log(_id)
+    // 선수 변경하는 로직
+    // console.log(e.target)
+    SetPlayerList((prev) => prev.map((item) => item._id === player._id ? { ...item, already: !item.already} : player))//이거는안됨
+    SetPlayerList((prev) => prev.map((player) => player._id === Id ? { ...player, already: false} : player))//이거는됨
+    console.log(Id)
+    console.log(player)
   };
 
   const handleFormationChange = (value) => {
@@ -109,12 +120,28 @@ export default function App1() {
           pickPlayer={selectPlayer}
           width={8}
           draggable={isDraggable}
-          // top={PlayerList && formation.positions[key].top}
-          // left={PlayerList && formation.positions[key].left}
-          // positionName={PlayerList && formation.positions[key].name}
+          top={PlayerList && formation.positions[key].top}
+          left={PlayerList && formation.positions[key].left}
+          positionName={PlayerList && formation.positions[key].name}
           //이거 위에 3개는 왜안되는지 아직도 모르겠어
         />
-      )}
+      )
+    } else {
+      return (
+        <Player
+          // onClick={() => {
+          //   handleClose()
+          //   onNameHandler(player)
+          // }}
+          id={player._id}
+          key={key}
+          data={player}
+          pickPlayer={selectPlayer}
+          width={8}
+          draggable={isDraggable}
+        />
+      )
+    }
     })
 
   // const subItems = startingLineup

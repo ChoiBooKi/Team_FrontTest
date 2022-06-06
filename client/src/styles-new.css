@@ -11,7 +11,7 @@
 
 .mainHolder {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .noselect {
@@ -39,8 +39,10 @@
 
 .playerHolder {
   /* 말판 밖에 색 */
-  /* background: #001529;
-  height: 20vh;
+  max-width: 100%;
+  /* background: white;
+  width: 40vw; */
+  /* height: 20vh;
   border: 5px solid #2f274c;
   width: 25vh; */
 }
@@ -126,6 +128,7 @@
 
 .playerCard.selected > .ant-card:before {
   /* 선수카드 박스 선택됐을 때 */
+  /* 선택해서 변경하는게 아니라서 필요는 없는데 외곽선때매 일단 냅둠 */
   position: absolute;
   content: "";
   display: block;
@@ -147,8 +150,9 @@
 }
 
 .playerCard .avatarWrapper {
-  width: 100px;
-  height: 50px;
+  /* 아바타를 안쓰니까 필요가없다 */
+  /* width: 200px;
+  height: 0px; */
   /* width는 아바타 위치가 바뀌고 height는 박스 크기자체가 줄어버림 */
 }
 
@@ -189,7 +193,8 @@
 }
 
 .playerCard .ant-card-body {
-  padding: 0 21px 15px 21px;
+  padding: 0 0px 0px 0px;
+  /* 여백을 다 0으로 주니까 선수이름이랑 등번호가 중앙으로 배치됐음 */
   /* 선수 카드 내부 여백 */
 }
 
@@ -283,13 +288,13 @@
 }
 
 .playerCardAction {
-  /* i버튼 감싸고있는 동그라미 */
+  /* i버튼 감싸고있는 동그라미인데 이걸 선호포지션위치에 넣었음 */
   border-radius: 50%;
   width: 26px;
   height: 26px;
   /* border: 1px solid #e8a4ce; */
-  background: #ffffff;
-  color: #c55b9d;
+  /* background: #ffffff; */
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,9 +304,9 @@
 }
 
 .positionBadge {
-  /* 포지션 글자 */
+  /* 선수이름 글자 */
   position: absolute;
-  color: #88c5e0;
+  color: white;
   top: 10px;
   left: 10px;
 }
@@ -309,10 +314,11 @@
 .shirtNumberBadge {
   /* 선수 등번호 관련 */
   position: absolute;
-  left: 10px;
-  bottom: 10px;
-  color: #2196f3;
-  background: #fff;
+  /* left: 10px; */
+  /* bottom: 20px; */
+  top: 65px;
+  color: white;
+  /* background: #fff; */
   width: 24px;
   height: 24px;
   border-radius: 50%;
