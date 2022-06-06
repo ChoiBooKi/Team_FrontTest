@@ -57,7 +57,7 @@ export default function App1() {
     }
   };
 
-  const selectPlayer = (id) => {
+  const selectPlayer = (_id) => {
     // if (isDraggable) {
     //   return;
     // }
@@ -72,7 +72,7 @@ export default function App1() {
     //   setStartingLineup([...startingLineup]);
     // }
     //선수 변경하는 로직
-    console.log('changed')
+    console.log(_id)
   };
 
   const handleFormationChange = (value) => {
@@ -103,14 +103,16 @@ export default function App1() {
           //   handleClose()
           //   onNameHandler(player)
           // }}
+          id={player._id}
           key={key}
           data={player}
           pickPlayer={selectPlayer}
           width={8}
           draggable={isDraggable}
-          // top={formation.positions[key].top}아니 프롭스로 보내는건데
-          // left={formation.positions[key].left}도대체 뭐가 없다는거야
-          // positionName={formation.positions[key].name}
+          // top={PlayerList && formation.positions[key].top}
+          // left={PlayerList && formation.positions[key].left}
+          // positionName={PlayerList && formation.positions[key].name}
+          //이거 위에 3개는 왜안되는지 아직도 모르겠어
         />
       )}
     })
@@ -121,23 +123,23 @@ export default function App1() {
   //     <Sub key={key} data={player} pickPlayer={selectPlayer} />
   //   ));
 
-  const subItems = PlayerList && PlayerList.map((player, key) => {
-    if(player.already === false){
-      return (
-        <Sub
-          // onClick={() => {
-          //   handleClose()
-          //   onNameHandler(player)
-          // }}
-          key={player._id}
-          data={player}
-          pickPlayer={selectPlayer}
-        >
-          {player.name}
-          {player.like}
-        </Sub>
-      )}
-    })
+  // const subItems = PlayerList && PlayerList.map((player, key) => {
+  //   if(player.already === false){
+  //     return (
+  //       <Sub
+  //         // onClick={() => {
+  //         //   handleClose()
+  //         //   onNameHandler(player)
+  //         // }}
+  //         key={player._id}
+  //         data={player}
+  //         pickPlayer={selectPlayer}
+  //       >
+  //         {player.name}
+  //         {player.like}
+  //       </Sub>
+  //     )}
+  //   })
 
   return (
     <div className="App1">
@@ -160,10 +162,10 @@ export default function App1() {
                 {playerItems}
               </Row>
             </Col>
-            <Col span={5} className="substitutions">
+            {/* <Col span={5} className="substitutions">
               {PlayerList && subItems} 
-              {/* 이거 col대신에 모달로 바꿔야됨 */}
-            </Col>
+              // 이거 col대신에 모달로 바꿔야됨
+            </Col> */}
           </Row>
         </Content>
       </Layout>
