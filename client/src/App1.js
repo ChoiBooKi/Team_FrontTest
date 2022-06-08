@@ -24,7 +24,7 @@ export default function App1() {
   // const [subs, setSubs] = useState(initialState.subs);
   const [formation, setFormation] = useState(initialFormations[0]);
   const [smoothTransition, setSmoothTransition] = useState(true);
-  const [isDraggable, setIsDragable] = useState(false);
+  //const [isDraggable, setIsDragable] = useState(false);
   const [PlayerList, SetPlayerList] = useState()
 
   useEffect(() => {
@@ -119,10 +119,10 @@ export default function App1() {
           data={player}
           pickPlayer={selectPlayer}
           width={8}
-          draggable={isDraggable}
-          top={PlayerList && formation.positions[key].top}
-          left={PlayerList && formation.positions[key].left}
-          positionName={PlayerList && formation.positions[key].name}
+          //draggable={isDraggable}
+          top={formation.positions[key].top}
+          left={formation.positions[key].left}
+          positionName={formation.positions[key].name}
           //이거 위에 3개는 왜안되는지 아직도 모르겠어
         />
       )
@@ -138,7 +138,7 @@ export default function App1() {
           data={player}
           pickPlayer={selectPlayer}
           width={8}
-          draggable={isDraggable}
+          //draggable={isDraggable}
         />
       )
     }
@@ -173,7 +173,7 @@ export default function App1() {
       <Layout>
         <HeaderComponent
           handleFormationChange={handleFormationChange}
-          enableCustomFormation={setIsDragable}
+          //enableCustomFormation={setIsDragable}
           setSmooth={setSmoothTransition}
         ></HeaderComponent>
         <Content style={{ padding: "30px 30px" }}>

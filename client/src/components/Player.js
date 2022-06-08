@@ -128,7 +128,7 @@ export default function Player(props) {
             onContextMenu={(e) => handleClick(e)}
           >
             <span className="positionBadge">{name}</span>
-            <span className="playerCardAction">{like}</span>
+            <span className="playerCardAction">{positionName}</span>
             {/* 선호포지션 넣어줘야돼 */}
             <span className="shirtNumberBadge">{back}</span>
           </Button>
