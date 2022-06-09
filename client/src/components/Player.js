@@ -9,43 +9,45 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 //이게 선수 카드 만드는건데 여기서 i버튼이랑 그런거 모달같은거 해야될듯??
 const { Meta } = Card;
-let fal = []
-export default function Player(props) {
-  // const [PlayerList, SetPlayerList] = useState()
-  const [Id, SetId] = useState()
   // const { id, selected, shortName, shirtNumber } = props.data;
-  const {_id, name, already, Change, back, like} = props.data
-  const { pickPlayer,top, left, positionName } = props;
   // const { pickPlayer, draggable, top, left, positionName } = props;
-  if(already === false){
-    fal.push(props.data)
-    //중복되는 값은 저장되지 않게 짜야합니다
-  }
-  console.log(fal)
-  const [popoverVisible, setPopoverVisible] = useState(false);
 
+
+let fal = []
+  
+export default function Player(props) {
+  const [Id, SetId] = useState()
+  const [Candidate, SetCandidate] = useState()
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
+  const {_id, name, already, Change, back, like} = props.data
+  const { pickPlayer,top, left, positionName, modalPlayer } = props;
+  let a = 0
+  if(already === false){
+    if(fal.length === 0) {
+      fal.push(props.data)
+    } else {
+      fal.push(props.data)
+      //fal에 already가 true인 값이 있는지 확인
+      // fal = fal.filter(item => item !== true)
+      fal = [...new Set(fal)]
+    }
+  }
   const open = Boolean(anchorEl); //리스트 띄우고 끄고
 
   const handleClick = (event) => { //리스트 띄우기
     setAnchorEl(event.currentTarget);
-    SetId(event.currentTarget.id)//배치된 선수의 id값을 저장
+    a = 1
+    modalPlayer(event.currentTarget.id, a)
+    fal = fal.filter(item => item._id !== event.currentTarget.id)
     event.preventDefault();//브라우저 우클릭을 막아준다.
   };
+  const idsend = (event) => {
+    pickPlayer(event.currentTarget.id)
+  }
 
-  const handleClose = (props) => {//리스트 끄기
-    // SetPlayerList((prev) => prev.map((player) => player._id === props._id ? { ...player, already: true} : player))//이거는안됨
-    // SetPlayerList((prev) => prev.map((player) => player._id === Id ? { ...player, already: false} : player))//이거는됨
-    // console.log(Id)
-    // console.log(props._id)
-    // console.log(props)
+  const handleClose = () => {//리스트 끄기
     setAnchorEl();
   };
-
-  // useEffect(async () => {
-  //   const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
-  //   SetPlayerList(res.data)
-  // }, [])
 
   return (
     // <Draggable disabled={!draggable}>
@@ -84,8 +86,8 @@ export default function Player(props) {
             return (
               <MenuItem
                 onClick={() => {
-                  handleClose(player)
-                  pickPlayer(Id, player)
+                  handleClose()
+                  modalPlayer(player._id, a)
                 }}
                 key={player._id}
               >
@@ -102,7 +104,7 @@ export default function Player(props) {
         className={"playerCard noselect selected"}
         // onMouseEnter={() => setPopoverVisible(true)}원래
         // onMouseLeave={() => setPopoverVisible(false)}주석
-        //onClick={(e) => pickPlayer(e)}
+        //onClick={() => pickPlayer(Id)}
       >
         {/* {
           <PopoverContent
@@ -126,6 +128,7 @@ export default function Player(props) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onContextMenu={(e) => handleClick(e)}
+            onClick={(e) => idsend(e)}
           >
             <span className="positionBadge">{name}</span>
             <span className="playerCardAction">{positionName}</span>

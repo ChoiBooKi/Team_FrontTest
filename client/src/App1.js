@@ -2,7 +2,7 @@ import Player from "./components/Player";
 import Sub from "./components/Sub";
 import HeaderComponent from "./components/HeaderComponent";
 import { initialState } from "./utils/initialState";
-import { findPlayerIndexById, makeSubstitution } from "./utils/arrayFunctions";
+import { findPlayerIndexById, diffSubstitution, sameSubstitution } from "./utils/arrayFunctions";
 import { Layout, Row, Col, message } from "antd";
 import { formations as initialFormations } from "./utils/formations";
 import CONSTS from "./utils/consts";
@@ -18,24 +18,25 @@ const { Content } = Layout;
 
 export default function App1() {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [startingLineup, setStartingLineup] = useState(
-    initialState.startingLineup
-  );
+  const [Flag, SetFlag] = useState()
+  // const [startingLineup, setStartingLineup] = useState(
+  //   initialState.startingLineup
+  // );
   // const [subs, setSubs] = useState(initialState.subs);
   const [formation, setFormation] = useState(initialFormations[0]);
   const [smoothTransition, setSmoothTransition] = useState(true);
   //const [isDraggable, setIsDragable] = useState(false);
   const [PlayerList, SetPlayerList] = useState()
+  //let selectedIndex
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem(CONSTS.LINEUP));
+  //   // setStartingLineup(initialState.startingLineup);
+  //   setStartingLineup(data ?? initialState.startingLineup);
+  // }, []);
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(CONSTS.LINEUP));
-    // setStartingLineup(initialState.startingLineup);
-    setStartingLineup(data ?? initialState.startingLineup);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(CONSTS.LINEUP, JSON.stringify(startingLineup));
-  });
+  // useEffect(() => {
+  //   localStorage.setItem(CONSTS.LINEUP, JSON.stringify(startingLineup));
+  // });
 
   useEffect(async () => {
     const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
@@ -47,43 +48,81 @@ export default function App1() {
       return 0
     })
     SetPlayerList(sort)
+    //console.log(sort)
   }, [])
 
   const success = (str) => {
     message.success(str);
   };
 
-  const switchPlayers = (player, withPlayer) => {
-    makeSubstitution(
-      startingLineup,
-      findPlayerIndexById(startingLineup, withPlayer),
-      findPlayerIndexById(startingLineup, player)
+  const switchPrePlayers = (player, prePlayer) => {
+    sameSubstitution(
+      PlayerList,
+      findPlayerIndexById(PlayerList, prePlayer),
+      findPlayerIndexById(PlayerList, player)
     );
-    if (player !== withPlayer) {
+    if (player !== prePlayer) {
+      success("Substitution made");
+    }
+  };
+  const switchdiffPlayers = (player, prePlayer) => {
+    diffSubstitution(
+      PlayerList,
+      findPlayerIndexById(PlayerList, prePlayer),
+      findPlayerIndexById(PlayerList, player)
+    );
+    if (player !== prePlayer) {
       success("Substitution made");
     }
   };
 
-  const selectPlayer = (Id, player) => {
+  const selectPlayer = (id, flag) => {
     // if (isDraggable) {
     //   return;
     // }
-    // if (selectedPlayer) {
-    //   switchPlayers(id, selectedPlayer);
-    //   setSelectedPlayer(null);
-    // } else {
-    //   setSelectedPlayer(id);
-    //   let selectedIndex = findPlayerIndexById(startingLineup, id);
-    //   startingLineup[selectedIndex].selected = true;
-
-    //   setStartingLineup([...startingLineup]);
-    // }
-    // 선수 변경하는 로직
-    // console.log(e.target)
-    SetPlayerList((prev) => prev.map((item) => item._id === player._id ? { ...item, already: !item.already} : player))//이거는안됨
-    SetPlayerList((prev) => prev.map((player) => player._id === Id ? { ...player, already: false} : player))//이거는됨
-    console.log(Id)
-    console.log(player)
+    if (selectedPlayer) {
+      switchPrePlayers(id, selectedPlayer);
+      setSelectedPlayer(null);
+      //SetPlayerList([...PlayerList, PlayerList[id].already = true]);
+      console.log(id)
+      console.log('선택된 선수 있음')
+      // PlayerList[selectedIndex].already = true;
+      // SetPlayerList([...PlayerList]);
+    } else {
+      setSelectedPlayer(id);
+      let selectedIndex = findPlayerIndexById(PlayerList, id);
+      //PlayerList[selectedIndex].already = true;
+      console.log(id)
+      console.log('선택된 선수 없음')
+      //console.log(flag)
+      // SetPlayerList([...PlayerList]);
+      //PlayerList[selectedIndex].already = true;
+      // SetPlayerList([...PlayerList, PlayerList[selectedIndex].already = true]);
+    }
+  };
+  const selectModalPlayer = (id, flag) => {
+    SetFlag(flag)
+      if (selectedPlayer) {
+        //if(Flag !== flag){
+        switchdiffPlayers(id, selectedPlayer);
+        setSelectedPlayer(null);
+        //SetPlayerList([...PlayerList, PlayerList[id].already = true]);
+        console.log(id)
+        console.log('선택된 선수 있음')
+        // PlayerList[selectedIndex].already = true;
+        // SetPlayerList([...PlayerList]);
+        //}
+      } else {
+        setSelectedPlayer(id);
+        let selectedIndex = findPlayerIndexById(PlayerList, id);
+        //PlayerList[selectedIndex].already = true;
+        console.log(id)
+        console.log('선택된 선수 없음')
+        //console.log(flag)
+        // SetPlayerList([...PlayerList]);
+        //PlayerList[selectedIndex].already = true;
+        // SetPlayerList([...PlayerList, PlayerList[selectedIndex].already = true]);
+      }
   };
 
   const handleFormationChange = (value) => {
@@ -118,6 +157,7 @@ export default function App1() {
           key={key}
           data={player}
           pickPlayer={selectPlayer}
+          modalPlayer={selectModalPlayer}
           width={8}
           //draggable={isDraggable}
           top={formation.positions[key].top}
@@ -136,13 +176,14 @@ export default function App1() {
           id={player._id}
           key={key}
           data={player}
-          pickPlayer={selectPlayer}
+          modalPlayer={selectModalPlayer}
           width={8}
           //draggable={isDraggable}
         />
       )
     }
-    })
+    }
+    )
 
   // const subItems = startingLineup
   //   .slice(11)
