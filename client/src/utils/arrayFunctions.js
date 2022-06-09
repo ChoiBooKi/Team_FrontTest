@@ -9,7 +9,7 @@ export const findPlayerIndexById = (array, id) => {
 
   return newPlayerIndex;
 };
-
+//모달에서 변경하는 로직
 export const diffSubstitution = (array, i, j) => {
   let newPlayer = { ...array[i], already: false };
   array[i] = { ...array[j], already: true };
@@ -17,7 +17,7 @@ export const diffSubstitution = (array, i, j) => {
 
   return array;
 };
-
+//선수들끼리
 export const sameSubstitution = (array, i, j) => {
   let newPlayer = { ...array[i], already: true };
   array[i] = { ...array[j], already: true };
