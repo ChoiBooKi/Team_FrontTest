@@ -1,11 +1,8 @@
 import Player from "./components/Player";
-import Sub from "./components/Sub";
 import HeaderComponent from "./components/HeaderComponent";
-import { initialState } from "./utils/initialState";
-import { findPlayerIndexById, makeSubstitution } from "./utils/arrayFunctions";
+import { findPlayerIndexById, diffSubstitution, sameSubstitution } from "./utils/arrayFunctions";
 import { Layout, Row, Col, message } from "antd";
 import { formations as initialFormations } from "./utils/formations";
-import CONSTS from "./utils/consts";
 import axios from 'axios';
 
 import "antd/dist/antd.css";
@@ -17,25 +14,12 @@ import { useEffect, useState } from "react";
 const { Content } = Layout;
 
 export default function App1() {
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [startingLineup, setStartingLineup] = useState(
-    initialState.startingLineup
-  );
-  // const [subs, setSubs] = useState(initialState.subs);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);//선수 교체시 선수가 선택되었는지 확인하기위한 state
+  const [Flag, SetFlag] = useState(null)//기배치된 선수와 다른선수를 오른쪽 마우스를 눌러서 변경되는것을 방지하기 위한 플래그
+  const [mFlag, SetmFlag] = useState()//선수 교체시 오른쪽 마우스만 두번눌렀는지 체크하기위한 플래그
   const [formation, setFormation] = useState(initialFormations[0]);
   const [smoothTransition, setSmoothTransition] = useState(true);
-  const [isDraggable, setIsDragable] = useState(false);
   const [PlayerList, SetPlayerList] = useState()
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(CONSTS.LINEUP));
-    // setStartingLineup(initialState.startingLineup);
-    setStartingLineup(data ?? initialState.startingLineup);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(CONSTS.LINEUP, JSON.stringify(startingLineup));
-  });
 
   useEffect(async () => {
     const res = await axios.get("/api/readUser")//쿼리로 팀이름 넣어줘야됨
@@ -47,79 +31,73 @@ export default function App1() {
       return 0
     })
     SetPlayerList(sort)
+    //console.log(sort)
   }, [])
 
   const success = (str) => {
     message.success(str);
   };
-
-  const switchPlayers = (player, withPlayer) => {
-    makeSubstitution(
-      startingLineup,
-      findPlayerIndexById(startingLineup, withPlayer),
-      findPlayerIndexById(startingLineup, player)
+  
+  const switchPrePlayers = (player, prePlayer) => {//선수판에 있는 선수들끼리 교체
+    sameSubstitution(
+      PlayerList,
+      findPlayerIndexById(PlayerList, prePlayer),
+      findPlayerIndexById(PlayerList, player)
     );
-    if (player !== withPlayer) {
+    if (player !== prePlayer) {
       success("Substitution made");
     }
   };
 
-  const selectPlayer = (Id, player) => {
-    // if (isDraggable) {
-    //   return;
-    // }
-    // if (selectedPlayer) {
-    //   switchPlayers(id, selectedPlayer);
-    //   setSelectedPlayer(null);
-    // } else {
-    //   setSelectedPlayer(id);
-    //   let selectedIndex = findPlayerIndexById(startingLineup, id);
-    //   startingLineup[selectedIndex].selected = true;
-
-    //   setStartingLineup([...startingLineup]);
-    // }
-    // 선수 변경하는 로직
-    // console.log(e.target)
-    SetPlayerList((prev) => prev.map((item) => item._id === player._id ? { ...item, already: !item.already} : player))//이거는안됨
-    SetPlayerList((prev) => prev.map((player) => player._id === Id ? { ...player, already: false} : player))//이거는됨
-    console.log(Id)
-    console.log(player)
+  const switchdiffPlayers = (player, prePlayer) => {//모달 리스트에서 선수교체
+    diffSubstitution(
+      PlayerList,
+      findPlayerIndexById(PlayerList, prePlayer),
+      findPlayerIndexById(PlayerList, player)
+    );
+    if (player !== prePlayer) {
+      success("Substitution made");
+    }
   };
 
-  const handleFormationChange = (value) => {
+  const selectPlayer = (id, flag, mflag) => {
+    if ((Flag === flag && selectedPlayer && mFlag === undefined) || (mFlag !== mflag && selectedPlayer && Flag === flag)) {//아래를 제외한 경우
+        if(flag === 'pre'){
+          switchPrePlayers(id, selectedPlayer);
+          setSelectedPlayer(null);
+          SetFlag(null)
+          SetmFlag(null)
+        } else if (flag === 'modal'){
+          if(mFlag !== mflag){
+            switchdiffPlayers(id, selectedPlayer);
+            setSelectedPlayer(null);
+            SetFlag(null)
+            SetmFlag(undefined)
+          }
+        }
+    } else {
+      if(Flag === null || Flag !== flag || mFlag === mflag){//플래그가 저장안되어있거나, 선수-선수, 모달-모달이 아니거나, 오른쪽 마우스만 두번 클릭했을때
+        setSelectedPlayer(id);
+        SetFlag(flag)
+        SetmFlag(mflag)
+      }
+    }
+  };
+
+  const handleFormationChange = (value) => {//포메이션 변경 및 변경완료 알람
     setFormation(initialFormations[value]);
     success("Formation changed");
   };
-
-  // const playerItems = startingLineup
-  //   .slice(0, 11)
-  //   .map((player, key) => (
-  //     <Player
-  //       key={key}
-  //       data={player}
-  //       width={8}
-  //       pickPlayer={selectPlayer}
-  //       draggable={isDraggable}
-  //       top={formation.positions[key].top}
-  //       left={formation.positions[key].left}
-  //       positionName={formation.positions[key].name}
-  //     />
-  //   ));
 
   const playerItems = PlayerList && PlayerList.map((player, key) => {
     if(player.already === true){
       return (
         <Player
-          // onClick={() => {
-          //   handleClose()
-          //   onNameHandler(player)
-          // }}
           id={player._id}
           key={key}
           data={player}
           pickPlayer={selectPlayer}
           width={8}
-          draggable={isDraggable}
           top={formation.positions[key].top}
           left={formation.positions[key].left}
           positionName={formation.positions[key].name}
@@ -128,51 +106,21 @@ export default function App1() {
     } else {
       return (
         <Player
-          // onClick={() => {
-          //   handleClose()
-          //   onNameHandler(player
-          // }}
           id={player._id}
           key={key}
           data={player}
           pickPlayer={selectPlayer}
           width={8}
-          draggable={isDraggable}
         />
       )
-    }
-    })
-
-  // const subItems = startingLineup
-  //   .slice(11)
-  //   .map((player, key) => (
-  //     <Sub key={key} data={player} pickPlayer={selectPlayer} />
-  //   ));
-
-  // const subItems = PlayerList && PlayerList.map((player, key) => {
-  //   if(player.already === false){
-  //     return (
-  //       <Sub
-  //         // onClick={() => {
-  //         //   handleClose()
-  //         //   onNameHandler(player)
-  //         // }}
-  //         key={player._id}
-  //         data={player}
-  //         pickPlayer={selectPlayer}
-  //       >
-  //         {player.name}
-  //         {player.like}
-  //       </Sub>
-  //     )}
-  //   })
+    }})
 
   return (
     <div className="App1">
       <Layout>
         <HeaderComponent
           handleFormationChange={handleFormationChange}
-          enableCustomFormation={setIsDragable}
+          //enableCustomFormation={setIsDragable}
           setSmooth={setSmoothTransition}
         ></HeaderComponent>
         <Content style={{ padding: "30px 30px" }}>
