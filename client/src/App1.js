@@ -120,10 +120,9 @@ export default function App1() {
           pickPlayer={selectPlayer}
           width={8}
           draggable={isDraggable}
-          top={PlayerList && formation.positions[key].top}
-          left={PlayerList && formation.positions[key].left}
-          positionName={PlayerList && formation.positions[key].name}
-          //이거 위에 3개는 왜안되는지 아직도 모르겠어
+          top={formation.positions[key].top}
+          left={formation.positions[key].left}
+          positionName={formation.positions[key].name}
         />
       )
     } else {
@@ -131,7 +130,7 @@ export default function App1() {
         <Player
           // onClick={() => {
           //   handleClose()
-          //   onNameHandler(player)
+          //   onNameHandler(player
           // }}
           id={player._id}
           key={key}

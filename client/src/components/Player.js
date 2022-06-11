@@ -12,6 +12,7 @@ const { Meta } = Card;
 let fal = []
 export default function Player(props) {
   // const [PlayerList, SetPlayerList] = useState()
+  // 후보 선수를 fal이 아니라 state로 변경
   const [Id, SetId] = useState()
   // const { id, selected, shortName, shirtNumber } = props.data;
   const {_id, name, already, Change, back, like} = props.data
