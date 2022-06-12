@@ -42,6 +42,9 @@ export default function Player(props) {
   const remove = (id) => {
     fal = fal.filter(item => item._id !== id)
     //fal.map((item, key) => item._id === id ? fal.splice(key) : null)
+    //도대체 이게 왜 안되는지 모르겠네 아무리 해봐도 이해가안가는 부분
+    //변경된 선수한테 오른쪽 마우스로 리스트띄우면 제대로 나오는데 변경하고 한번 확인해줘야 적용이됨
+    //변경하고 다른선수한테 리스트띄우면 사라지지 않는 에러가 수정이 안됨
   }
 
   const handleClick = (event) => { //리스트 띄우기, 모달 선택됐다고 보낼 때
