@@ -1,19 +1,19 @@
-import Player from "./components/Player";
-import HeaderComponent from "./components/HeaderComponent";
-import { findPlayerIndexById, diffSubstitution, sameSubstitution } from "./utils/arrayFunctions";
+import Player from "./Player";
+import HeaderComponent from "./HeaderComponent";
+import { findPlayerIndexById, diffSubstitution, sameSubstitution } from "../utils/arrayFunctions";
 import { Layout, Row, Col, message } from "antd";
-import { formations as initialFormations } from "./utils/formations";
+import { formations as initialFormations } from "../utils/formations";
 import axios from 'axios';
 
 import "antd/dist/antd.css";
 
-import "./styles-new.css";
+import "./SquadSetter.css";
 
 import { useEffect, useState } from "react";
 
 const { Content } = Layout;
 
-export default function App1() {
+export default function SquadSetter() {
   const [selectedPlayer, setSelectedPlayer] = useState(null);//선수 교체시 선수가 선택되었는지 확인하기위한 state
   const [Flag, SetFlag] = useState(null)//기배치된 선수와 다른선수를 오른쪽 마우스를 눌러서 변경되는것을 방지하기 위한 플래그
   const [mFlag, SetmFlag] = useState()//선수 교체시 오른쪽 마우스만 두번눌렀는지 체크하기위한 플래그
@@ -116,22 +116,24 @@ export default function App1() {
     }})
 
   return (
-    <div className="App1">
+    <div className="SquadSetter">
       <Layout>
         <HeaderComponent
           handleFormationChange={handleFormationChange}
           //enableCustomFormation={setIsDragable}
           setSmooth={setSmoothTransition}
         ></HeaderComponent>
-        <Content style={{ padding: "30px 30px" }}>
-          <Row gutter={16} className="mainHolder">
+        <Content 
+          style={{ padding: "30px 30px" }}//포메이션 판 외부 여백
+        >
+          <Row className="mainHolder">
             <Col
               span={19}
               className={"playerHolder " + (smoothTransition ? "smooth" : "")}
             >
               <Row
                 gutter={32}
-                className={"formation formation-" + formation.value}
+                className={"formations formation-" + formation.value}
               >
                 {playerItems}
               </Row>
