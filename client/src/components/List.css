@@ -1,16 +1,9 @@
 .list{
   margin-left: 1%;
-  /* min-width: 620px;
-  height: 875px; */
-  /* width: 23.35%;
-  height: 88.5%;
-  min-width: 20rem;
-  min-height: 32rem; */
-  /* min-width: 23.35%;
-  width: 20vw; */
-  min-width: 350px;
-  /* height: 31.3vw; */
-  height: 490px;
+  min-width: 252.55px;
+  min-height: 413.58px;
+  width: 35vh;
+  height: 54vh;
   background-color: aquamarine;
   border: 2px solid black;
 }

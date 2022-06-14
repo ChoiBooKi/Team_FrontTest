@@ -5,7 +5,7 @@ import { Layout, Row, Col, message } from "antd";
 import { formations as initialFormations } from "../utils/formations";
 import axios from 'axios';
 
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 import "./SquadSetter.css";
 
@@ -123,25 +123,14 @@ export default function SquadSetter() {
           //enableCustomFormation={setIsDragable}
           setSmooth={setSmoothTransition}
         ></HeaderComponent>
-        <Content 
-          style={{ padding: "30px 30px" }}//포메이션 판 외부 여백
-        >
-          <Row className="mainHolder">
+        <Content>
+          <Row className="formations">
             <Col
-              span={19}
+              span={24}
               className={"playerHolder " + (smoothTransition ? "smooth" : "")}
             >
-              <Row
-                gutter={32}
-                className={"formations formation-" + formation.value}
-              >
-                {playerItems}
-              </Row>
+              {playerItems}
             </Col>
-            {/* <Col span={5} className="substitutions">
-              {PlayerList && subItems} 
-              // 이거 col대신에 모달로 바꿔야됨
-            </Col> */}
           </Row>
         </Content>
       </Layout>

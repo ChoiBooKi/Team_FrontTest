@@ -3,22 +3,23 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
-.formations {
-  width: 430px;
-  height: 600px;
-  background-image: url(../img/축구장.png);
-  background-size: cover;
-  /* margin: 1%; */
-  border: 2px solid black;
-}
 .SquadSetter {
   font-family: sans-serif;
   text-align: center;
+  min-width: 252.55px;
+  min-height: 413.58px;
 }
 
-.mainHolder {
+.formations {
   display: flex;
-  /* justify-content: center; */
+  width: 35vh;
+  height: 49vh;
+  min-width: 252.55px;
+  min-height: 354.58px;
+  background-size: cover;
+  background-image: url(../img/축구장.png);
+  border: 2px solid black;
+  justify-content: center;
 }
 
 .noselect {
@@ -27,8 +28,7 @@
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                        supported by Chrome, Edge, Opera and Firefox */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 .nodrag {
@@ -40,7 +40,13 @@
 }
 
 .ant-layout-content {
-  background: transparent;
+  /* background: transparent; */
+  /* width: 440px;
+  height: 615px; */
+  width: 35vh;
+  height: 49vh;
+  /* background-size: cover;
+  background-image: url(../img/축구장.png); */
   /* 배경색 */
 }
 
@@ -54,48 +60,14 @@
   width: 25vh; */
 }
 
-.subsCard {
-  /* 오른쪽 리스트 박스 */
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  text-transform: uppercase;
-  width: 10vw;
-}
-
-.subsCard .ant-card-body {
-  /* 오른쪽 리스트 박스 여백인데 왜 더 줄어드는지 의문 */
-  padding: 6px 24px;
-}
-
-.subsCard .shirtNumber {
-  /* 오른쪽 리스트 숫자랑 글짜 간격 */
-  margin-right: 10px;
-}
-
-.playerHolder:before {
-  /* content: " ";
-  display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 40%;
-  height: 20%;
-  border: 5px solid red;
-  transform: translateX(-50%); */
-}
-
-/* .customFormationCheck span {
-  color: #fff;
-  커스텀 포메이션 체크박스
-} */
-
 .playerCard {
   /* 말판 선수카드 박스 */
   margin-bottom: 30px;
   position: absolute;
   bottom: 0;
   right: 0;
+  min-width: 50px;
+  min-height: 30px;
   width: 5vw;
   height: 5vh;
   /* height는 박스가 커지는게 아니라 선수 변경가능한 투명한 박스가 커짐 */
