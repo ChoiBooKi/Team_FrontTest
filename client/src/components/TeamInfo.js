@@ -12,7 +12,8 @@ function TeamInfo () {
   const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")//기본이미지
   const [Region, setRegion] = useState("")
   const fileInput = useRef(null)
-
+  const formdata = new FormData()
+  
   // useEffect(axios.get으로 팀인포 불러와야됨)
   useEffect(async() => { 
     const res = await axios.get("/api/teamInfo")
@@ -46,10 +47,32 @@ function TeamInfo () {
     SetStatus(!Status)
     if(Status === false){
       console.log('편집완료 누름')
+      let body = {
+        TeamInfo: TeamInfo,
+        TeamName: TeamName,
+        Intro: Intro,
+        Region: Region
+      }
+      formdata.append("image", Image)// 이미지 폼 데이터에 담기
+      formdata.append("body", JSON.stringify(body))// 바디 폼 데이터에 담기
       // axios.post로 변경된거 보내야됨
+      // axios.post('/api/팀정보', formdata)
+      // .then(res => {
+      //   if(res.data.success){
+      //     console.log(res.data)
+      //   }
+      // })
+      // .catch(err => console.log(err))
     } else {
       console.log('편집누름')
       // axios.get으로 받아와야됨
+      // axios.get('/api/teamInfo')
+      // .then(res => {
+      //   SetTeamInfo(res.data)
+      //   SetTeamName(res.data[0].teamname)
+      //   SetIntro(res.data[0].intro)
+      // })
+      // .catch(err => console.log(err))
     }
   }
 
