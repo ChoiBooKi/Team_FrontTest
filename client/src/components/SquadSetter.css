@@ -52,12 +52,25 @@
 
 .playerHolder {
   /* 말판 밖에 색 */
-  max-width: 100%;
+  /* max-width: 100%; */
   /* background: white;
   width: 40vw; */
   /* height: 20vh;
   border: 5px solid #2f274c;
   width: 25vh; */
+}
+
+.button {
+  min-width: 60px;
+  width: 1vh;
+  height: 9vh;
+  border-radius:75px;
+  text-align:center;
+  /* font-size:30px; */
+  vertical-align:middle;
+  line-height:10px;
+  position: absolute;
+  cursor: grab;
 }
 
 .playerCard {
@@ -66,21 +79,19 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  min-width: 50px;
-  min-height: 30px;
-  width: 5vw;
-  height: 5vh;
+  min-width: 60px;
+  width: 1vh;
   /* height는 박스가 커지는게 아니라 선수 변경가능한 투명한 박스가 커짐 */
   text-transform: uppercase;
 }
 
 .playerCard .ant-card-body .ant-card-meta-title {
   /* 말판 선수카드 글자 관련*/
-  font-size: 15px;
+  /* font-size: 150px;
   font-weight: 500;
-  /* background: #3498db; */
-  border-radius: 5px;
-  color: #ffffffd9;
+  background: red;
+  border-radius: 500px;
+  color: #ffffffd9; */
   /* border: 1px solid transparent; */
 }
 
@@ -91,12 +102,12 @@
 
 .playerCard:hover {
   /* 선수 박스위에 마우스 올리면 */
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .playerCardSubs {
   /* 오른쪽 리스트 사이 간격 */
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .playerCard.selected > .ant-card img {
@@ -125,7 +136,7 @@
 
 .playerCardSubs.selected > .subsCard {
   /* 오른쪽 리스트 클릭되면 외곽선 */
-  border: 2px solid #3498db;
+  /* border: 2px solid #3498db; */
 }
 
 .playerCard .avatarWrapper {
@@ -137,11 +148,11 @@
 
 .playerCard .playerAvatar {
   /* 아바타 관련 */
-  position: relative;
+  /* position: relative;
   width: 50px;
   margin: 5px auto;
   border-radius: 50%;
-  border: 2px solid #9b59b6;
+  border: 2px solid #9b59b6; */
 }
 
 .playerCard .ant-card {
@@ -278,30 +289,29 @@
   justify-content: center;
   align-items: center;
   margin-top: 5px;
-  position: relative;
   z-index: 2;
 }
 
 .positionBadge {
   /* 선수이름 글자 */
-  position: absolute;
-  color: white;
-  top: 10px;
-  left: 10px;
+  /* position: absolute; */
+  /* color: white; */
+  /* top: 10px;
+  left: 10px; */
 }
 
-.shirtNumberBadge {
+/* .shirtNumberBadge { */
   /* 선수 등번호 관련 */
-  position: absolute;
+  /* position: absolute; */
   /* left: 10px; */
   /* bottom: 20px; */
-  top: 65px;
-  color: white;
+  /* top: 65px;
+  color: white; */
   /* background: #fff; */
-  width: 24px;
+  /* width: 24px;
   height: 24px;
   border-radius: 50%;
   font-size: 13px;
   padding: 2px;
-  font-weight: 500;
-}
+  font-weight: 500; */
+/* } */

@@ -101,9 +101,11 @@ export default function Player(props) {
             onContextMenu={(e) => handleClick(e)}
             onClick={(e) => idsend(e)}
           >
-            <span className="positionBadge">{name}</span>
-            <span className="playerCardAction">{positionName}</span>
-            <span className="shirtNumberBadge">{back}</span>
+            <div style={{color: 'white'}}>
+              <span>{name}</span>
+              <span>{positionName}</span>
+              <p>{back}</p>
+            </div>
           </Button>
         </Card>
       </Col>

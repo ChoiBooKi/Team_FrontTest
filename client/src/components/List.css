@@ -10,6 +10,10 @@
   overflow-x: hidden
 }
 
+.list::-webkit-scrollbar{
+  display:none;
+}
+
 .selected{
   color:blue;
 }

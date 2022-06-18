@@ -79,9 +79,7 @@ function TeamInfo () {
   //팀소개 글자수제한, 팀장, 팀 등록일, 총 선수 수, 연령대, 활동 지역
   return(
     <div className='body' >
-      <button onClick={ () => {
-          onStatusHandler()
-      }}>
+      <button className = 'btn' onClick={ () => {onStatusHandler()}}>
         {Status ? "편집" : "편집 완료"}
       </button>
       {/* <h1>{TeamInfo && TeamInfo[0].teamname}</h1> */}
@@ -114,28 +112,28 @@ function TeamInfo () {
         </textarea>
         <div style={{display:"flex"}}>
           <h3 style={{marginTop:"5%"}}>팀장</h3>
-          <div style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].leader}</div>
+          <div style={{marginTop:"5.5%", marginLeft:"5%"}}>{TeamInfo && TeamInfo[0].leader}</div>
         </div>
         <div style={{display:"flex"}}>
-          <h3 style={{marginTop:"5%"}}>팀 등록일</h3>
-          <p style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].date}</p>
+          <h3>팀 등록일</h3>
+          <p style={{marginTop:"0.5%", marginLeft:"5%"}}>{TeamInfo && TeamInfo[0].date}</p>
         </div>
         <div style={{display:"flex"}}>
-          <h3 style={{marginTop:"5%"}}>총 선수 수</h3>
-          <p style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].numofplayer}</p>
+          <h3>총 선수 수</h3>
+          <p style={{marginTop:"0.5%", marginLeft:"5%"}}>{TeamInfo && TeamInfo[0].numofplayer}</p>
         </div>
         <div style={{display:"flex"}}>
-          <h3 style={{marginTop:"5%"}}>연령대</h3>
-          <p style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].age}</p>
+          <h3>연령대</h3>
+          <p style={{marginTop:"0.5%", marginLeft:"5%"}}>{TeamInfo && TeamInfo[0].age}</p>
         </div>
         {Status ? 
           <div style={{display:"flex"}}>
-            <h3 style={{marginTop:"5%"}}>활동지역</h3>
-            <p style={{marginTop:"5.5%"}}>{TeamInfo && TeamInfo[0].region}</p>
+            <h3>활동지역</h3>
+            <p style={{marginTop:"0.5%", marginLeft:"5%"}}>{TeamInfo && TeamInfo[0].region}</p>
           </div>
         : 
           <div style={{display:"flex"}}>
-            <h3 style={{marginTop:"5%", marginRight: "20px"}}>활동지역</h3>
+            <h3 style={{marginTop:"0.2%", marginRight: "20px"}}>활동지역</h3>
             <select onChange={onRegionHandler} value={Region} style={{width:"100px", height:"30px"}}>
               {regionList.map((item, id) => (
                 <option value={item} key={id}>

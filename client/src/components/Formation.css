@@ -23,7 +23,7 @@
   margin-left: 3%;
   margin-right: 3%;
 }
-.button {
+/* .button {
   width:70px;
   height:90px;
   border-radius:75px;
@@ -33,7 +33,7 @@
   line-height:50px;
   position: absolute;
   cursor: grab;
-}
+} */
 .hexagon {
   background-image: url("./123.png");
   width:70px;
