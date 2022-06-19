@@ -17,7 +17,7 @@
 .body::-webkit-scrollbar{
   display:none;
 }
-
+/* 글자이름 반응형으로 */
 .avatar{
   border: 2px solid black;
   /* width: 30vh; */

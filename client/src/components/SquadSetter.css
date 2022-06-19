@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
 
+/* 좌측에 선수 몰려있는 이유 찾기
+포메이션 좌표 따기 */
+
+
 * {
   font-family: "Montserrat", sans-serif;
 }
