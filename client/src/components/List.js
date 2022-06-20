@@ -40,6 +40,7 @@ function List () {
     SetModalis(true)
   }
   return (
+    //모달, 리스트 css 설정하기
     <div className='list'>
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}> 
         {Content && Content.name}

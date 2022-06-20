@@ -225,7 +225,7 @@ const ResponsiveAppBar = () => {
                       </MenuItem>
                     :
                       <MenuItem key={alarm._id} onClick={() => removeAlarm(alarm._id)}>
-                        <Typography textAlign="center">선수 {alarm.name}'가(이) 팀 가입 신청을 하였습니다.</Typography>
+                        <Typography textAlign="center">선수 '{alarm.name}'가(이) 팀 가입 신청을 하였습니다.</Typography>
                       </MenuItem>
                     )
                   }

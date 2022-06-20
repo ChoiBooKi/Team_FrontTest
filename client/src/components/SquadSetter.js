@@ -125,10 +125,7 @@ export default function SquadSetter() {
         ></HeaderComponent>
         <Content>
           <Row className="formations">
-            <Col
-              span={24}
-              className={"playerHolder " + (smoothTransition ? "smooth" : "")}
-            >
+            <Col span={24} className={"playerHolder " + (smoothTransition ? "smooth" : "")}>
               {playerItems}
             </Col>
           </Row>

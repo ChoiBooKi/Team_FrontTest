@@ -66,13 +66,14 @@
 
 .button {
   min-width: 60px;
-  width: 1vh;
-  height: 9vh;
+  padding-left: 1001px;
+  width: 5vh;
+  height: 6vh;
   border-radius:75px;
   text-align:center;
   /* font-size:30px; */
   vertical-align:middle;
-  line-height:10px;
+  /* line-height:10px; */
   position: absolute;
   cursor: grab;
 }
@@ -132,7 +133,8 @@
   left: 0;
   z-index: 0;
   border-radius: 20px;
-  border: 2px solid #3498db;
+  border: 2px solid white;
+  /* 얘기 들어보고 밖에 외곽선 하는지 말지 알아보기 */
   /* -webkit-box-shadow: 5px 5px 6px -5px #3498db; */
   /* -moz-box-shadow: 5px 5px 6px -5px#3498db; */
   /* box-shadow: 5px 5px 6px -5px #3498db; */
@@ -178,13 +180,13 @@
   /* border: none; */
 }
 
-.playerCard .ant-card:hover img {
+/* .playerCard .ant-card:hover img {
   opacity: 0.85;
 }
 
 .playerCard .ant-card:hover .ant-card-meta-title {
   opacity: 0.85;
-}
+} */
 
 .playerCard .ant-card-body {
   padding: 0 0px 0px 0px;

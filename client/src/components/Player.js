@@ -5,11 +5,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 
 let fal = []
-  
+let selected = 0
 export default function Player(props) {
   const [anchorEl, setAnchorEl] = useState(null); //리스트 띄울지 안띄울지
   const {_id, name, already, back} = props.data
   const { pickPlayer,top, left, positionName } = props;
+  const [ Id, SetId] = useState()
 
   if(already === false){
       fal.push(props.data)
@@ -21,12 +22,15 @@ export default function Player(props) {
   const idsend = (event) => {//기배치된 선수 끼리 변경할때
     let flag = 'pre'
     pickPlayer(event.currentTarget.id, flag)
+    SetId(event.currentTarget.id)
+    selected = 1
   }
 
   const modalidsend = (id) => {//리스트에서 선택할 때
     let flag = 'modal'
     let mflag = 'list'
     pickPlayer(id, flag, mflag)
+    // selected = 1
   }
 
   const remove = (id) => {//모달 선수 교체해서 띄우는 거
@@ -34,14 +38,18 @@ export default function Player(props) {
   }
 
   const handleClick = (event) => { //리스트 띄우기, 모달 선택됐다고 보낼 때
+    event.preventDefault();//브라우저 우클릭을 막아준다.
     setAnchorEl(event.currentTarget);
     let flag = 'modal'
     let mflag = 'pre'
     pickPlayer(event.currentTarget.id, flag, mflag)
-    event.preventDefault();//브라우저 우클릭을 막아준다.
+    SetId(event.currentTarget.id)
+    selected = 1
   };
 
   const handleClose = () => {//리스트 끄기
+    SetId(null)
+    selected = 0
     setAnchorEl();
   };
 
@@ -51,6 +59,7 @@ export default function Player(props) {
       id="basic-menu"
       anchorEl={anchorEl}
       open={open}
+      // onClick={e => color(e)}
       onClose={e => handleClose(e)}
       MenuListProps={{
         'aria-labelledby': 'basic-button',
@@ -84,15 +93,9 @@ export default function Player(props) {
     {already === true ?
       <Col
         style={{ top: top, left: left }}
-        className={"playerCard noselect selected"}
+        className={(_id === Id ) && selected === 1 ? "playerCard noselect selected" : "playerCard noselect"}
       >
-        <Card
-          hoverable
-          cover={
-            <div className="avatarWrapper">
-            </div>
-          }
-        >
+        <Card>
           <Button className="button"
             id={_id}
             aria-controls={open ? 'basic-menu' : undefined}
@@ -104,7 +107,8 @@ export default function Player(props) {
             <div style={{color: 'white'}}>
               <span>{name}</span>
               <span>{positionName}</span>
-              <p>{back}</p>
+              {/* <br/> 등번호 뺄지 넣을지는 이미지 적용시켜본뒤에 결정*/}
+              <span>{back}</span>
             </div>
           </Button>
         </Card>
