@@ -8,7 +8,6 @@ import Kakao from "./components/Kakao";
 import TeamLeader from "./components/TeamLeader";
 import Formation from "./components/Formation"
 import TeamManage from "./components/TeamManage";
-import Search from "./components/Search";
 import ResponsiveAppBar from "./components/Appbar"
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
               <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
               <Route path="/move" element={<Formation />} />
               <Route path="/teammanage" element={<TeamManage />} />
-              <Route path="/search" element={<Search />} />
             </Routes>
           </div>
         {/* </body> */}
