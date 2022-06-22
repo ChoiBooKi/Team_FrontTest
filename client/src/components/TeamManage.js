@@ -21,15 +21,12 @@ const TeamManage = () => {
   };
 
   return (
-    <div className="box" 
-      style={{  
+    <div style={{  
         backgroundColor: 'white',
-        marginLeft: '3%',
-        marginRight: '3%',
         marginTop: '1%',
         borderRadius: '15px',
         height: '75vh',
-        minWidth: '1800px'
+        overflowY: 'hidden'
       }}>
       <Box
         sx={{ flexGrow: 1, bgcolor: 'parent', display: 'flex', height: '100%' }}
@@ -78,30 +75,5 @@ const TeamManage = () => {
     </div>
   );
 }
-
-// function TeamManage() {
-
-//   return (
-//     <div className='TeamManage'>
-//       <div className="box">
-//         <Grid container spacing={2}>
-//           <Grid item xs={4}>
-//             {<TeamInfo />}
-//           </Grid>
-//           <Grid item xs={4}>
-//             <Grid container justifyContent="center">
-//               {/* 센터배치 */}
-//               {/* {<Formation />} */}
-//               {<SquadSetter />}
-//             </Grid>
-//           </Grid>
-//           <Grid item xs={4}>
-//             {<List />}
-//           </Grid>
-//         </Grid>
-//       </div>
-//     </div>
-//   )
-// }
 
 export default TeamManage
