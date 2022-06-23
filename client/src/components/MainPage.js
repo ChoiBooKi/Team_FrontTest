@@ -13,7 +13,7 @@ function MainPage() {
       <a href={KAKAO_AUTH_URL}>Kakao Login</a>
       <Google/>
       <br/>
-      <a href="http://localhost:3000/teammanage" className='ab'>팀관리</a>
+      <a href="http://localhost:3000/extrainfo" className='ab'>회원정보</a>
       <div className="wrapper" >
         <div className="small">Sent For All Sport Teams</div>
         <div style={{display:"flex"}}>

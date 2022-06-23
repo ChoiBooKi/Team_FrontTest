@@ -67,17 +67,33 @@ function TeamExtraInformation(props) {
       .catch(err => console.log(err))
     } else alert("팀 명을 입력해 주십시오.")
   }
-
+  //각 핸들러들 만들고 박스 안에 넣어야됨
+  //중복확인 로직, 생년월일 이메일 등 구글링해서 나은 폼 있으면 적용
   return (
     <div style={{
       display: 'flex', justifyContent: 'center', alignItems: 'center',
-      width: '100%', height: '100vh'
+      width: '100%', height: '100vh', color:'skyblue'
     }}>
       <form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>닉네임(필수)</label>
+        <label>이름(필수)</label>
         <input type="text" value={NickName} onChange={onNickNameHandler} />
 
+        <label>닉네임(필수)</label>
+        <input type="text" value={NickName} onChange={onNickNameHandler} />
         <button onClick={onCheckHandler}>중복확인</button>
+
+        <label>이메일(필수)</label>
+        <input type="text" value={NickName} onChange={onNickNameHandler} />
+        <button onClick={onCheckHandler}>중복확인</button>
+
+        <label>비밀번호(필수)</label>
+        <input type="text" value={NickName} onChange={onNickNameHandler} />
+
+        <label>성별(필수)</label>
+        <input type="text" value={NickName} onChange={onNickNameHandler} />
+
+        <label>생년월일(필수)</label>
+        <input type="text" value={NickName} onChange={onNickNameHandler} />
 
         <label>활동 지역(필수)</label>
         <select onChange={onRegionHandler} value={Region}>

@@ -8,6 +8,6 @@
   padding-right: 3%;
   padding-left: 3%;
   width: 100%;
-  min-width: 1750px;
-  overflow: scroll;
+  /* min-width: 1750px;
+  overflow: scroll; */
 }
