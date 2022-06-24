@@ -1,5 +1,5 @@
 import "./App.css";
-import React from 'react'
+import React, { useEffect } from 'react'
 import ExtraInformation from "./components/ExtraInformation"
 import TeamExtraInformation from "./components/TeamExtraInformation"
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
@@ -11,6 +11,12 @@ import ResponsiveAppBar from "./components/Appbar"
 import MakeTeam from "./components/MakeTeam";
 
 function App() {
+  const minwidth = window.screen.height * 1.35 ;
+  useEffect(() => {
+    let myElement = document.querySelector(".Back");
+    myElement.style.minWidth = `${minwidth}px`
+  },[])
+ 
   return (
     <div className="Back">
       <Router>
