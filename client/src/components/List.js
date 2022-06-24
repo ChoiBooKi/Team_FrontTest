@@ -52,57 +52,96 @@ function List() {
         {Content && Content.info}
       </Modal>
       <div>
-        <h2>선수 리스트</h2>
+        {/* <h2>선수 리스트</h2> */}
         <Grid container>
           <Grid item xs={12}>
-            <ul>
+            {/* <ul> */}
+            {/* ul li 둘다 제거 */}
+            <div>
+              <Grid container justifyContent="space-between"
+                alignItems="center"
+                sx={{ border: 1, height: '5vh' }}>
+                <Grid item xs={4} sx={{
+                  fontWeight: 'bold',
+                  fontSize: 13, fontStyle: 'italic'
+                }} >
+                  등번호
+                </Grid>
+                <Grid item xs={4} sx={{
+                  fontWeight: 'bold',
+                  fontSize: 13, fontStyle: 'italic'
+                }}>
+                  포지션
+                </Grid>
+                <Grid item xs={4} sx={{
+                  fontWeight: 'bold',
+                  fontSize: 13, fontStyle: 'italic'
+                }}>
+                  선수명
+                </Grid>
+              </Grid>
               {PlayerList && PlayerList.map((player) => {
                 if (player.already === true) {
                   return (
-                    <li className="selected" key={player._id}>
-                      <Grid container justifyContent="space-between"
-                        alignItems="center">
-                        <Grid item xs={3}>
-                          선발
-                        </Grid>
-                        <Grid item xs={3}>
-                          {player.name}
-                          {player.select}
-                        </Grid>
-                        <Grid item xs={3}>
-                          {player.back}
-                        </Grid>
-                        <Grid item xs={3}>
-                          <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
-                        </Grid>
+                    // <li className="selected" key={player._id}>
+                    <Grid container justifyContent="space-between"
+                      alignItems="center"
+                      sx={{ border: 1, height: '5vh' }}>
+                      <Grid item xs={4} sx={{
+                        color: 'blue', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }} >
+                        선발
                       </Grid>
-                    </li>
+                      <Grid item xs={4} sx={{
+                        color: 'blue', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        {player.name}
+                        {player.select}
+                      </Grid>
+                      <Grid item xs={4} sx={{
+                        color: 'blue', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        {player.back}
+                      </Grid>
+                    </Grid>
+                    // </li>
                   )
                 }
                 else if (player.already === false) {
                   return (
-                    <li className="candidate" key={player._id}>
-                      <Grid container direction="row" justifyContent="space-between"
-                        alignItems="center">
-                        <Grid item xs={3}>
-                          후보
-                        </Grid>
-                        <Grid item xs={3}>
-                          {player.name}
-                          {player.like}
-                        </Grid>
-                        <Grid item xs={3}>
-                          {player.back}
-                        </Grid>
-                        <Grid item xs={3}>
-                          <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
-                        </Grid>
+                    // <li className="candidate" key={player._id}>
+                    <Grid container direction="row" justifyContent="space-between"
+                      alignItems="center"
+                      sx={{ border: 1, height: '5vh' }}>
+                      <Grid item xs={4} sx={{
+                        color: 'red', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        후보
                       </Grid>
-                    </li>
+                      <Grid item xs={4} sx={{
+                        color: 'red', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        {player.name}
+                        {player.like}
+                      </Grid>
+                      <Grid item xs={4} sx={{
+                        color: 'red', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        {player.back}
+                      </Grid>
+                    </Grid>
+                    // </li>
                   )
                 }
               })}
-            </ul>
+            </div>
+            {/* </ul> */}
           </Grid>
         </Grid>
       </div>
