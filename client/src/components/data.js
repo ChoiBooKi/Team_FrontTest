@@ -21,6 +21,7 @@ export const PlayersList = [
         //팀네임
         //선수-> 팀 신청 확인용 0 1 A B C
         //팀 -> 선수 신청 확인용 0 1
+        //원인덱스
     },
     {
         back: 52,
