@@ -65,14 +65,18 @@ app.get('/api/login/oauth2/kakao', (req, res) => {
 app.post('/api/extraInfo', (req, res) => {
   //회원 가입 할 때 작성한 정보들을 가져와 DB에 넣어준다
   const user = new User(req.body)
+  // console.log(req.body)
 
-  user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err})
-    return res.status(200).json({
-      success: true,
-      nickName: user.nickName,
-      image: req.body.image
-    })
+  // user.save((err, userInfo) => {
+  //   if (err) return res.json({ success: false, err})
+  //   return res.status(200).json({
+  //     success: true,
+  //     nickName: user.nickName,
+  //     image: req.body.image
+  //   })
+  // })
+  res.status(200).json({
+    success: true
   })
 })
 
@@ -129,7 +133,9 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 app.get('/api/hello', (req, res) => {
-  res.send("")
+  res.status(200).json({
+    success: true
+  })
 })
 
 // app.post('/api/extraInfo', (req, res) => {

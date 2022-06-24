@@ -53,7 +53,9 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
     switch(page){
       case "팀 관리":
+        // if(팀이 있으면)
         navigate('/teammanage')
+        // else if(팀이 없으면) 팀생성 페이지로 이동
         break
       case "팀 선택":
         console.log('팀선택')
@@ -79,7 +81,9 @@ const ResponsiveAppBar = () => {
     .catch(err => console.log(err))
   }
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (e) => {
+    // if(e.currentTarget.id === '내 정보'){
+    // } else if( e.currentTarget.id === '로그아웃' )
     setAnchorElUser(null);
   };
 
@@ -257,7 +261,7 @@ const ResponsiveAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem id={setting} key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
@@ -268,7 +272,7 @@ const ResponsiveAppBar = () => {
             <Button
               onClick={onClick}
               key="login"
-              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px", fontSize:"20pt",marginLeft: "1830px"}}
+              sx={{ my: 2, color: "white", display: "block" , marginRight: "50px", fontSize:"20pt"}}
             >
               로그인/회원가입
             </Button>

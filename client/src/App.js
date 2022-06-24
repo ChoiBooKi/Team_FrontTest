@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from "./components/MainPage";
 import Kakao from "./components/Kakao";
 import TeamLeader from "./components/TeamLeader";
-import Formation from "./components/Formation"
 import TeamManage from "./components/TeamManage";
 import ResponsiveAppBar from "./components/Appbar"
+import MakeTeam from "./components/MakeTeam";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
               <Route path="/login/oauth/kakao" element={<Kakao />} />
               <Route path="/teamleader" element={<TeamLeader/>} />
               <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
-              <Route path="/move" element={<Formation />} />
+              <Route path="/make" element={<MakeTeam />} />
               <Route path="/teammanage" element={<TeamManage />} />
             </Routes>
           </div>

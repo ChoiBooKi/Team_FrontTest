@@ -28,7 +28,7 @@ function TeamInfo () {
 
   const onChange = (e) => {
     if(e.target.files[0]){
-      setImage(e.target.files[0])
+      setImage(e.target.files[0].name)
     }else{ //업로드 취소할 시
       setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
       return
@@ -93,6 +93,7 @@ function TeamInfo () {
         onClick={()=>{fileInput.current.click()}}/>
       <input 
         className='input'
+        disabled={Status}
  	      type='file' 
     	  style={{display:'none'}}
         accept='image/jpg,impge/png,image/jpeg' 

@@ -84,7 +84,7 @@ function List() {
                 if (player.already === true) {
                   return (
                     // <li className="selected" key={player._id}>
-                    <Grid container justifyContent="space-between"
+                    <Grid container justifyContent="space-between" key={player._id}
                       alignItems="center"
                       sx={{ border: 1, height: '5vh' }}>
                       <Grid item xs={4} sx={{
@@ -113,7 +113,7 @@ function List() {
                 else if (player.already === false) {
                   return (
                     // <li className="candidate" key={player._id}>
-                    <Grid container direction="row" justifyContent="space-between"
+                    <Grid container direction="row" justifyContent="space-between" key={player._id}
                       alignItems="center"
                       sx={{ border: 1, height: '5vh' }}>
                       <Grid item xs={4} sx={{
