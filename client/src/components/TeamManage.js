@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import AllAboutTeam from './AllAboutTeam'
+import BigList from './BigList'
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
@@ -38,21 +39,6 @@ const TeamManage = () => {
         sx={{ flexGrow: 1, bgcolor: 'parent', display: 'flex', height: '100%' }}
       //왼쪽 사이드 앱바 설정
       >
-        {/* <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 2, borderColor: 'divider', minWidth: '20vh'}}
-        >
-          <Tab label="팀 정보" sx={{height: '6vh'}}/>
-          <Tab label="선수 관리" sx={{height: '6vh'}}/>
-          <Tab label="팀 일정" sx={{height: '6vh'}}/>
-          <Tab label="팀 기록" sx={{height: '6vh'}}/>
-          <Tab label="사진" sx={{height: '6vh'}}/>
-          <Tab label="게시판" sx={{height: '6vh'}}/>
-        </Tabs> */}
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -74,7 +60,7 @@ const TeamManage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          Item Two
+          {<BigList />}
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
