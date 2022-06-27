@@ -141,3 +141,10 @@ export const PlayersList = [
         email: "승우@naver.com"
     },
 ];
+
+let body = {
+    fromEmail : '누가', //일정을 예약
+    toEmail : '누구에게',
+    //teamName : '어떤 팀에서' 팀가입거절 가입승인 
+    value : '무엇을'
+}

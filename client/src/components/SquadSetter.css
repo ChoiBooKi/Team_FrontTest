@@ -16,8 +16,8 @@
 
 .formations {
   display: flex;
-  width: 35vh;
-  height: 49vh;
+  width: 40vh;
+  height: 55vh;
   min-width: 252.55px;
   min-height: 354.58px;
   background-size: cover;
@@ -47,8 +47,8 @@
   /* background: transparent; */
   /* width: 440px;
   height: 615px; */
-  width: 35vh;
-  height: 49vh;
+  width: 40vh;
+  /* height: 49vh; */
   /* background-size: cover;
   background-image: url(../img/축구장.png); */
   /* 배경색 */
