@@ -48,6 +48,12 @@ const ResponsiveAppBar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  const handleOpenAlarmMenu = (event) => {
+    setAnchorElAlarm(event.currentTarget);
+  };
+  const handleCloseAlarmMenu = (e) => {
+    setAnchorElAlarm(null);
+  };
 
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
@@ -119,7 +125,7 @@ const ResponsiveAppBar = () => {
               </IconButton>
               <Menu
                 id="menu-appbar"
-                anchorEl={anchorElAlarm}
+                anchorEl={anchorElNav}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'left',
@@ -129,7 +135,7 @@ const ResponsiveAppBar = () => {
                   vertical: 'top',
                   horizontal: 'left',
                 }}
-                open={Boolean(anchorElAlarm)}
+                open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: 'block', md: 'none' },
@@ -172,13 +178,13 @@ const ResponsiveAppBar = () => {
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
+                  onClick={handleOpenAlarmMenu}
                   color="inherit"
                 >
                   <NotificationsNoneIcon />
                 </IconButton>
                 <Menu
-                anchorEl={anchorElNav}
+                anchorEl={anchorElAlarm}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'left',
@@ -188,8 +194,8 @@ const ResponsiveAppBar = () => {
                   vertical: 'top',
                   horizontal: 'left',
                 }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+                open={Boolean(anchorElAlarm)}
+                onClose={handleCloseAlarmMenu}
               >
                 <div>새로운 알림이 없습니다.</div>
               </Menu>
@@ -201,13 +207,13 @@ const ResponsiveAppBar = () => {
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
+                  onClick={handleOpenAlarmMenu}
                   color="inherit"
                 >
                   <NotificationsIcon />
                 </IconButton>
                 <Menu
-                  anchorEl={anchorElNav}
+                  anchorEl={anchorElAlarm}
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
@@ -217,8 +223,8 @@ const ResponsiveAppBar = () => {
                     vertical: 'top',
                     horizontal: 'left',
                   }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
+                  open={Boolean(anchorElAlarm)}
+                  onClose={handleCloseAlarmMenu}
                 >
                   {
                     Alarm.map((alarm) => 

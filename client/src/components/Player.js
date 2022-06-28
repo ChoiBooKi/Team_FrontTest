@@ -11,6 +11,7 @@ export default function Player(props) {
   const {_id, name, already, back} = props.data
   const { pickPlayer,top, left, positionName } = props;
   const [ Id, SetId] = useState()
+  const [ CheckId, SetCheckId] = useState()
 
   if(already === false){
       fal.push(props.data)
@@ -23,8 +24,23 @@ export default function Player(props) {
     let flag = 'pre'
     pickPlayer(event.currentTarget.id, flag)
     SetId(event.currentTarget.id)
-    selected = 1
+    //한선수를 두번 골랐는지 확인하는 if문
+    //한선수를 골랐다가 다른선수 오른쪽 클릭했을 땐 어떻게 해야되는지 모르겠네
+    //id 값으로 해당 선수의 class이름에 접근하는 방법 알아보기
+    if(CheckId === event.currentTarget.id){
+      selected = 0
+      SetCheckId()
+      console.log('yes')
+    } else {
+      SetCheckId(event.currentTarget.id)
+      selected = 1
+      console.log('no')
+    }
   }
+
+  // const selectOff = () => {
+  //   selected = 0
+  // }
 
   const modalidsend = (id) => {//리스트에서 선택할 때
     let flag = 'modal'
@@ -44,7 +60,17 @@ export default function Player(props) {
     let mflag = 'pre'
     pickPlayer(event.currentTarget.id, flag, mflag)
     SetId(event.currentTarget.id)
-    selected = 1
+    //selected = 1
+    //SetCheckId(event.currentTarget.id)
+    if(CheckId === event.currentTarget.id){
+      selected = 0
+      SetCheckId()
+      console.log('yes')
+    } else {
+      SetCheckId(event.currentTarget.id)
+      selected = 1
+      console.log('no')
+    }
   };
 
   const handleClose = () => {//리스트 끄기
