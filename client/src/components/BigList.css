@@ -1,0 +1,23 @@
+.Biglist{
+  width: 100%;
+  height: 75vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: white;
+}
+.Biglist::-webkit-scrollbar{
+  display:none;
+}
+.listBtn{
+  background: inherit ;
+  border:none;
+  box-shadow:none;
+  border-radius:0;
+  padding:0;
+  overflow:visible;
+  cursor:Default;
+  width: 100%;
+}
+.listBtn:hover{
+  background-color: rgb(243, 243, 243);
+}

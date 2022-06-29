@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-import './List.css'
+import './BigList.css'
 import Modal from 'react-modal';
 import Grid from '@mui/material/Grid';
 
@@ -52,29 +52,35 @@ function BigList() {
         {Content && Content.player}
         {Content && Content.info}
       </Modal>
-      <div>
+      <div className = 'scroll'>
         <h1 style={{float: 'left'}}>선수 관리</h1>
         <Grid container>
-          <Grid item xs={12}>
+          <Grid item xs={12} >
             <div>
-              <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh' }}>
+              <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh'}}>
                 <Grid item xs={1} sx={{
                   fontWeight: 'bold',
                   fontSize: 13, fontStyle: 'italic'
                 }} >
                   {/* 선발인지 후보인지 나타내는 빈칸 */}
                 </Grid>
-                <Grid item xs={1} sx={{
+                <Grid item xs={1.5} sx={{
                   fontWeight: 'bold',
                   fontSize: 13, fontStyle: 'italic'
                 }} >
                   등번호
                 </Grid>
-                <Grid item xs={2} sx={{
+                <Grid item xs={1.5} sx={{
                   fontWeight: 'bold',
                   fontSize: 13, fontStyle: 'italic'
                 }}>
-                  포지션
+                  선호 포지션
+                </Grid>
+                <Grid item xs={1.5} sx={{
+                  fontWeight: 'bold',
+                  fontSize: 13, fontStyle: 'italic'
+                }}>
+                  배치 포지션
                 </Grid>
                 <Grid item xs={2} sx={{
                   fontWeight: 'bold',
@@ -82,7 +88,7 @@ function BigList() {
                 }}>
                   선수명
                 </Grid>
-                <Grid item xs={4} sx={{
+                <Grid item xs={2.5} sx={{
                   fontWeight: 'bold',
                   fontSize: 13, fontStyle: 'italic'
                 }}>
@@ -98,7 +104,7 @@ function BigList() {
               {PlayerList && PlayerList.map((player) => {
                 if (player.already === true) {
                   return (
-                    // <li className="selected" key={player._id}>
+                    <button className='listBtn'>
                     <Grid container justifyContent="space-between" key={player._id} alignItems="center" sx={{ border: 1, height: '5vh' }}>
                       <Grid item xs={1} sx={{
                         color: 'blue', fontWeight: 'bold',
@@ -106,13 +112,19 @@ function BigList() {
                       }} >
                         선발
                       </Grid>
-                      <Grid item xs={1} sx={{
+                      <Grid item xs={1.5} sx={{
                         color: 'blue', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
                         {player.back}
                       </Grid>
-                      <Grid item xs={2} sx={{
+                      <Grid item xs={1.5} sx={{
+                        color: 'blue', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        {player.like}
+                      </Grid>
+                      <Grid item xs={1.5} sx={{
                         color: 'blue', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
@@ -124,7 +136,7 @@ function BigList() {
                       }}>
                         {player.name}
                       </Grid>
-                      <Grid item xs={4} sx={{
+                      <Grid item xs={2.5} sx={{
                         color: 'blue', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
@@ -134,12 +146,13 @@ function BigList() {
                           <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
                         </Grid>
                     </Grid>
+                    </button>
                     // </li>
                   )
                 }
                 else if (player.already === false) {
                   return (
-                    // <li className="candidate" key={player._id}>
+                    <button className='listBtn'>
                     <Grid container justifyContent="space-between" key={player._id} alignItems="center" sx={{ border: 1, height: '5vh' }}>
                       <Grid item xs={1} sx={{
                         color: 'red', fontWeight: 'bold',
@@ -147,17 +160,23 @@ function BigList() {
                       }} >
                         후보
                       </Grid>
-                      <Grid item xs={1} sx={{
+                      <Grid item xs={1.5} sx={{
                         color: 'red', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
                         {player.back}
                       </Grid>
-                      <Grid item xs={2} sx={{
+                      <Grid item xs={1.5} sx={{
                         color: 'red', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
                         {player.like}
+                      </Grid>
+                      <Grid item xs={1.5} sx={{
+                        color: 'red', fontWeight: 'bold',
+                        fontSize: 13, fontStyle: 'italic'
+                      }}>
+                        ----
                       </Grid>
                       <Grid item xs={2} sx={{
                         color: 'red', fontWeight: 'bold',
@@ -165,7 +184,7 @@ function BigList() {
                       }}>
                         {player.name}
                       </Grid>
-                      <Grid item xs={4} sx={{
+                      <Grid item xs={2.5} sx={{
                         color: 'red', fontWeight: 'bold',
                         fontSize: 13, fontStyle: 'italic'
                       }}>
@@ -175,6 +194,7 @@ function BigList() {
                           <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
                         </Grid>
                     </Grid>
+                    </button>
                     // </li>
                   )
                 }

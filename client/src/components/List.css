@@ -8,7 +8,6 @@
   border: 2px solid black;
   overflow: scroll;
   overflow-x: hidden;
-  
 }
 
 .list::-webkit-scrollbar{

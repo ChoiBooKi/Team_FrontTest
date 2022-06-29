@@ -12,6 +12,7 @@ export default function Player(props) {
   const { pickPlayer,top, left, positionName } = props;
   const [ Id, SetId] = useState()
   const [ CheckId, SetCheckId] = useState()
+  const [selected, Setselected] = useState()
 
   if(already === false){
       fal.push(props.data)
@@ -28,12 +29,12 @@ export default function Player(props) {
     //한선수를 골랐다가 다른선수 오른쪽 클릭했을 땐 어떻게 해야되는지 모르겠네
     //id 값으로 해당 선수의 class이름에 접근하는 방법 알아보기
     if(CheckId === event.currentTarget.id){
-      selected = 0
+      Setselected(0)
       SetCheckId()
       console.log('yes')
     } else {
       SetCheckId(event.currentTarget.id)
-      selected = 1
+      Setselected(1)
       console.log('no')
     }
   }
@@ -46,7 +47,7 @@ export default function Player(props) {
     let flag = 'modal'
     let mflag = 'list'
     pickPlayer(id, flag, mflag)
-    // selected = 1
+    Setselected(1)
   }
 
   const remove = (id) => {//모달 선수 교체해서 띄우는 거
@@ -54,28 +55,30 @@ export default function Player(props) {
   }
 
   const handleClick = (event) => { //리스트 띄우기, 모달 선택됐다고 보낼 때
+    console.log(selected)
+    if(selected === 1){
+      Setselected(0)
+    }
     event.preventDefault();//브라우저 우클릭을 막아준다.
     setAnchorEl(event.currentTarget);
     let flag = 'modal'
     let mflag = 'pre'
     pickPlayer(event.currentTarget.id, flag, mflag)
     SetId(event.currentTarget.id)
-    //selected = 1
-    //SetCheckId(event.currentTarget.id)
+    // selected = 1
+    SetCheckId(event.currentTarget.id)
     if(CheckId === event.currentTarget.id){
-      selected = 0
+      Setselected(0)
       SetCheckId()
-      console.log('yes')
     } else {
       SetCheckId(event.currentTarget.id)
-      selected = 1
-      console.log('no')
+      Setselected(1)
     }
   };
 
   const handleClose = () => {//리스트 끄기
     SetId(null)
-    selected = 0
+    Setselected(0)
     setAnchorEl();
   };
 
