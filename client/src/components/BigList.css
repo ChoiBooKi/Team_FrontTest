@@ -21,3 +21,15 @@
 .listBtn:hover{
   background-color: rgb(243, 243, 243);
 }
+.listBtn.select{
+  background-color: rgb(216, 216, 216);
+}
+.playerInfo{
+  padding-left: 3%;
+  width: 25%;
+  height: 50%;
+  margin: 20% auto;
+  background-color: white;
+  border-radius: 15px;
+  justify-content: center;
+}

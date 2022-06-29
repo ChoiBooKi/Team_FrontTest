@@ -4,12 +4,15 @@ import { useEffect } from 'react';
 import './BigList.css'
 import Modal from 'react-modal';
 import Grid from '@mui/material/Grid';
+import image from "../img/로고.png"
 
-
+let selected = 0
 function BigList() {
   const [PlayerList, SetPlayerList] = useState(null);
   const [Modalis, SetModalis] = useState(false)
   const [Content, SetContent] = useState()
+  const [Id, SetId] = useState()
+
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res = await axios.get("/api/readUser")//선수정보
     //유저정보도 받아와야됨
@@ -22,10 +25,11 @@ function BigList() {
     })
     SetPlayerList(sort)
   }, [])
-
+  
   const ModalClose = () => {
     SetModalis(false)
   }
+
   const ModalOpen = (e) => {
     axios.get('/api/readInfo', { // email 받아와서 백으로 보내고 백에서 email로 구분해서 정보 보내줌
       params: {
@@ -40,17 +44,59 @@ function BigList() {
     SetModalis(true)
   }
 
+  const SelectPlayer = (event) => {
+    if(Id === event.currentTarget.id){
+      SetId()
+      selected = 0
+    }else{
+      SetId(event.currentTarget.id)
+      selected = 1
+    }
+  }
+  
   return (
     <div className='Biglist'>
-      <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}>
-        {Content && Content.name}
-        {Content && Content.gender}
-        {Content && Content.email}
-        {Content && Content.nickname}
-        {Content && Content.region}
-        {Content && Content.like}
-        {Content && Content.player}
-        {Content && Content.info}
+      <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false} className='playerInfo'>
+        <div><img src={image} style={{width:'40%'}}></img></div>
+        <div style={{display:"flex"}}>
+          <h3 style={{marginTop:"3.5%"}}>이름</h3>
+          <p style={{marginTop:"3.5%", marginLeft:"5%"}}>{Content && Content.name}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>성별</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.gender}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>생년월일</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.gender}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>이메일</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.email}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>닉네임</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.nickName}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>활동지역</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.region}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>선호포지션</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.like}</p>
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>선출 여부</h3>
+          {Content && Content.player === false ? 
+          <p style={{marginLeft:"5%"}}>X</p> : 
+          <p style={{marginLeft:"5%"}}>O</p>}
+        </div>
+        <div style={{display:"flex"}}>
+          <h3>소개글</h3>
+          <p style={{marginLeft:"5%"}}>{Content && Content.info}</p>
+        </div>
+        <button style={{marginLeft:'38%'}}>확인</button>
       </Modal>
       <div className = 'scroll'>
         <h1 style={{float: 'left'}}>선수 관리</h1>
@@ -58,88 +104,53 @@ function BigList() {
           <Grid item xs={12} >
             <div>
               <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh'}}>
-                <Grid item xs={1} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }} >
+                <Grid item xs={1} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   {/* 선발인지 후보인지 나타내는 빈칸 */}
                 </Grid>
-                <Grid item xs={1.5} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }} >
+                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   등번호
                 </Grid>
-                <Grid item xs={1.5} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   선호 포지션
                 </Grid>
-                <Grid item xs={1.5} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   배치 포지션
                 </Grid>
-                <Grid item xs={2} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   선수명
                 </Grid>
-                <Grid item xs={2.5} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={2.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   이메일
                 </Grid>
-                <Grid item xs={2} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   상세 정보
                 </Grid>
               </Grid>
               {PlayerList && PlayerList.map((player) => {
                 if (player.already === true) {
                   return (
-                    <button className='listBtn'>
-                    <Grid container justifyContent="space-between" key={player._id} alignItems="center" sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={1} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }} >
+                    <button 
+                      className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
+                      key={player._id}
+                      id={player._id} 
+                      onClick={SelectPlayer}>
+                    <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh' }}>
+                      <Grid item xs={1} sx={{fontWeight: 'bold', fontSize: 13}}>
                         선발
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.back}
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.like}
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.select}
                       </Grid>
-                      <Grid item xs={2} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={2} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.name}
                       </Grid>
-                      <Grid item xs={2.5} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={2.5} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.email}
                       </Grid>
                       <Grid item xs={2}>
@@ -147,47 +158,32 @@ function BigList() {
                         </Grid>
                     </Grid>
                     </button>
-                    // </li>
                   )
                 }
                 else if (player.already === false) {
                   return (
-                    <button className='listBtn'>
-                    <Grid container justifyContent="space-between" key={player._id} alignItems="center" sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={1} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }} >
+                    <button 
+                      className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
+                      key={player._id}
+                      id={player._id} 
+                      onClick={SelectPlayer}>
+                    <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh' }}>
+                      <Grid item xs={1} sx={{fontSize: 13}}>
                         후보
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontSize: 13}}>
                         {player.back}
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontSize: 13}}>
                         {player.like}
                       </Grid>
-                      <Grid item xs={1.5} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={1.5} sx={{fontSize: 13}}>
                         ----
                       </Grid>
-                      <Grid item xs={2} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={2} sx={{fontSize: 13}}>
                         {player.name}
                       </Grid>
-                      <Grid item xs={2.5} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
+                      <Grid item xs={2.5} sx={{fontSize: 13}}>
                         {player.email}
                       </Grid>
                       <Grid item xs={2}>
@@ -195,7 +191,6 @@ function BigList() {
                         </Grid>
                     </Grid>
                     </button>
-                    // </li>
                   )
                 }
               })}

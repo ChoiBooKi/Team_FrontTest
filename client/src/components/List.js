@@ -61,22 +61,13 @@ function List() {
               <Grid container justifyContent="space-between"
                 alignItems="center"
                 sx={{ border: 1, height: '5vh' }}>
-                <Grid item xs={4} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }} >
+                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   등번호
                 </Grid>
-                <Grid item xs={4} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   포지션
                 </Grid>
-                <Grid item xs={4} sx={{
-                  fontWeight: 'bold',
-                  fontSize: 13, fontStyle: 'italic'
-                }}>
+                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
                   선수명
                 </Grid>
               </Grid>
@@ -87,24 +78,14 @@ function List() {
                     <Grid container justifyContent="space-between" key={player._id}
                       alignItems="center"
                       sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={4} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }} >
-                        선발
+                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
+                        {player.back}
                       </Grid>
-                      <Grid item xs={4} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
-                        {player.name}
+                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
                         {player.select}
                       </Grid>
-                      <Grid item xs={4} sx={{
-                        color: 'blue', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
-                        {player.back}
+                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
+                        {player.name}
                       </Grid>
                     </Grid>
                     // </li>
@@ -116,24 +97,14 @@ function List() {
                     <Grid container direction="row" justifyContent="space-between" key={player._id}
                       alignItems="center"
                       sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={4} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
-                        후보
+                      <Grid item xs={4} sx={{fontSize: 13}}>
+                        {player.back}
                       </Grid>
-                      <Grid item xs={4} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
-                        {player.name}
+                      <Grid item xs={4} sx={{fontSize: 13}}>
                         {player.like}
                       </Grid>
-                      <Grid item xs={4} sx={{
-                        color: 'red', fontWeight: 'bold',
-                        fontSize: 13, fontStyle: 'italic'
-                      }}>
-                        {player.back}
+                      <Grid item xs={4} sx={{fontSize: 13}}>
+                        {player.name}
                       </Grid>
                     </Grid>
                     // </li>
