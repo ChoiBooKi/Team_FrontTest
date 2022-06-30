@@ -148,3 +148,16 @@ let body = {
     //teamName : '어떤 팀에서' 팀가입거절 가입승인 
     value : '무엇을'
 }
+
+[
+    {
+        name: '신청부기',
+        region: '동탄',
+        like: 'ST'
+    },
+    {
+        name: '신청성훈',
+        region: '김포',
+        like: 'CB'
+    },
+]

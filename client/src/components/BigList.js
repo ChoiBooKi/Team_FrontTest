@@ -5,11 +5,20 @@ import './BigList.css'
 import Modal from 'react-modal';
 import Grid from '@mui/material/Grid';
 import image from "../img/로고.png"
+import IconButton from '@mui/material/IconButton';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';//사람삭제
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';//신청목록
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';//i버튼
+import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';//등번호
 
 let selected = 0
 function BigList() {
   const [PlayerList, SetPlayerList] = useState(null);
-  const [Modalis, SetModalis] = useState(false)
+  const [RegisterList, SetRegisterList] = useState(0);
+  const [InfoModal, SetInfoModal] = useState(false)
+  const [BackModal, SetBackModal] = useState(false)
+  const [RegisterModal, SetRegisterModal] = useState(false)
+  const [RemoveModal, SetRemoveModal] = useState(false)
   const [Content, SetContent] = useState()
   const [Id, SetId] = useState()
 
@@ -26,11 +35,10 @@ function BigList() {
     SetPlayerList(sort)
   }, [])
   
-  const ModalClose = () => {
-    SetModalis(false)
+  const InfoModalClose = () => {
+    SetInfoModal(false)
   }
-
-  const ModalOpen = (e) => {
+  const InfoModalOpen = (e) => {
     axios.get('/api/readInfo', { // email 받아와서 백으로 보내고 백에서 email로 구분해서 정보 보내줌
       params: {
         email: e.currentTarget.id
@@ -41,7 +49,61 @@ function BigList() {
     })
     //팀정보에서는 그냥 등번호 이름 포지션만 띄우고 선수관리에서 위의 로직을 사용하는것으로 변경하였다 우선 여기에 두고 나중에 가져다쓰자
     //***************************useEffect로 바로 받아오는게 아니라 i버튼 클릭할 때 id값으로 get 요청해서 받아온 값 띄우는걸로 변경, 쿼리에는 id로 넘기기
-    SetModalis(true)
+    SetInfoModal(true)
+  }
+
+  const BackModalClose = () => {
+    SetBackModal(false)
+  }
+  const BackModalOpen = (e) => {
+    SetBackModal(true)
+  }
+
+  const RegisterModalClose = () => {
+    SetRegisterModal(false)
+  }
+  const RegisterModalOpen = (e) => {
+    axios.get('/api/registerList')//신청 선수 받아오기
+    .then(res => {
+      SetRegisterList(res.data)
+    })
+    SetRegisterModal(true)
+  }
+
+  const RemoveModalClose = () => {
+    SetRemoveModal(false)
+  }
+  const RemoveModalOpen = (e) => {
+    SetRemoveModal(true)
+  }
+
+  const AddPlayer = (e) => {
+    let addPlayer = []
+    RegisterList.map((player) => player._id === e.currentTarget.id ? addPlayer = [...PlayerList, player] : null)
+    SetPlayerList(addPlayer)
+    axios.delete('/api/removePlayer', {
+      params: {
+        _id: e.currentTarget.id
+      }
+    })
+    .then(res => {
+      SetRegisterList(res.data)
+    })
+    .catch(err => console.log(err))
+    //백에 선수리스트 업데이트된거 정보 보내주기
+  }
+  console.log(PlayerList)
+  const RemovePlayer = (e) => {
+    // console.log(e.currentTarget.id)
+    axios.delete('/api/removePlayer', {
+      params: {
+        _id: e.currentTarget.id
+      }
+    })
+    .then(res => {
+      SetRegisterList(res.data)
+    })
+    .catch(err => console.log(err))
   }
 
   const SelectPlayer = (event) => {
@@ -53,10 +115,12 @@ function BigList() {
       selected = 1
     }
   }
-  
+
   return (
     <div className='Biglist'>
-      <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false} className='playerInfo'>
+      
+      <Modal isOpen={InfoModal} onRequestClose={() => SetInfoModal(false)} ariaHideApp={false} className='playerInfo'>
+        {/* 플레이어 상세정보 모달 */}
         <div><img src={image} style={{width:'40%'}}></img></div>
         <div style={{display:"flex"}}>
           <h3 style={{marginTop:"3.5%"}}>이름</h3>
@@ -96,108 +160,202 @@ function BigList() {
           <h3>소개글</h3>
           <p style={{marginLeft:"5%"}}>{Content && Content.info}</p>
         </div>
-        <button style={{marginLeft:'38%'}}>확인</button>
+        <button style={{marginLeft:'38%'}} onClick={InfoModalClose}>확인</button>
       </Modal>
+
+      <Modal isOpen={BackModal} onRequestClose={() => SetBackModal(false)} ariaHideApp={false} className='SetBackNumber'>
+        {/* 등번호 설정 모달 */}
+        <div><img src={image} style={{width:'40%'}}></img></div>
+
+        <button style={{marginLeft:'38%'}} onClick={BackModalClose}>확인</button>
+      </Modal>
+
+      <Modal isOpen={RegisterModal} onRequestClose={() => SetRegisterModal(false)} ariaHideApp={false} className='RegisterList'>
+        {/* 신청목록 모달 */}
+        <div><img src={image} style={{width:'40%'}}></img></div>
+        <div className='RegisterListDetail'>
+          <Grid container alignItems="center" sx={{height: '5vh', border: '2px black solid', backgroundColor: 'lightgray'}} >
+            <Grid item xs={3} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+              선수명
+            </Grid>
+            <Grid item xs={3} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+              선호 포지션
+            </Grid>
+            <Grid item xs={3} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+              활동지역
+            </Grid>
+            <Grid item xs={3} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+              
+            </Grid>
+          </Grid>
+          {RegisterList && RegisterList.length === 0 ? <p style={{marginTop:'5%'}}>가입 대기중인 선수가 없습니다.</p> : 
+            RegisterList && RegisterList.map((player) => {
+              return(
+              <div className = 'scrol'>
+                <Grid container alignItems="center" key={player._id} sx={{height: '5vh', border: '1px black solid' }}>
+                  <Grid item xs={3} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.name}
+                  </Grid>
+                  <Grid item xs={3} sx={{fontWeight: 'bold', fontSize: 13}}>
+                    {player.like}
+                  </Grid>
+                  <Grid item xs={3} sx={{fontWeight: 'bold', fontSize: 13}}>
+                    {player.region}
+                  </Grid>
+                  <Grid item xs={3} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  <button onClick={AddPlayer} id={player._id}>승인</button>
+                  <button onClick={RemovePlayer} id={player._id}>거절</button>
+                  </Grid>
+                </Grid>
+              </div>
+              )})
+            }
+        </div>
+        <button style={{margin:'70% 45%'}} onClick={RegisterModalClose}>확인</button>
+      </Modal>
+
+      <Modal isOpen={RemoveModal} onRequestClose={() => SetRemoveModal(false)} ariaHideApp={false} className='RemovePlayer'>
+        {/* 선수 제명 모달 */}
+        <div><img src={image} style={{width:'40%'}}></img></div>
+        <button style={{marginLeft:'38%'}} onClick={RemoveModalClose}>확인</button>
+      </Modal>
+
+      <h1 style={{float: 'left', position:'sticky'}}>선수 관리</h1>
+
+      {selected === 0 ?
+        <div style={{float:'right', marginTop: '3%'}}>
+          <IconButton
+            size="large"
+            onClick={(e) => BackModalOpen(e)}
+            color="inherit"
+          >
+            <FormatListNumberedRtlIcon />
+          </IconButton>
+          <IconButton
+          size="large"
+          onClick={(e) => RegisterModalOpen(e)}
+          color="inherit"
+          >
+            <LibraryBooksIcon />
+          </IconButton>
+        </div>
+        :
+        <IconButton
+        size="large"
+        onClick={(e) => RemoveModalOpen(e)}
+        color="inherit"
+        style={{float:'right', marginTop: '3%'}}
+        >
+          <PersonRemoveIcon />
+        </IconButton>
+        }
+
+      <Grid container alignItems="center" sx={{height: '5vh', border: '2px black solid', backgroundColor: 'lightgray'}}>
+        <Grid item xs={1} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          {/* 선발인지 후보인지 나타내는 빈칸 */}
+        </Grid>
+        <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          등번호
+        </Grid>
+        <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          선호 포지션
+        </Grid>
+        <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          배치 포지션
+        </Grid>
+        <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          선수명
+        </Grid>
+        <Grid item xs={2.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          이메일
+        </Grid>
+        <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+          상세 정보
+        </Grid>
+      </Grid>
       <div className = 'scroll'>
-        <h1 style={{float: 'left'}}>선수 관리</h1>
-        <Grid container>
-          <Grid item xs={12} >
-            <div>
-              <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh'}}>
-                <Grid item xs={1} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  {/* 선발인지 후보인지 나타내는 빈칸 */}
+        {PlayerList && PlayerList.map((player) => {
+          if (player.already === true) {
+            return (
+              <button 
+                className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
+                key={player._id}
+                id={player._id} 
+                onClick={SelectPlayer}>
+              <Grid container alignItems="center" sx={{height: '5vh' }}>
+                <Grid item xs={1} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  선발
                 </Grid>
-                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  등번호
+                <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.back}
                 </Grid>
-                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  선호 포지션
+                <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.like}
                 </Grid>
-                <Grid item xs={1.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  배치 포지션
+                <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.select}
                 </Grid>
-                <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  선수명
+                <Grid item xs={2} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.name}
                 </Grid>
-                <Grid item xs={2.5} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  이메일
+                <Grid item xs={2.5} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.email}
                 </Grid>
-                <Grid item xs={2} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  상세 정보
+                <Grid item xs={2}>
+                  <IconButton
+                    size="large"
+                    id={player.email}
+                    onClick={(e) => InfoModalOpen(e)}
+                    color="inherit"
+                  >
+                    <AssignmentIndIcon />
+                  </IconButton>
                 </Grid>
               </Grid>
-              {PlayerList && PlayerList.map((player) => {
-                if (player.already === true) {
-                  return (
-                    <button 
-                      className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
-                      key={player._id}
-                      id={player._id} 
-                      onClick={SelectPlayer}>
-                    <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={1} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        선발
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.back}
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.like}
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.select}
-                      </Grid>
-                      <Grid item xs={2} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.name}
-                      </Grid>
-                      <Grid item xs={2.5} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.email}
-                      </Grid>
-                      <Grid item xs={2}>
-                          <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
-                        </Grid>
-                    </Grid>
-                    </button>
-                  )
-                }
-                else if (player.already === false) {
-                  return (
-                    <button 
-                      className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
-                      key={player._id}
-                      id={player._id} 
-                      onClick={SelectPlayer}>
-                    <Grid container justifyContent="space-between" alignItems="center" sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={1} sx={{fontSize: 13}}>
-                        후보
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontSize: 13}}>
-                        {player.back}
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontSize: 13}}>
-                        {player.like}
-                      </Grid>
-                      <Grid item xs={1.5} sx={{fontSize: 13}}>
-                        ----
-                      </Grid>
-                      <Grid item xs={2} sx={{fontSize: 13}}>
-                        {player.name}
-                      </Grid>
-                      <Grid item xs={2.5} sx={{fontSize: 13}}>
-                        {player.email}
-                      </Grid>
-                      <Grid item xs={2}>
-                          <button id={player.email} onClick={(e) => ModalOpen(e)}>i</button>
-                        </Grid>
-                    </Grid>
-                    </button>
-                  )
-                }
-              })}
-            </div>
-            {/* </ul> */}
-          </Grid>
-        </Grid>
+              </button>
+            )
+          }
+          else if (player.already === false) {
+            return (
+              <button 
+                className={(player._id === Id ) && selected === 1 ? "listBtn select" : "listBtn"} 
+                key={player._id}
+                id={player._id} 
+                onClick={SelectPlayer}>
+              <Grid container alignItems="center" sx={{height: '5vh' }}>
+                <Grid item xs={1} sx={{fontSize: 13}}>
+                  후보
+                </Grid>
+                <Grid item xs={1.5} sx={{fontSize: 13}}>
+                  {player.back}
+                </Grid>
+                <Grid item xs={1.5} sx={{fontSize: 13}}>
+                  {player.like}
+                </Grid>
+                <Grid item xs={1.5} sx={{fontSize: 13}}>
+                  ----
+                </Grid>
+                <Grid item xs={2} sx={{fontSize: 13}}>
+                  {player.name}
+                </Grid>
+                <Grid item xs={2.5} sx={{fontSize: 13}}>
+                  {player.email}
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton
+                      size="large"
+                      id={player.email}
+                      onClick={(e) => InfoModalOpen(e)}
+                      color="inherit"
+                  >
+                    <AssignmentIndIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
+              </button>
+            )
+          }
+        })}
       </div>
     </div>
   )

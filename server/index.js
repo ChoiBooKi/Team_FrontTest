@@ -13,6 +13,7 @@ const { Info } = require("./models/info")
 const { formation } = require("./models/formation")
 const { alarm } = require("./models/alarm")
 const { teaminfo } = require('./models/teaminfo')
+const { Register } = require('./models/Register')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -157,6 +158,17 @@ app.get('/api/readUser', (req, res) => {
   })
 })
 
+app.get('/api/registerList', (req, res) => {
+  Register.find()
+  .then((users) => {
+    res.json(users);
+  })
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+})
+
 app.get('/api/readPosition', (req, res) => {
   Positions.find()
   .then((users) => {
@@ -225,6 +237,26 @@ app.delete("/api/deletealarm", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+      next(err);
+    })
+  )
+  .catch((err) => {
+    console.error(err);
+    next(err);
+  })
+  //filter라는 함수는 자바스크립트에서 배열 함수이다. 필터링을 할때 많이 사용된다 필터링한 데이터를 새로운 배열로 반환한다.
+})
+
+app.delete("/api/removePlayer", (req, res) => {
+  const user_id = req.query._id
+  Register.deleteOne({_id: user_id})
+  .then(
+    Register.find()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      console.error(err); g
       next(err);
     })
   )

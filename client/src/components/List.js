@@ -40,7 +40,7 @@ function List() {
     SetModalis(true)
   }
   return (
-    <div className='list'>
+    <div>
       <Modal isOpen={Modalis} onRequestClose={() => SetModalis(false)} ariaHideApp={false}>
         {Content && Content.name}
         {Content && Content.gender}
@@ -51,70 +51,51 @@ function List() {
         {Content && Content.player}
         {Content && Content.info}
       </Modal>
-      <div>
-        {/* <h2>선수 리스트</h2> */}
-        <Grid container>
-          <Grid item xs={12}>
-            {/* <ul> */}
-            {/* ul li 둘다 제거 */}
-            <div>
-              <Grid container justifyContent="space-between"
-                alignItems="center"
-                sx={{ border: 1, height: '5vh' }}>
-                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  등번호
-                </Grid>
-                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  포지션
-                </Grid>
-                <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
-                  선수명
-                </Grid>
-              </Grid>
-              {PlayerList && PlayerList.map((player) => {
-                if (player.already === true) {
-                  return (
-                    // <li className="selected" key={player._id}>
-                    <Grid container justifyContent="space-between" key={player._id}
-                      alignItems="center"
-                      sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.back}
-                      </Grid>
-                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.select}
-                      </Grid>
-                      <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
-                        {player.name}
-                      </Grid>
-                    </Grid>
-                    // </li>
-                  )
-                }
-                else if (player.already === false) {
-                  return (
-                    // <li className="candidate" key={player._id}>
-                    <Grid container direction="row" justifyContent="space-between" key={player._id}
-                      alignItems="center"
-                      sx={{ border: 1, height: '5vh' }}>
-                      <Grid item xs={4} sx={{fontSize: 13}}>
-                        {player.back}
-                      </Grid>
-                      <Grid item xs={4} sx={{fontSize: 13}}>
-                        {player.like}
-                      </Grid>
-                      <Grid item xs={4} sx={{fontSize: 13}}>
-                        {player.name}
-                      </Grid>
-                    </Grid>
-                    // </li>
-                  )
-                }
-              })}
-            </div>
-            {/* </ul> */}
+      <Grid container alignItems="center" sx={{ border: 1, height: '5vh' }}>
+          <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+            등번호
+          </Grid>
+          <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+            포지션
+          </Grid>
+          <Grid item xs={4} sx={{ fontWeight: 'bold', fontSize: 15 }}>
+            선수명
           </Grid>
         </Grid>
+      <div className='list'>
+        {PlayerList && PlayerList.map((player) => {
+          if (player.already === true) {
+            return (
+              <Grid container key={player._id} alignItems="center" sx={{ border: 1, height: '5vh' }}>
+                <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.back}
+                </Grid>
+                <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.select}
+                </Grid>
+                <Grid item xs={4} sx={{fontWeight: 'bold', fontSize: 13}}>
+                  {player.name}
+                </Grid>
+              </Grid>
+            )
+          }
+          else if (player.already === false) {
+            return (
+              <Grid container key={player._id} alignItems="center"sx={{ border: 1, height: '5vh' }}>
+                <Grid item xs={4} sx={{fontSize: 13}}>
+                  {player.back}
+                </Grid>
+                <Grid item xs={4} sx={{fontSize: 13}}>
+                  {player.like}
+                </Grid>
+                <Grid item xs={4} sx={{fontSize: 13}}>
+                  {player.name}
+                </Grid>
+              </Grid>
+              // </li>
+            )
+          }
+        })}
       </div>
     </div>
   )

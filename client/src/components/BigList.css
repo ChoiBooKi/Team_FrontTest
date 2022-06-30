@@ -1,16 +1,23 @@
 .Biglist{
+  margin: 0 auto;
+  width: 90%;
+}
+.scroll{
   width: 100%;
-  height: 75vh;
+  height: 55vh;
   overflow: scroll;
   overflow-x: hidden;
   background-color: white;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+  /* margin-bottom: 3%; */
 }
-.Biglist::-webkit-scrollbar{
+.scroll::-webkit-scrollbar{
   display:none;
 }
 .listBtn{
   background: inherit ;
-  border:none;
+  border:1px solid black;
   box-shadow:none;
   border-radius:0;
   padding:0;
@@ -32,4 +39,36 @@
   background-color: white;
   border-radius: 15px;
   justify-content: center;
+}
+.SetBackNumber{
+  padding-left: 3%;
+  width: 25%;
+  height: 50%;
+  margin: 20% auto;
+  background-color: white;
+  border-radius: 15px;
+  justify-content: center;
+}
+.RegisterList{
+  /* padding-left: 3%; */
+  width: 35%;
+  height: 70%;
+  margin: 10% auto;
+  background-color: white;
+  border-radius: 15px;
+  justify-content: center;
+}
+.RemovePlayer{
+  padding-left: 3%;
+  width: 25%;
+  height: 50%;
+  margin: 20% auto;
+  background-color: white;
+  border-radius: 15px;
+  justify-content: center;
+}
+.RegisterListDetail{
+  width: 90%;
+  margin: 5% auto;
+  text-align : center;
 }
