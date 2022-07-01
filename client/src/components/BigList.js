@@ -12,6 +12,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';//i버튼
 import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';//등번호
 
 let selected = 0
+let checkback
 function BigList() {
   const [PlayerList, SetPlayerList] = useState(null);
   const [RegisterList, SetRegisterList] = useState(0);
@@ -21,6 +22,8 @@ function BigList() {
   const [RemoveModal, SetRemoveModal] = useState(false)
   const [Content, SetContent] = useState()
   const [Id, SetId] = useState()
+  const [Back, SetBack] = useState()
+  const [NewBack, SetNewBack] = useState()
 
   useEffect(async () => {//페이지 들어가자마자 DB에서 포지션, 선수 정보 받아오고 각 원에 이름 넣어주기
     const res = await axios.get("/api/readUser")//선수정보
@@ -34,7 +37,7 @@ function BigList() {
     })
     SetPlayerList(sort)
   }, [])
-  console.log(PlayerList)
+
   const InfoModalClose = () => {
     SetInfoModal(false)
   }
@@ -136,6 +139,38 @@ function BigList() {
     }
   }
 
+  const OpenChangeBack = (e) => {
+    if(Back === null){
+      SetId(e.currentTarget.id)
+      PlayerList.map((player) => player._id === e.currentTarget.id ? SetBack(player.back) : null)
+      let myElement = document.querySelector(".ChangeBack");
+      myElement.style.opacity = '1'
+      myElement.style.zIndex = '1'
+    }else{
+      let myElement = document.querySelector(".ChangeBack");
+      myElement.style.opacity = '0'
+      myElement.style.zIndex = '-1'
+      SetBack(null)
+    }
+  }
+
+  const CloseChangeBack = () => {
+    let myElement = document.querySelector(".ChangeBack");
+    myElement.style.opacity = '0'
+    myElement.style.zIndex = '-1'
+    SetBack(null)
+  }
+
+  const onChangeBackHandler = (e) => { SetNewBack(e.currentTarget.value) }
+
+  const ChangeBack = () => {
+    PlayerList.map((player) => player.back === Number(NewBack) ? alert('이미 존재하는 등번호 입니다.') :
+      // SetPlayerList(PlayerList.map((player) => player._id === Id ? {...player, back : NewBack} : null))
+      null
+    )
+    // PlayerList.map((player) => player.back === Back ? checkback = 1 : {...player, back : NewBack},checkback = null)
+  }
+  console.log(PlayerList)
   return (
     <div className='Biglist'>
       
@@ -185,9 +220,34 @@ function BigList() {
 
       <Modal isOpen={BackModal} onRequestClose={() => SetBackModal(false)} ariaHideApp={false} className='SetBackNumber'>
         {/* 등번호 설정 모달 */}
-        <div><img src={image} style={{width:'40%'}}></img></div>
-
-        <button style={{marginLeft:'38%'}} onClick={BackModalClose}>확인</button>
+        <div>
+          <div><img src={image} style={{width:'20%'}}></img></div>
+            {PlayerList && PlayerList.map((player) => {
+              return(
+                <button className='BackBtn' onClick={OpenChangeBack} id={player._id} props = {player.back}>
+                  <div className='PlayerBox'>
+                    {player.already === true ? <p>선발</p> : <p>후보</p>}
+                    <img src={image} style={{width:'100%'}}></img>
+                    {player.already === true ? <p>{player.select}</p> : <p>{player.like}</p>}
+                    <p>{player.name}</p>
+                  </div>
+                </button>
+              )})
+            }
+            <div className='ChangeBack'>
+              <div><img src={image} style={{width:'40%'}}></img></div>
+                <span>기존 등번호</span>
+                <span>새 등번호</span>
+                <br/>
+                <span>{Back && Back}</span>
+                <input style={{width:"5vh"}} type="number" id='back' value={NewBack} onChange={onChangeBackHandler}/>
+                <br/>
+                {/* {NewBack !== '' ? <div>{checkback === 1 ? '이미 존재하는 등번호 입니다.' : '사용 가능한 등번호 입니다.'}</div> : null } */}
+              <button onClick={ChangeBack}>확인</button>
+              <button onClick={CloseChangeBack}>취소</button>
+            </div>
+          <button style={{marginLeft:'38%'}} onClick={BackModalClose}>확인</button>
+        </div>
       </Modal>
 
       <Modal isOpen={RegisterModal} onRequestClose={() => SetRegisterModal(false)} ariaHideApp={false} className='RegisterList'>
