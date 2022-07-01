@@ -34,7 +34,7 @@ function BigList() {
     })
     SetPlayerList(sort)
   }, [])
-  
+  console.log(PlayerList)
   const InfoModalClose = () => {
     SetInfoModal(false)
   }
@@ -92,8 +92,28 @@ function BigList() {
     .catch(err => console.log(err))
     //백에 선수리스트 업데이트된거 정보 보내주기
   }
-  console.log(PlayerList)
+  
   const RemovePlayer = (e) => {
+    axios.delete('/api/RemovePlayer', {
+      params: {
+        _id: Id
+      }
+    })
+    .then(res => {
+      const sort = res.data.sort(function (a, b) {//DB에서 온 리스트 선발선수 맨위로 정렬
+        let x = a.already
+        if (x === true) {
+          return -1
+        }
+        return 0
+      })
+      SetPlayerList(sort)
+      SetRemoveModal(false)
+    })
+    .catch(err => console.log(err))
+  }
+
+  const RemoveRegisterPlayer = (e) => {
     // console.log(e.currentTarget.id)
     axios.delete('/api/removePlayer', {
       params: {
@@ -204,7 +224,7 @@ function BigList() {
                   </Grid>
                   <Grid item xs={3} sx={{fontWeight: 'bold', fontSize: 13}}>
                   <button onClick={AddPlayer} id={player._id}>승인</button>
-                  <button onClick={RemovePlayer} id={player._id}>거절</button>
+                  <button onClick={RemoveRegisterPlayer} id={player._id}>거절</button>
                   </Grid>
                 </Grid>
               </div>
@@ -217,7 +237,9 @@ function BigList() {
       <Modal isOpen={RemoveModal} onRequestClose={() => SetRemoveModal(false)} ariaHideApp={false} className='RemovePlayer'>
         {/* 선수 제명 모달 */}
         <div><img src={image} style={{width:'40%'}}></img></div>
-        <button style={{marginLeft:'38%'}} onClick={RemoveModalClose}>확인</button>
+        <p>해당 선수를 삭제하시겠습니까?</p>
+        <button style={{marginLeft:'38%'}} onClick={RemovePlayer}>확인</button>
+        <button onClick={RemoveModalClose}>취소</button>
       </Modal>
 
       <h1 style={{float: 'left', position:'sticky'}}>선수 관리</h1>

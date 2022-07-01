@@ -247,7 +247,25 @@ app.delete("/api/deletealarm", (req, res) => {
   //filter라는 함수는 자바스크립트에서 배열 함수이다. 필터링을 할때 많이 사용된다 필터링한 데이터를 새로운 배열로 반환한다.
 })
 
-app.delete("/api/removePlayer", (req, res) => {
+app.delete("/api/RemovePlayer", (req, res) => {
+  const user_id = req.query._id
+  SoccerUser.deleteOne({_id: user_id})
+  .then(
+    SoccerUser.find()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  )
+  .catch((err) => {
+    console.error(err);
+  })
+  //filter라는 함수는 자바스크립트에서 배열 함수이다. 필터링을 할때 많이 사용된다 필터링한 데이터를 새로운 배열로 반환한다.
+})
+
+app.delete("/api/RemoveRegisterPlayer", (req, res) => {
   const user_id = req.query._id
   Register.deleteOne({_id: user_id})
   .then(
