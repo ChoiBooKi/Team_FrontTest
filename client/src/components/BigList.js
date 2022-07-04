@@ -164,14 +164,20 @@ function BigList() {
   const onChangeBackHandler = (e) => { SetNewBack(e.currentTarget.value) }
 
   const ChangeBack = () => {
+    let count = 0
     PlayerList.map((player) => player.back === Number(NewBack) ? alert('이미 존재하는 등번호 입니다.') :
-      SetPlayerList(PlayerList.map((player) => player._id === Id ? {...player, back : NewBack} : player))
+      //SetPlayerList(PlayerList.map((player) => player._id === Id ? {...player, back : NewBack} : player))
       //등번호 교체는 되는데 이쪽이 무조건 불려서 이미 존재해도 변경이 된다
       //어떻게 해야되지..?
+      count++
     )
+    console.log(count)
+    if(count === 11){
+      SetPlayerList(PlayerList.map((player) => player._id === Id ? {...player, back : NewBack} : player))
+    }
     // PlayerList.map((player) => player.back === Back ? checkback = 1 : {...player, back : NewBack},checkback = null)
   }
-  console.log(PlayerList)
+  // console.log(PlayerList)
   return (
     <div className='Biglist'>
       
