@@ -4,13 +4,9 @@ import { findPlayerIndexById, diffSubstitution, sameSubstitution } from "../util
 import { Layout, Row, Col, message } from "antd";
 import { formations as initialFormations } from "../utils/formations";
 import axios from 'axios';
-
 import "antd/dist/antd.min.css";
-
 import "./SquadSetter.css";
-
 import { useEffect, useState } from "react";
-
 const { Content } = Layout;
 
 export default function SquadSetter() {
@@ -31,7 +27,6 @@ export default function SquadSetter() {
       return 0
     })
     SetPlayerList(sort)
-    //console.log(sort)
   }, [])
 
   const success = (str) => {
@@ -40,6 +35,7 @@ export default function SquadSetter() {
   
   const switchPrePlayers = (player, prePlayer) => {//선수판에 있는 선수들끼리 교체
     sameSubstitution(
+      formation,
       PlayerList,
       findPlayerIndexById(PlayerList, prePlayer),
       findPlayerIndexById(PlayerList, player)
@@ -48,9 +44,12 @@ export default function SquadSetter() {
       success("Substitution made");
     }
   };
-
+  // console.log(formation)
+  // console.log(PlayerList)
   const switchdiffPlayers = (player, prePlayer) => {//모달 리스트에서 선수교체
     diffSubstitution(
+      //여기에 현재 포메이션 넣어주고 prePlayer 인덱스에 있는 포지션값을 select에 넣어줘야 될거같은데
+      formation,
       PlayerList,
       findPlayerIndexById(PlayerList, prePlayer),
       findPlayerIndexById(PlayerList, player)
@@ -89,7 +88,7 @@ export default function SquadSetter() {
     success("Formation changed");
   };
 
-  const playerItems = PlayerList && PlayerList.map((player, key) => {
+  const playerItems = PlayerList && PlayerList.map((player, key) => {//PlayerList가 11명이 안되면 카드 생성이 안됨 어떻게 해야되지
     if(player.already === true){
       return (
         <Player
