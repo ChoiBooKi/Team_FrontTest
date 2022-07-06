@@ -33,6 +33,8 @@ function App() {
               <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
               <Route path="/make" element={<MakeTeam />} />
               <Route path="/teammanage" element={<TeamManage />} />
+              {/* 팀 가입이 되어 있으면 팀관리로 가고 아니면 팀목록, 팀생성 버튼이 있는 곳으로 가야된다 */}
+              {/* Route를 어떻게 분기를 해야할까? */}
             </Routes>
           </div>
         {/* </body> */}
