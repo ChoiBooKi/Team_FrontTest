@@ -226,7 +226,7 @@ function BigList() {
           <div><img src={image} style={{width:'20%'}}></img></div>
             {PlayerList && PlayerList.map((player) => {
               return(
-                <button className='BackBtn' onClick={OpenChangeBack} id={player._id} props = {player.back}>
+                <button className='BackBtn' onClick={OpenChangeBack} id={player._id} props = {player.back} key={player._id}>
                   <div className='PlayerBox'>
                     {player.already === true ? <p>선발</p> : <p>후보</p>}
                     <img src={image} style={{width:'100%'}}></img>

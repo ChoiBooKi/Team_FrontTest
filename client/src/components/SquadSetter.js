@@ -29,6 +29,22 @@ export default function SquadSetter() {
     SetPlayerList(sort)
   }, [])
 
+  // const  = [...new Array(11 - PlayerList.length)].map((_, i)=> i+1)객체를 만들어야될듯
+  const data = {
+    name: '-',
+    already: '-',
+    back: '-'
+  }
+  const emptyData = []
+  const count = 0
+  PlayerList && PlayerList.map((player) => player.already === true ? count++ : null)
+  console.log(count)
+  for(let i = 0; i<11 - PlayerList && PlayerList.length; i++){//already가 true인 애들의 수만 세야돼
+    emptyData.push(data)
+    console.log('hi')
+  }
+  console.log(PlayerList && PlayerList.length)
+  
   const success = (str) => {
     message.success(str);
   };
@@ -87,7 +103,7 @@ export default function SquadSetter() {
     setFormation(initialFormations[value]);
     success("Formation changed");
   };
-
+  
   const playerItems = PlayerList && PlayerList.map((player, key) => {//PlayerList가 11명이 안되면 카드 생성이 안됨 어떻게 해야되지
     if(player.already === true){
       return (
@@ -114,6 +130,8 @@ export default function SquadSetter() {
       )
     }})
 
+  // const noCard = playernum.map()
+
   return (
     <div className="SquadSetter">
       <Layout>
@@ -125,7 +143,7 @@ export default function SquadSetter() {
         <Content>
           <Row className="formations">
             <Col span={24} className={"playerHolder " + (smoothTransition ? "smooth" : "")}>
-              {playerItems}
+              {PlayerList && PlayerList.length >= 11 ? playerItems : playerItems }
             </Col>
           </Row>
         </Content>

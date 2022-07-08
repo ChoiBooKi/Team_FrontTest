@@ -5,3 +5,10 @@
 .page{
   font-family: "E_L";
 }
+.box{
+  background-color: white;
+  margin-top: 1%;
+  border-radius: 15px;
+  height: 75vh;
+  overflow-y: hidden;
+}
