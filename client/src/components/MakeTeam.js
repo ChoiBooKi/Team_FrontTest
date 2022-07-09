@@ -1,6 +1,8 @@
 import React, { useState, useRef }  from 'react';
 import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from "react-router-dom";
+import Modal from 'react-modal';
 
 const regionList = [" ", "서울", "경기", "전라", "경상"]
 let checkTeamname = 0
@@ -13,8 +15,18 @@ const MakeTeam = () => {
   })
   const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")//기본이미지
   const {teamName, teamIntro, teamActivityArea} = TeamInfo
+  const [ModalStatus, SetModalStatus] = useState(true)
   const fileInput = useRef(null)
   const formdata = new FormData()
+  const navigate = useNavigate()
+  navigate('/')
+
+  const ModalClose = () => {
+    SetModalStatus(false)
+  }
+  const ModalOpen = (e) => {
+    SetModalStatus(true)
+  }
 
   const onInfoHandler = (e) => {
     const { id, value } = e.target
@@ -68,54 +80,61 @@ const MakeTeam = () => {
     console.log(TeamInfo)
   }
   return(
-    <div style={{
-      display: 'flex', justifyContent: 'center', alignItems: 'center',
-      width: '100%', height: '100vh', color:'black', backgroundColor: 'white',
-      marginTop: '1%', borderRadius: '15px', height: '75vh',
-    }}>
-      <form style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>팀명</label>
-        <input type="text" id='teamName' onKeyUp={NickChecker} value={teamName} onChange={onInfoHandler} />
-        {/* <button id='nickName' onClick={onCheckHandler}>중복확인</button> */}
-        {teamName !== '' ? <div>{checkTeamname === 1 ? '사용 가능한 닉네임 입니다.' : '사용 불가능한 닉네임 입니다.'}</div> : null }
+    
+    <div 
+    // style={{
+    //   display: 'flex', justifyContent: 'center', alignItems: 'center',
+    //   width: '100%', height: '100vh', color:'black', backgroundColor: 'white',
+    //   marginTop: '1%', borderRadius: '15px', height: '75vh',
+    // }}
+    >
+      <Modal isOpen={ModalStatus} onRequestClose={() => SetModalStatus(false)} ariaHideApp={false} className='RegisterList'>
 
-        <label>팀 소개</label>
-        <textarea 
-          maxLength="200" 
-          id={'teamIntro'}
-          value={teamIntro && teamIntro} //벨류라서 변경이 안됨
-          onChange={onInfoHandler}
-          style={{resize: "none", width: "350px", border: "2px solid black",   borderRadius:"10px", width: "26vh"}}
-          rows="4">
-        </textarea>
+        <form style={{ display: 'flex', flexDirection: 'column' }}>
+          <label>팀명</label>
+          <input type="text" id='teamName' onKeyUp={NickChecker} value={teamName} onChange={onInfoHandler} />
+          {/* <button id='nickName' onClick={onCheckHandler}>중복확인</button> */}
+          {teamName !== '' ? <div>{checkTeamname === 1 ? '사용 가능한 닉네임 입니다.' : '사용 불가능한 닉네임 입니다.'}</div> : null }
 
-        <label>활동 지역</label>
-        <select onChange={onInfoHandler} id='teamActivityArea' value={teamActivityArea}>
-          {regionList.map((item, id) => (
-            <option value={item} key={id}>
-              {item}
-            </option>
-          ))}
-        </select>
-        
-        <label>팀 로고</label>
-        <Avatar 
-        className='avatar'
-        alt="팀이미지" 
-        src={Image} 
-        sx={{ width: '15vh', height: '15vh', marginTop:'-1.5vh', marginBottom:'-1.5vh' }} 
-        onClick={()=>{fileInput.current.click()}}/>
-        <input 
-          className='input'
-          type='file' 
-          style={{display:'none'}}
-          accept='image/jpg,impge/png,image/jpeg' 
-          name='profile_img'
-          onChange={onImageHandler}
-          ref={fileInput}/>
+          <label>팀 소개</label>
+          <textarea 
+            maxLength="200" 
+            id={'teamIntro'}
+            value={teamIntro && teamIntro} //벨류라서 변경이 안됨
+            onChange={onInfoHandler}
+            style={{resize: "none", width: "350px", border: "2px solid black",   borderRadius:"10px", width: "26vh"}}
+            rows="4">
+          </textarea>
 
-        <button onClick={onSubmitHandler}>회원 가입</button>
-      </form>
+          <label>활동 지역</label>
+          <select onChange={onInfoHandler} id='teamActivityArea' value={teamActivityArea}>
+            {regionList.map((item, id) => (
+              <option value={item} key={id}>
+                {item}
+              </option>
+            ))}
+          </select>
+          
+          <label>팀 로고</label>
+          <Avatar 
+          className='avatar'
+          alt="팀이미지" 
+          src={Image} 
+          sx={{ width: '15vh', height: '15vh', marginTop:'-1.5vh', marginBottom:'-1.5vh' }} 
+          onClick={()=>{fileInput.current.click()}}/>
+          <input 
+            className='input'
+            type='file' 
+            style={{display:'none'}}
+            accept='image/jpg,impge/png,image/jpeg' 
+            name='profile_img'
+            onChange={onImageHandler}
+            ref={fileInput}/>
+          <button onClick={onSubmitHandler}>회원 가입</button>
+        </form>
+        <button onClick={ModalClose}>확인</button>
+        <button onClick={ModalClose}>취소</button>
+      </Modal>
     </div>
   )
 }

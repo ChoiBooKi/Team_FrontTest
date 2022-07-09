@@ -9,6 +9,7 @@ import TeamLeader from "./components/TeamLeader";
 import TeamManage from "./components/TeamManage";
 import ResponsiveAppBar from "./components/Appbar"
 import MakeTeam from "./components/MakeTeam";
+import TeamList from "./components/TeamList";
 
 function App() {
   const minwidth = window.screen.height * 1.35 ;
@@ -33,6 +34,7 @@ function App() {
               <Route path="/teamextrainfo" element={<TeamExtraInformation />} />
               <Route path="/make" element={<MakeTeam />} />
               <Route path="/teammanage" element={<TeamManage />} />
+              <Route path="/teamlist" element={<TeamList />} />
               {/* 팀 가입이 되어 있으면 팀관리로 가고 아니면 팀목록, 팀생성 버튼이 있는 곳으로 가야된다 */}
               {/* Route를 어떻게 분기를 해야할까? */}
             </Routes>
