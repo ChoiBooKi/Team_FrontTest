@@ -133,6 +133,7 @@ const MakeTeam = () => {
           <button onClick={onSubmitHandler}>회원 가입</button>
         </form>
         <button onClick={ModalClose}>확인</button>
+        {/* 확인버튼 누르면 axios로 get해서 만들수있다고 하면 넘어가기 */}
         <button onClick={ModalClose}>취소</button>
       </Modal>
     </div>

@@ -4,6 +4,7 @@
 
 .Back{
   background-image: url(./img/배경.png);
+  /* 배경자체를 영어써놓은 걸로 해야될듯?? */
   min-height: 100vh;
   padding-right: 3%;
   padding-left: 3%;
