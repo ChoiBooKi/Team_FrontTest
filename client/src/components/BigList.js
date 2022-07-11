@@ -407,6 +407,7 @@ function BigList() {
                 key={player._id}
                 id={player._id} 
                 onClick={SelectPlayer}>
+                {/* //여기서 버튼, 키 에러 뜸 */}
               <Grid container alignItems="center" sx={{height: '5vh' }}>
                 <Grid item xs={1} sx={{fontSize: 13}}>
                   후보

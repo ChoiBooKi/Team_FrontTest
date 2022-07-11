@@ -35,15 +35,15 @@ export default function SquadSetter() {
     already: '-',
     back: '-'
   }
-  const emptyData = []
-  const count = 0
-  PlayerList && PlayerList.map((player) => player.already === true ? count++ : null)
-  console.log(count)
-  for(let i = 0; i<11 - PlayerList && PlayerList.length; i++){//already가 true인 애들의 수만 세야돼
-    emptyData.push(data)
-    console.log('hi')
-  }
-  console.log(PlayerList && PlayerList.length)
+  // const emptyData = []
+  // const count = 0
+  // PlayerList && PlayerList.map((player) => player.already === true ? count++ : null)
+  // console.log(count)
+  // for(let i = 0; i<11 - PlayerList && PlayerList.length; i++){//already가 true인 애들의 수만 세야돼
+  //   emptyData.push(data)
+  //   console.log('hi')
+  // }
+  // console.log(PlayerList && PlayerList.length)
   
   const success = (str) => {
     message.success(str);

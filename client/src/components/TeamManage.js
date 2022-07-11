@@ -13,7 +13,7 @@ import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 import DvrIcon from '@mui/icons-material/Dvr';
 
 const TeamManage = () => {
-  const team = 0//토큰으로 팀이 있는지 없는지 물어봐야될듯
+  const team = 1//토큰으로 팀이 있는지 없는지 물어봐야될듯
 
   const [value, setValue] = React.useState(0);
 
