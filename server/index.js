@@ -309,6 +309,14 @@ app.post('/api/sendUser', (req, res) => {
   // })
 })
 
+app.post('/api/img', (req, res) => {
+  const data = req
+  console.log(data)
+  return res.status(200).json({
+    success: true,
+    data: data
+  })
+})
 app.listen(port, () => {
   console.log(`http://localhost:${port}/`)
 })

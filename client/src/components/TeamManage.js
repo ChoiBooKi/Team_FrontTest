@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import AllAboutTeam from './AllAboutTeam'
+import Board from './Board'
 import NoTeam from './NoTeam'
 import BigList from './BigList'
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
@@ -71,7 +72,7 @@ const TeamManage = () => {
               Item Five
             </TabPanel>
             <TabPanel value={value} index={5}>
-              Item Six
+            {<Board />}
             </TabPanel>
             <TabPanel value={value} index={6}>
               Item Seven

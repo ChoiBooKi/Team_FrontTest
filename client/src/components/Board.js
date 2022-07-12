@@ -1,82 +1,78 @@
-// import React, { Component } from "react";
-// import PropTypes from "prop-types";
-// import { CKEditor } from "@ckeditor/ckeditor5-react"; //starting from ckeditor5-react v3, we should use { CKEditor }
-// // import CKEditor from "@ckeditor/ckeditor5-react"; // for ckeditor5-react v2
-// import ClassicEditor from "ckeditor5-build-classic-dna";
+import React from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from "axios";
 
-// class CKEditor5 extends Component {
-//   static get propTypes() {
-//     return {
-//       value: PropTypes.string,
-//       onChange: PropTypes.func,
-//     };
-//   }
+const Board = () => {
+  const API = '/api/img'
+  const API_URL = "/api/img";
+  const uploadAdapter = (loader) => {
+    return{
+      upload : () => {
+        return ((resolve, reject) => {//new Promise를 지우니까 제대로 됨
+          const body = new FormData()
+          loader.file.then((file) => {
+            body.append("uploadImg", file)
+            axios.post('/api/img', body)
+            .then((res) => console.log(res.data))
+            .then((res) => resolve({default: `${API_URL}/${res.filename}`}))
+            .catch((err) => reject(err))//에러발생함
+          })
+        })
+      }
+    }
 
-// // NOTE: You can customize toolbar using "config", here are avaliable Toolbar Items:
-// // "heading",
-// // "bold",
-// // "italic",
-// // "link",
-// // "bulletedList",
-// // "numberedList",
-// // "indent",
-// // "outdent",
-// // "insertImage",
-// // “insertImageFromUnsplash”,
-// // "code",
-// // "codeBlock",
-// // "blockQuote",
-// // "insertTable",
-// // "mediaEmbed",
-// // "undo",
-// // "redo"
+    // return {
+    //   upload: () => {
+    //     return new Promise((resolve, reject) => {
+    //       const body = new FormData();
+    //       loader.file.then((file) => {
+    //         body.append("files", file);
+    //         fetch(`${API_URL}`, {
+    //           method: "post",
+    //           body: body
+    //         })
+    //           .then((res) => res.json())
+    //           // .then((res) => {
+    //           //   resolve({
+    //           //     default: `${API_URL}/${res.filename}`
+    //           //   });
+    //           // })
+    //           .catch((err) => {
+    //             reject(err);
+    //           });
+    //       });
+    //     });
+    //   }
+    // }
 
-// // See how to customize toolbar at: https://deniapps.com/blog/customize-ckeditor5-toolbar
-
-// // You can add custom css to <table> & <img> now, see the details at:
-// // https://deniapps.com/blog/how-to-add-custom-css-classes-to-table-or-img-in-ckeditor
-
-//   render() {
-//     return (
-//       <CKEditor
-//         editor={ClassicEditor}
-//         config={{
-//           table: {
-//             customClass: ["ui", "table", "celled"], // Important!!! need to be array
-//           },
-//           image: {
-//           	customClass: ["ui", "fluid", "image"], // Use whatever class names defined in your theme
-//           },
-//           toolbar: [
-//             "heading",
-//             "|",
-//             "bold",
-//             "italic",
-//             "link",
-//             "bulletedList",
-//             "numberedList",
-//             "|",
-//             "indent",
-//             "outdent",
-//             "|",
-//             "codeBlock",
-//             "blockQuote",
-//             "insertTable",
-//             "mediaEmbed",
-//             "undo",
-//             "redo",
-//           ],
-//         data={this.props.value}
-//         onInit={(editor) => {
-//           // You can store the "editor" and use when it is needed.
-//           console.log("Editor is ready to use!", editor);
-//         }}
-//         onChange={(event, editor) => {
-//           const data = editor.getData();
-//           this.props.onChange(data);
-//         }}
-//       />
-//     );
-//   }
-// }
-// export default CKEditor5;
+  }
+  // const uploadPlugin = (editor) => {
+  //   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+  //     return uploadAdapter(loader);
+  //   }
+  // }
+  //화살표 함수랑 익명함수랑 같은 내용인데 화살표 함수는 constructor 에러뜸
+  function uploadPlugin(editor) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+      return uploadAdapter(loader);
+    };
+  }
+  return(
+    <CKEditor className='editor'
+    config={{
+      extraPlugins: [uploadPlugin]
+    }}
+    data="<p>게시글을 작성해주세요</p>"
+    editor={ClassicEditor}
+    onReady={(editor) => {}}
+    onBlur={(event, editor) => {}}
+    onFocus={(event, editor) => {}}
+    onChange={(event, editor) => {
+      const data2 = editor.getData();
+      // console.log(data2)
+    }}
+    />
+  )
+}
+export default Board
