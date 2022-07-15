@@ -6,6 +6,7 @@ import AllAboutTeam from './AllAboutTeam'
 import Board from './Board'
 import NoTeam from './NoTeam'
 import BigList from './BigList'
+import Calendar from './Calendar'
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
@@ -57,28 +58,31 @@ const TeamManage = () => {
 
             <TabPanel value={value} index={0} className='Test'>
               {<AllAboutTeam />}
+              {/* 팀정보 */}
             </TabPanel>
 
             <TabPanel value={value} index={1}>
               {<BigList />}
+              {/* 선수관리 - 리스트 */}
             </TabPanel>
+
             <TabPanel value={value} index={2}>
-              Item Three
+              {<Calendar />}
+              {/* 팀 일정 */}
             </TabPanel>
+
             <TabPanel value={value} index={3}>
-              Item Four
+              팀 기록
             </TabPanel>
+
             <TabPanel value={value} index={4}>
-              Item Five
+              사진 게시판
             </TabPanel>
+
             <TabPanel value={value} index={5}>
             {<Board />}
             </TabPanel>
-            <TabPanel value={value} index={6}>
-              Item Seven
-            </TabPanel>
           </Box>
-
         </div>
       : <>{<NoTeam />}</>}
     </>

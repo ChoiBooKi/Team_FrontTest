@@ -2,12 +2,12 @@ import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
-import '../css/Calendar.css';
+import * as config from '../config'
 
 // https://fullcalendar.io/docs/google-calendar
-export default function Calendarpg() {
-// Apikey는 환경 변수를 이용해 숨겼다
-  const apiKey = process.env.REACT_APP_CAL_API_KEY;
+const Calendar = () => {
+  const apiKey = config.Calendar_API_KEY;
+  const id = config.Calendar_ID
 
   return (
     <div className="cal-container">
@@ -16,7 +16,10 @@ export default function Calendarpg() {
         initialView="dayGridMonth"
         googleCalendarApiKey={apiKey}
         events={{
-          googleCalendarId: 'eunbeann@gmail.com',
+          googleCalendarId: id,
+          // events: [
+          //   { title: 'event 1', date: '2022-07-15' },
+          //   { title: 'event 2', date: '2022-07-02' }]
         }}
         eventDisplay={'block'}
         eventTextColor={'#FFF'}
@@ -27,3 +30,5 @@ export default function Calendarpg() {
     </div>
   );
 }
+
+export default Calendar
