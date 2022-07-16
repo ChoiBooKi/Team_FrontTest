@@ -8,7 +8,7 @@ import * as config from '../config'
 const Calendar = () => {
   const apiKey = config.Calendar_API_KEY;
   const id = config.Calendar_ID
-
+  //id를 사용자에게 받아서 넣어야 될 듯
   return (
     <div className="cal-container">
       <FullCalendar
@@ -16,6 +16,7 @@ const Calendar = () => {
         initialView="dayGridMonth"
         googleCalendarApiKey={apiKey}
         events={{
+          // googleCalendarId: 'changeun28@gmail.com',
           googleCalendarId: id,
           // events: [
           //   { title: 'event 1', date: '2022-07-15' },

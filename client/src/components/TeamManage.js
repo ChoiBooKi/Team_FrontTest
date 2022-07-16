@@ -67,6 +67,7 @@ const TeamManage = () => {
             </TabPanel>
 
             <TabPanel value={value} index={2}>
+              {/* 캘린더 db에 있나 확인하고 없으면 NoCalendar로 있으면 Calendar로 */}
               {<Calendar />}
               {/* 팀 일정 */}
             </TabPanel>
