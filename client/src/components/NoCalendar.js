@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function NoCalendar () {
   const navigate = useNavigate()
+  const [CalendarId, SetCalendarId] = useState()
+  //구글 캘린더를 안쓰고 자체 캘린더를 만들면 사용자한테 안받아도됨
+  //근데 그럼 모든 일정을 DB에 저장을 시켜야 돼서 백엔드랑 기획한테 물어보자
   // navigate('/make')
   const onClickHandler = (e) => {
     //사용자한테 input으로 캘린더 id값 받아서 버튼 클릭하면 백한테
